@@ -1,0 +1,250 @@
+<!DOCTYPE html><html data-theme="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!-- Primary SEO -->
+<title>JSON Formatter and Validator Online | ToolzGarden</title>
+<meta content="Paste JSON text, validate it with JSON.parse, format it with 2 spaces, 4 spaces, or tabs, then copy or download formatted.json." name="description">
+<meta content="json formatter, format json online, json validator, json pretty print" name="keywords">
+<meta content="ToolzGarden" name="author">
+<meta content="index, follow" name="robots">
+<!-- Canonical -->
+<link href="https://toolzgarden.com/tools/json-formatter.html" rel="canonical">
+<!-- Open Graph -->
+<meta content="website" property="og:type">
+<meta content="JSON Formatter and Validator Online | ToolzGarden" property="og:title">
+<meta content="Paste JSON text, validate it with JSON.parse, format it with 2 spaces, 4 spaces, or tabs, then copy or download formatted.json." property="og:description">
+<meta content="https://toolzgarden.com/tools/json-formatter.html" property="og:url">
+<meta content="ToolzGarden" property="og:site_name">
+<meta property="og:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ToolzGarden free online tools">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta content="JSON Formatter and Validator Online | ToolzGarden" name="twitter:title">
+<meta content="Paste JSON text, validate it with JSON.parse, format it with 2 spaces, 4 spaces, or tabs, then copy or download formatted.json." name="twitter:description">
+<meta name="twitter:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+<!-- Favicon -->
+<link href="../Favicon-Images/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+<link href="../Favicon-Images/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+<link href="../Favicon-Images/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+<!-- Styles -->
+<noscript></noscript>
+<!-- DNS Prefetch & Preconnect for High-Speed Asset Loading -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect">
+<link href="https://fonts.googleapis.com" rel="dns-prefetch">
+<link href="https://fonts.gstatic.com" rel="dns-prefetch">
+<link href="https://cdn.jsdelivr.net" rel="dns-prefetch">
+<!-- Asynchronous Non-blocking Google Fonts -->
+<link as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/></noscript>
+<!-- Asynchronous Non-blocking Remix Icon stylesheet -->
+<link as="style" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload">
+<noscript><link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet"/></noscript>
+<!-- Main stylesheet -->
+<link href="../style.css" rel="stylesheet">
+<!-- JSON-LD WebApplication Schema -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON Formatter",
+  "url": "https://toolzgarden.com/tools/json-formatter.html",
+  "description": "Format pasted JSON text with 2 spaces, 4 spaces, or tabs, then copy or download formatted.json.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://toolzgarden.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "JSON Formatter",
+      "item": "https://toolzgarden.com/tools/json-formatter.html"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What input does this JSON formatter accept?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The formatter accepts pasted JSON text in the input textarea."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does validation work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When you click Format JSON, the script runs JSON.parse on the input. If parsing fails, the page shows an Invalid JSON message followed by the parser error."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which indentation options are available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The indent selector supports 2 spaces, 4 spaces, and tab indentation. The selected value is passed to JSON.stringify."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the Copy button copy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Copy button writes the current output textarea value to the clipboard."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What file does the Download button create?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Download button creates a JSON Blob from the output textarea and downloads it as formatted.json."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the JSON processed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The formatter script reads the textarea value on the page, parses it with JSON.parse, and formats it with JSON.stringify."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+<nav class="container">
+<a class="logo" href="/">
+<img alt="ToolzGarden Logo" decoding="async" height="40" src="../Images/logo.png" style="height:40px;width:40px;object-fit:contain;" width="40" loading="eager" fetchpriority="high">
+      ToolzGarden
+    </a>
+<!-- Hamburger Button -->
+<button aria-label="Toggle Menu" class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<!-- Nav Links -->
+<ul class="nav-links" id="nav-links">
+<li><a href="/">Home</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../contact.html">Contact</a></li>
+</ul>
+<div class="nav-actions">
+<button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
+<i class="ri-moon-line"></i>
+</button>
+</div>
+</nav>
+</header>
+<div class="full-page-wrapper">
+<main class="center-main-content">
+<section style="padding: 2rem 0;">
+<span class="badge-private hero-animate hero-animate-2"><i class="ri-braces-line"></i> Paste JSON Text</span>
+<h1 class="hero-animate hero-animate-1">JSON Formatter and Validator Online</h1>
+<p style="color: var(--text-secondary);">Paste JSON text, choose an indentation style, then format, copy, or download the result.</p>
+</section>
+<div class="tool-layout">
+<div class="tool-main">
+<textarea id="text-input" placeholder="{&quot;a&quot;:1}" rows="8" style="width:100%;padding:1rem;border-radius:0.5rem;font-family:monospace;"></textarea><p id="error-msg" style="color:red;"></p><textarea id="text-output" readonly="" rows="8" style="width:100%;padding:1rem;border-radius:0.5rem;font-family:monospace;margin-top:1rem;"></textarea>
+</div>
+<aside class="tool-sidebar">
+<div class="controls-card">
+<div class="control-group"><label>Indent</label><select id="indent"><option value="2">2 Spaces</option><option value="4">4 Spaces</option><option value="tab">Tab</option></select></div><button class="btn btn-primary" id="format-btn" style="margin-bottom:1rem;width:100%;">Format JSON</button><button class="btn btn-primary" id="copy-btn" style="margin-bottom:1rem;width:100%;"><i class="ri-clipboard-line"></i> Copy</button><button class="btn btn-secondary" id="download-btn" style="margin-bottom:1rem;width:100%;"><i class="ri-download-line"></i> Download .json</button>
+<button class="btn btn-secondary" id="reset-btn" style="margin-top: 1rem; width: 100%;">
+<i class="ri-restart-line"></i> Reset Inputs
+                    </button>
+</div>
+</aside>
+</div>
+<article class="seo-content" style="padding: 2rem; margin-top: 2rem; background: var(--bg-secondary); border-radius: 1rem; border: 1px solid var(--border-color);">
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem;">What This Tool Does</h2>
+<p>This JSON formatter works with pasted text. Enter JSON in the first textarea, choose the indentation style, and click <strong>Format JSON</strong>.</p>
+<p>If the input is valid JSON, the script writes the formatted result to the readonly output textarea. If the input is invalid, the page shows an error message that starts with <code>Invalid JSON:</code>.</p>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Formatting and Validation</h2>
+<p>The formatter uses <code>JSON.parse</code> to validate the input and <code>JSON.stringify</code> to create the formatted output. The indentation selector supports 2 spaces, 4 spaces, and tabs.</p>
+<p>This page works with pasted JSON text. It does not include a minify action or API schema validation.</p>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Copy, Download, and Reset</h2>
+<ul>
+<li><strong>Copy</strong> writes the current output textarea value to the clipboard.</li>
+<li><strong>Download .json</strong> creates a JSON Blob from the output textarea and saves it as <code>formatted.json</code>.</li>
+<li><strong>Reset Inputs</strong> clears the input textarea, output textarea, and error message.</li>
+</ul>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Privacy and Processing</h2>
+<p>The formatter script reads the textarea value on the page, parses it with <code>JSON.parse</code>, and formats it with <code>JSON.stringify</code>.</p>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Common Uses</h2>
+<ul>
+<li>Making a compact JSON response easier to read.</li>
+<li>Checking whether pasted JSON can be parsed by the browser.</li>
+<li>Saving formatted JSON as a <code>formatted.json</code> file.</li>
+</ul>
+</article>
+<section style="padding:3rem 0;">
+<div class="container">
+<h2 style="margin-bottom:1.5rem;">Related Tools</h2>
+<div class="tool-grid" style="padding:0;">
+<a class="tool-card" href="json-minifier.html" style="text-decoration:none;">
+<div class="tool-icon"><i class="ri-collapse-diagonal-line"></i></div>
+<h3>JSON Minifier</h3>
+<p>Use this when you need compact JSON instead of formatted JSON.</p>
+</a>
+<a class="tool-card" href="html-encoder.html" style="text-decoration:none;">
+<div class="tool-icon"><i class="ri-code-line"></i></div>
+<h3>HTML Encoder</h3>
+<p>Encode special characters before placing text in HTML.</p>
+</a>
+<a class="tool-card" href="url-encoder.html" style="text-decoration:none;">
+<div class="tool-icon"><i class="ri-global-line"></i></div>
+<h3>URL Encoder</h3>
+<p>Encode or decode URL strings and query values.</p>
+</a>
+<a class="tool-card" href="base64-encoder.html" style="text-decoration:none;">
+<div class="tool-icon"><i class="ri-shield-keyhole-line"></i></div>
+<h3>Base64 Encoder</h3>
+<p>Encode or decode Base64 text and files.</p>
+</a>
+</div>
+</div>
+</section>
+<section class="faq-section" style="padding:3rem 0;"><div class="container"><h2 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h2><div class="faq-list"><div class="faq-item"><button class="faq-question">What input does this JSON formatter accept? <span class="faq-icon">+</span></button><div class="faq-answer"><p>The formatter accepts pasted JSON text in the input textarea.</p></div></div><div class="faq-item"><button class="faq-question">How does validation work? <span class="faq-icon">+</span></button><div class="faq-answer"><p>When you click <strong>Format JSON</strong>, the script runs <code>JSON.parse</code> on the input. If parsing fails, the page shows an <code>Invalid JSON:</code> message followed by the parser error.</p></div></div><div class="faq-item"><button class="faq-question">Which indentation options are available? <span class="faq-icon">+</span></button><div class="faq-answer"><p>The indent selector supports 2 spaces, 4 spaces, and tab indentation. The selected value is passed to <code>JSON.stringify</code>.</p></div></div><div class="faq-item"><button class="faq-question">What does the Copy button copy? <span class="faq-icon">+</span></button><div class="faq-answer"><p>The Copy button writes the current output textarea value to the clipboard.</p></div></div><div class="faq-item"><button class="faq-question">What file does the Download button create? <span class="faq-icon">+</span></button><div class="faq-answer"><p>The Download button creates a JSON Blob from the output textarea and downloads it as <code>formatted.json</code>.</p></div></div><div class="faq-item"><button class="faq-question">How is the JSON processed? <span class="faq-icon">+</span></button><div class="faq-answer"><p>The formatter script reads the textarea value on the page, parses it with <code>JSON.parse</code>, and formats it with <code>JSON.stringify</code>.</p></div></div></div></div></section></main></div>
+
+
+<footer>
+<div class="container">
+<div class="footer-bottom"><p>&copy; 2025 ToolzGarden. All rights reserved.</p></div>
+</div>
+</footer>
+<script defer="" src="../script.js"></script>
+<script defer="" src="json-formatter.js"></script>
+
+</body></html>

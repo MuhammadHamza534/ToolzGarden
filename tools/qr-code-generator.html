@@ -1,0 +1,814 @@
+<!DOCTYPE html><html data-theme="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0" name="viewport">
+<title>QR Code Generator for URL, Text, Email and Phone | ToolzGarden</title>
+<meta content="Create a QR code from a URL, text, email address, phone number, or WhatsApp number. Adjust colors, add a logo up to 2 MB, and download a PNG." name="description">
+<link href="https://toolzgarden.com/tools/qr-code-generator.html" rel="canonical">
+<meta content="QR Code Generator for URL, Text, Email and Phone | ToolzGarden" property="og:title">
+<meta content="Create a QR code from a URL, text, email address, phone number, or WhatsApp number. Adjust colors, add a logo up to 2 MB, and download a PNG." property="og:description">
+<meta content="https://toolzgarden.com/tools/qr-code-generator.html" property="og:url">
+<meta content="website" property="og:type">
+<link href="../Images/logo.png" rel="icon" type="image/png">
+<!-- DNS Prefetch & Preconnect for High-Speed Asset Loading -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect">
+<link href="https://fonts.googleapis.com" rel="dns-prefetch">
+<link href="https://fonts.gstatic.com" rel="dns-prefetch">
+<link href="https://cdn.jsdelivr.net" rel="dns-prefetch">
+<!-- Asynchronous Non-blocking Google Fonts -->
+<link as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/></noscript>
+<!-- Asynchronous Non-blocking Remix Icon stylesheet -->
+<link as="style" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload">
+<noscript><link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet"/></noscript>
+<!-- Main stylesheet -->
+<link href="../style.css" rel="stylesheet">
+<script src="https://unpkg.com/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
+
+<style>
+.qr-hero{padding:2.5rem 0 1rem;text-align:center}
+.qr-hero h1{font-size:2rem;font-weight:800;color:var(--text-primary);margin-bottom:.5rem}
+.qr-hero p{color:var(--text-secondary);font-size:.95rem;max-width:580px;margin:0 auto}
+.privacy-badge-qr{display:inline-flex;align-items:center;gap:.3rem;padding:.25rem .75rem;background:rgba(16,185,129,.1);color:#059669;border-radius:9999px;font-size:.78rem;font-weight:600;margin-bottom:.75rem}
+
+.qr-layout{display:grid;grid-template-columns:1fr 360px;gap:1.5rem;align-items:start;max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+.qr-left{display:flex;flex-direction:column}
+.qr-right{position:sticky;top:5rem}
+.qr-card{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:1rem;overflow:hidden;margin-bottom:1rem}
+.qr-card-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;border-bottom:1px solid transparent;transition:border-color 0.2s}
+.qr-card.open .qr-card-header{border-bottom:1px solid var(--border-color)}
+.qr-card-header-left{display:flex;align-items:center;gap:0.5rem;color:var(--text-primary);font-weight:600;font-size:0.95rem}
+.qr-card-header-left i{color:var(--accent-primary)}
+.qr-chevron{color:var(--text-secondary);transition:transform 0.2s}
+.qr-card.open .qr-chevron{transform:rotate(180deg)}
+.qr-card-body{padding:1.25rem;display:none}
+.qr-card.open .qr-card-body{display:block}
+
+.input-type-tabs{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.25rem}
+.itype-btn{padding:0.4rem 0.85rem;border-radius:9999px;border:1px solid var(--border-color);background:transparent;color:var(--text-secondary);font-size:0.82rem;font-weight:500;cursor:pointer;transition:all 0.2s}
+.itype-btn.active{background:var(--accent-primary);color:#fff;border-color:var(--accent-primary)}
+
+.form-group-qr label{display:block;font-size:0.75rem;font-weight:700;color:var(--text-secondary);margin-bottom:0.35rem;text-transform:uppercase;letter-spacing:0.05em}
+.form-group-qr input[type=text],.form-group-qr input[type=url]{width:100%;padding:0.65rem 0.85rem;border-radius:0.5rem;border:1px solid var(--border-color);background:var(--bg-primary);color:var(--text-primary);font-size:0.95rem;transition:border 0.2s}
+.form-group-qr input:focus{outline:none;border-color:var(--accent-primary)}
+.form-group-qr input.error{border-color:#ef4444}
+.err-qr{font-size:.75rem;color:#ef4444;margin-top:.25rem;display:none}
+
+.style-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-bottom:1rem}
+.style-btn{width:100%;aspect-ratio:1;border:2px solid var(--border-color);border-radius:8px;background:#ffffff;color:#000000;cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:2px}
+.style-btn svg{width:100%;height:100%;object-fit:contain}
+.style-btn.active{border-color:var(--accent-primary);background:#ffffff;box-shadow:0 0 0 3px rgba(37,99,235,0.25)}
+.style-btn:hover{border-color:var(--accent-primary)}
+
+.color-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.color-picker-wrap{display:flex;align-items:center;gap:0.75rem}
+.color-picker-wrap input[type=color]{width:36px;height:36px;border-radius:6px;border:2px solid var(--border-color);cursor:pointer;padding:0;background:var(--bg-primary)}
+.color-picker-wrap input[type=text]{flex:1;padding:0.5rem 0.75rem;background:var(--bg-primary);border:1px solid var(--border-color);border-radius:0.5rem;color:var(--text-primary);font-size:0.85rem;font-family:monospace}
+.color-label{font-size:0.82rem;font-weight:700;color:var(--text-secondary);margin-bottom:0.5rem;display:block}
+.toggle-wrap{margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--text-secondary)}
+
+.logo-upload-box{border:2px dashed var(--border-color);border-radius:0.75rem;padding:1.5rem;text-align:center;cursor:pointer;background:var(--bg-primary);position:relative}
+.logo-upload-box input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.logo-upload-box i{font-size:1.5rem;color:var(--text-secondary);margin-bottom:0.25rem;display:block}
+.logo-upload-box .main-txt{font-size:0.9rem;color:var(--text-primary);font-weight:600;margin-bottom:0.25rem}
+.logo-upload-box .sub-txt{font-size:0.8rem;color:var(--text-secondary)}
+
+.logo-preview-wrap{display:flex;align-items:center;gap:0.6rem;padding:0.75rem;background:var(--bg-primary);border-radius:0.5rem;border:1px solid var(--border-color)}
+.logo-preview-wrap img{width:48px;height:48px;object-fit:contain;border-radius:0.25rem;background:#fff;padding:2px}
+.logo-preview-wrap span{font-size:0.8rem;color:var(--text-primary);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn-remove-logo{padding:0.35rem 0.6rem;background:rgba(239,68,68,0.1);color:#ef4444;border:1px solid rgba(239,68,68,0.3);border-radius:0.35rem;font-size:0.75rem;cursor:pointer;font-weight:600}
+
+.preset-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem}
+.preset-btn{width:44px;height:44px;border-radius:8px;border:1px solid var(--border-color);background:var(--bg-primary);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;color:var(--text-secondary);transition:all 0.2s}
+.preset-btn.active{border-color:var(--accent-primary);background:rgba(37,99,235,0.12);color:var(--accent-primary)}
+.preset-btn:hover{color:var(--accent-primary);border-color:var(--accent-primary)}
+
+.frame-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.frame-card{aspect-ratio:3/4;border:2px solid var(--border-color);border-radius:10px;background:var(--bg-primary);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;padding:6px;transition:all 0.2s}
+.frame-card.active{border-color:var(--accent-primary);background:rgba(37,99,235,0.12)}
+.frame-card svg{width:60%;height:auto;display:block}
+.frame-card span{font-size:0.7rem;font-weight:600;color:var(--text-secondary);margin-top:4px;text-align:center}
+
+.frame-controls{display:none;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.frame-controls.visible{display:grid}
+.frame-ctrl-group{display:flex;flex-direction:column}
+.frame-ctrl-group label{font-size:0.75rem;font-weight:700;color:var(--text-secondary);margin-bottom:0.35rem}
+.frame-ctrl-group input[type=text],.frame-ctrl-group select{padding:0.5rem 0.75rem;border-radius:0.5rem;border:1px solid var(--border-color);background:var(--bg-primary);color:var(--text-primary);font-size:0.85rem;font-family:inherit}
+.frame-color-row{grid-column:1/-1}
+
+.btn-download-qr{width:100%;display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.85rem;background:var(--accent-primary);color:#fff;border-radius:0.5rem;font-weight:600;font-size:0.95rem;border:none;cursor:pointer;transition:all 0.2s;margin-top:1rem}
+.btn-download-qr:hover{background:#1d4ed8}
+
+.qr-preview-card{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:1rem;padding:1.5rem;text-align:center}
+.qr-preview-label{font-size:0.75rem;font-weight:700;letter-spacing:0.08em;color:var(--text-secondary);margin-bottom:1rem;text-transform:uppercase}
+.qr-canvas-wrap{width:100%;max-width:280px;margin:0 auto;display:block;border-radius:12px;background:#fff;padding:12px;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.qr-canvas-wrap canvas{width:100%!important;height:auto!important;display:block}
+.qr-scannable-note{font-size:0.78rem;color:var(--text-secondary);margin-top:0.75rem}
+
+@media(max-width:768px){.qr-layout{grid-template-columns:1fr;padding:1rem}.qr-right{order:-1;position:static}.style-grid{grid-template-columns:repeat(5,1fr)}.color-row{grid-template-columns:1fr}.frame-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+<meta property="og:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ToolzGarden free online tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QR Code Generator for URL, Text, Email and Phone | ToolzGarden">
+<meta name="twitter:description" content="Create a QR code from a URL, text, email address, phone number, or WhatsApp number. Adjust colors, add a logo up to 2 MB, and download a PNG.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "QR Code Generator",
+  "url": "https://toolzgarden.com/tools/qr-code-generator.html",
+  "description": "Create QR codes for URL, text, email, phone, and WhatsApp input. Adjust colors, add a logo image up to 2 MB, and download a PNG file.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://toolzgarden.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "QR Code Generator",
+      "item": "https://toolzgarden.com/tools/qr-code-generator.html"
+    }
+  ]
+}
+</script>
+<meta name="robots" content="index, follow">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What QR code input types are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool supports Website URL, Plain Text, Email, Phone, and WhatsApp input types. The script formats URL, email, phone, and WhatsApp values before generating the QR code."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are URL, email, phone, and WhatsApp values formatted?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A URL without http:// or https:// is prefixed with https://. Email becomes a mailto: value, phone becomes a tel: value with spaces removed, and WhatsApp keeps digits only before creating a wa.me link."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I customize the QR code colors and shapes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The interface includes controls for dot style, background color, dot color, marker border style and color, marker center style and color, a transparent background option, and optional frames."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add a logo image?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The logo file selector accepts PNG, JPG, SVG, and WEBP images. The JavaScript rejects logo files larger than 2 MB."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What file does the download button create?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Download PNG button saves qrcode-toolzgarden.png. If a frame is selected, the page downloads the framed canvas as a PNG. Otherwise it uses QRCodeStyling to download the QR code as PNG."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What error messages can appear?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Downloading with an empty input shows Please enter content to generate a QR code. A logo larger than 2 MB shows Logo file must be under 2MB. If QR generation fails, the preview shows Error generating QR code. Input may be too long."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which QR code library does this page use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The page loads QRCodeStyling from https://unpkg.com/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js and uses it to render the QR code as a canvas."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+<nav class="container">
+<a class="logo" href="/">
+<img alt="ToolzGarden Logo" height="36" src="../Images/logo.png" style="object-fit:contain" width="36" loading="eager" fetchpriority="high">
+ToolzGarden
+</a>
+<button aria-label="Toggle Menu" class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+<ul class="nav-links" id="nav-links">
+<li><a href="/">Home</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../contact.html">Contact</a></li>
+</ul>
+<div class="nav-actions">
+<button class="theme-toggle" id="theme-toggle" title="Toggle Theme"><i class="ri-moon-line"></i></button>
+</div>
+</nav>
+</header>
+<div class="container" style="padding-top:1.5rem;padding-bottom:3rem">
+<div class="qr-hero">
+<span class="privacy-badge-qr"><i class="ri-qr-code-line"></i> Custom PNG QR Codes</span>
+<h1>Create QR Codes for URL, Text, Email, Phone, and WhatsApp</h1>
+<p>Choose the type of content, enter the value, adjust the design if needed, and download the QR code as a PNG file.</p>
+</div>
+<div class="qr-layout">
+<!-- LEFT COLUMN -->
+<div class="qr-left">
+<!-- SECTION 1: INPUT TYPE -->
+<div class="qr-card open">
+<div class="qr-card-header" onclick="toggleCard(this)">
+<div class="qr-card-header-left"><i class="ri-link-m"></i> <span>Input Type</span></div>
+<i class="ri-arrow-down-s-line qr-chevron"></i>
+</div>
+<div class="qr-card-body">
+<div class="input-type-tabs">
+<button class="itype-btn active" data-type="url" onclick="setInputType('url')">Website URL</button>
+<button class="itype-btn" data-type="text" onclick="setInputType('text')">Plain Text</button>
+<button class="itype-btn" data-type="email" onclick="setInputType('email')">Email</button>
+<button class="itype-btn" data-type="phone" onclick="setInputType('phone')">Phone</button>
+<button class="itype-btn" data-type="whatsapp" onclick="setInputType('whatsapp')">WhatsApp</button>
+</div>
+<div class="form-group-qr">
+<label for="qr-input" id="qr-input-label">Website URL</label>
+<input autocomplete="off" id="qr-input" oninput="generateQR()" placeholder="https://example.com" type="text">
+<div class="err-qr" id="qr-err">Please enter content to generate a QR code.</div>
+</div>
+</div>
+</div>
+<!-- SECTION 2: QR CODE STYLE -->
+<div class="qr-card open">
+<div class="qr-card-header" onclick="toggleCard(this)">
+<div class="qr-card-header-left"><i class="ri-shape-line"></i> <span>Color and Shape</span></div>
+<i class="ri-arrow-down-s-line qr-chevron"></i>
+</div>
+<div class="qr-card-body">
+<div class="color-label">Dots</div>
+<div class="style-grid" id="dots-grid">
+<button class="style-btn active" data-dots="square" onclick="setDots(this)"><svg viewBox="0 0 10 10"><rect fill="currentColor" height="3" width="3" x="1" y="1"></rect><rect fill="currentColor" height="3" width="3" x="6" y="1"></rect><rect fill="currentColor" height="3" width="3" x="1" y="6"></rect><rect fill="currentColor" height="1.2" width="1.2" x="4.5" y="4.5"></rect><rect fill="currentColor" height="1.2" width="1.2" x="6.5" y="4.5"></rect><rect fill="currentColor" height="1.2" width="1.2" x="4.5" y="6.5"></rect></svg></button>
+<button class="style-btn" data-dots="dots" onclick="setDots(this)"><svg viewBox="0 0 10 10"><circle cx="2.5" cy="2.5" fill="currentColor" r="1.5"></circle><circle cx="7.5" cy="2.5" fill="currentColor" r="1.5"></circle><circle cx="2.5" cy="7.5" fill="currentColor" r="1.5"></circle><circle cx="5" cy="5" fill="currentColor" r="0.6"></circle><circle cx="7" cy="5" fill="currentColor" r="0.6"></circle><circle cx="5" cy="7" fill="currentColor" r="0.6"></circle></svg></button>
+<button class="style-btn" data-dots="rounded" onclick="setDots(this)"><svg viewBox="0 0 10 10"><rect fill="currentColor" height="3" rx="1" width="3" x="1" y="1"></rect><rect fill="currentColor" height="3" rx="1" width="3" x="6" y="1"></rect><rect fill="currentColor" height="3" rx="1" width="3" x="1" y="6"></rect><rect fill="currentColor" height="1.2" rx="0.4" width="1.2" x="4.5" y="4.5"></rect><rect fill="currentColor" height="1.2" rx="0.4" width="1.2" x="6.5" y="4.5"></rect><rect fill="currentColor" height="1.2" rx="0.4" width="1.2" x="4.5" y="6.5"></rect></svg></button>
+<button class="style-btn" data-dots="extra-rounded" onclick="setDots(this)"><svg viewBox="0 0 10 10"><circle cx="2.5" cy="2.5" fill="currentColor" r="1.5"></circle><rect fill="currentColor" height="1.2" rx="0.6" width="1.2" x="4.5" y="4.5"></rect></svg></button>
+<button class="style-btn" data-dots="classy" onclick="setDots(this)"><svg viewBox="0 0 10 10"><rect fill="currentColor" height="3" width="3" x="1" y="1"></rect><polygon fill="currentColor" points="5,4 6,5 5,6 4,5"></polygon></svg></button>
+<button class="style-btn" data-dots="classy-rounded" onclick="setDots(this)"><svg viewBox="0 0 10 10"><circle cx="2.5" cy="2.5" fill="currentColor" r="1.5"></circle><polygon fill="currentColor" points="5,4 6,5 5,6 4,5"></polygon></svg></button>
+</div>
+<div class="color-row">
+<div>
+<div class="color-label">Background Color</div>
+<div class="color-picker-wrap">
+<input id="qr-bg" oninput="updateHex('qr-bg', 'qr-bg-hex'); generateQR()" type="color" value="#ffffff">
+<input id="qr-bg-hex" oninput="updateColor('qr-bg-hex', 'qr-bg'); generateQR()" type="text" value="#ffffff">
+</div>
+<label class="toggle-wrap"><input id="qr-bg-trans" onchange="generateQR()" type="checkbox"> Transparent Background</label>
+</div>
+<div>
+<div class="color-label">Dots Color</div>
+<div class="color-picker-wrap">
+<input id="qr-fg" oninput="updateHex('qr-fg', 'qr-fg-hex'); generateQR()" type="color" value="#000000">
+<input id="qr-fg-hex" oninput="updateColor('qr-fg-hex', 'qr-fg'); generateQR()" type="text" value="#000000">
+</div>
+</div>
+</div>
+<div class="color-label" style="margin-top:1.5rem">Marker Border</div>
+<div class="style-grid" id="mb-grid">
+<button class="style-btn mb-btn active" data-mb="square" onclick="setMb(this)"><svg viewBox="0 0 10 10"><rect fill="none" height="6" stroke="currentColor" stroke-width="1.5" width="6" x="2" y="2"></rect></svg></button>
+<button class="style-btn mb-btn" data-mb="extra-rounded" onclick="setMb(this)"><svg viewBox="0 0 10 10"><rect fill="none" height="6" rx="2" stroke="currentColor" stroke-width="1.5" width="6" x="2" y="2"></rect></svg></button>
+<button class="style-btn mb-btn" data-mb="dot" onclick="setMb(this)"><svg viewBox="0 0 10 10"><circle cx="5" cy="5" fill="none" r="3" stroke="currentColor" stroke-width="1.5"></circle></svg></button>
+</div>
+<div class="color-label" style="margin-top:0.5rem">Marker Border Color</div>
+<div class="color-picker-wrap">
+<input id="qr-mb-color" oninput="updateHex('qr-mb-color', 'qr-mb-hex'); generateQR()" type="color" value="#000000">
+<input id="qr-mb-hex" oninput="updateColor('qr-mb-hex', 'qr-mb-color'); generateQR()" type="text" value="#000000">
+</div>
+<div class="color-label" style="margin-top:1.5rem">Marker Center</div>
+<div class="style-grid" id="mc-grid">
+<button class="style-btn mc-btn active" data-mc="square" onclick="setMc(this)"><svg viewBox="0 0 10 10"><rect fill="currentColor" height="3" width="3" x="3.5" y="3.5"></rect></svg></button>
+<button class="style-btn mc-btn" data-mc="dot" onclick="setMc(this)"><svg viewBox="0 0 10 10"><circle cx="5" cy="5" fill="currentColor" r="1.5"></circle></svg></button>
+</div>
+<div class="color-label" style="margin-top:0.5rem">Marker Center Color</div>
+<div class="color-picker-wrap">
+<input id="qr-mc-color" oninput="updateHex('qr-mc-color', 'qr-mc-hex'); generateQR()" type="color" value="#000000">
+<input id="qr-mc-hex" oninput="updateColor('qr-mc-hex', 'qr-mc-color'); generateQR()" type="text" value="#000000">
+</div>
+</div>
+</div>
+<!-- SECTION 3: CENTER LOGO -->
+<div class="qr-card open">
+<div class="qr-card-header" onclick="toggleCard(this)">
+<div class="qr-card-header-left"><i class="ri-image-line"></i> <span>Logo</span></div>
+<i class="ri-arrow-down-s-line qr-chevron"></i>
+</div>
+<div class="qr-card-body">
+<div class="logo-upload-box" id="logo-upload-box">
+<input accept="image/png,image/jpeg,image/svg+xml,image/webp" id="logo-file-input" onchange="handleLogoUpload(event)" type="file">
+<i class="ri-upload-2-line"></i>
+<div class="main-txt">Click to upload logo or icon</div>
+<div class="sub-txt">PNG, JPG, SVG, WEBP (max 2MB)</div>
+</div>
+<div class="logo-preview-wrap" id="logo-preview-wrap" style="display:none">
+<img alt="Logo preview" id="logo-thumb" src="" loading="lazy" width="800" height="600">
+<span id="logo-filename">logo.png</span>
+<button class="btn-remove-logo" onclick="removeLogo()">Remove</button>
+</div>
+<label class="toggle-wrap" style="margin-top:1rem"><input id="logo-bg-remove" onchange="generateQR()" type="checkbox"> Show dots behind logo</label>
+</div>
+</div>
+<!-- SECTION 4: QR CODE FRAME -->
+<div class="qr-card open">
+<div class="qr-card-header" onclick="toggleCard(this)">
+<div class="qr-card-header-left"><i class="ri-layout-line"></i> <span>Frames</span></div>
+<i class="ri-arrow-down-s-line qr-chevron"></i>
+</div>
+<div class="qr-card-body">
+<div class="frame-grid">
+<button class="frame-card active" data-frame="none" onclick="setFrame(this)">
+<svg height="62" viewBox="0 0 70 62" width="70"><rect fill="#f8f8f8" height="62" width="70"></rect><rect fill="#eee" height="50" rx="2" width="50" x="10" y="5"></rect><rect fill="#333" height="12" width="12" x="14" y="9"></rect><rect fill="#333" height="12" width="12" x="44" y="9"></rect><rect fill="#333" height="12" width="12" x="14" y="39"></rect></svg>
+<span>None</span>
+</button>
+<button class="frame-card" data-frame="simple" onclick="setFrame(this)">
+<svg height="70" viewBox="0 0 70 70" width="70"><rect fill="#fff" height="70" width="70"></rect><rect fill="none" height="62" stroke="#222" stroke-width="2" width="62" x="4" y="4"></rect><rect fill="#eee" height="46" rx="1" width="46" x="12" y="8"></rect><rect fill="#333" height="10" width="10" x="16" y="12"></rect><text fill="#222" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" x="35" y="66">SCAN ME</text></svg>
+<span>Simple</span>
+</button>
+<button class="frame-card" data-frame="rounded" onclick="setFrame(this)">
+<svg height="70" viewBox="0 0 70 70" width="70"><rect fill="#fff" height="70" width="70"></rect><rect fill="none" height="62" rx="10" stroke="#222" stroke-width="2" width="62" x="4" y="4"></rect><rect fill="#eee" height="46" rx="1" width="46" x="12" y="8"></rect><rect fill="#333" height="10" width="10" x="16" y="12"></rect><text fill="#222" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" x="35" y="66">SCAN ME</text></svg>
+<span>Rounded</span>
+</button>
+<button class="frame-card" data-frame="bold" onclick="setFrame(this)">
+<svg height="70" viewBox="0 0 70 70" width="70"><rect fill="#fff" height="70" width="70"></rect><rect fill="none" height="50" stroke="#222" stroke-width="1.5" width="62" x="4" y="4"></rect><rect fill="#eee" height="42" rx="1" width="50" x="10" y="8"></rect><rect fill="#333" height="9" width="9" x="14" y="11"></rect><rect fill="#222" height="14" rx="2" width="62" x="4" y="56"></rect><text fill="#fff" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" x="35" y="66">SCAN ME</text></svg>
+<span>Bold Box</span>
+</button>
+<button class="frame-card" data-frame="banner-top" onclick="setFrame(this)">
+<svg height="70" viewBox="0 0 70 70" width="70"><rect fill="#fff" height="70" width="70"></rect><rect fill="#2563eb" height="18" rx="2" width="70" x="0" y="0"></rect><text fill="#fff" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" x="35" y="13">SCAN ME</text><rect fill="#eee" height="46" rx="1" width="50" x="10" y="22"></rect><rect fill="#333" height="10" width="10" x="14" y="26"></rect></svg>
+<span>Top Bar</span>
+</button>
+<button class="frame-card" data-frame="banner-bottom" onclick="setFrame(this)">
+<svg height="70" viewBox="0 0 70 70" width="70"><rect fill="#fff" height="70" width="70"></rect><rect fill="#eee" height="50" rx="1" width="50" x="10" y="2"></rect><rect fill="#333" height="10" width="10" x="14" y="6"></rect><rect fill="#2563eb" height="16" rx="2" width="70" x="0" y="54"></rect><text fill="#fff" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" x="35" y="66">SCAN ME</text></svg>
+<span>Bottom Bar</span>
+</button>
+</div>
+<div class="frame-controls" id="frame-controls">
+<div class="frame-ctrl-group">
+<label>Frame Phrase</label>
+<input id="frame-phrase" maxlength="20" oninput="applyFrame()" type="text" value="SCAN ME">
+</div>
+<div class="frame-ctrl-group">
+<label>Phrase Font</label>
+<select id="frame-font" onchange="applyFrame()">
+<option value="sans-serif">Sans-Serif</option>
+<option value="serif">Serif</option>
+<option value="monospace">Monospace</option>
+<option value="Arial">Arial</option>
+<option value="Georgia">Georgia</option>
+</select>
+</div>
+<div class="frame-ctrl-group frame-color-row">
+<label>Frame Color</label>
+<div class="color-picker-wrap">
+<input id="frame-color" oninput="updateHex('frame-color', 'frame-color-hex'); applyFrame()" type="color" value="#000000">
+<input id="frame-color-hex" oninput="updateColor('frame-color-hex', 'frame-color'); applyFrame()" type="text" value="#000000">
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Download Button for Mobile / Left Panel -->
+<button class="btn-download-qr" onclick="downloadQR()"><i class="ri-download-2-line"></i> Download PNG</button>
+</div>
+<!-- RIGHT COLUMN -->
+<div class="qr-right">
+<div class="qr-preview-card">
+<div class="qr-preview-label">QR PREVIEW</div>
+<div class="qr-canvas-wrap" id="qr-canvas-wrap">
+<div id="qr-placeholder"><i class="ri-qr-code-line" style="font-size:2.5rem;color:#ddd;display:block;margin-bottom:0.5rem"></i>QR code appears here</div>
+</div>
+<div class="qr-scannable-note"><i class="ri-scan-line"></i> Test the QR code before printing or sharing</div>
+<button class="btn-download-qr" onclick="downloadQR()"><i class="ri-download-2-line"></i> Download PNG</button>
+</div>
+</div>
+</div><!-- end qr-layout -->
+<!-- SEO CONTENT -->
+<div class="qr-content">
+<article class="seo-content" style="padding: 2rem; margin-top: 2rem; background: var(--bg-secondary); border-radius: 1rem; border: 1px solid var(--border-color);">
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Supported QR Code Types</h2>
+<p>This page creates QR codes for five input types: Website URL, Plain Text, Email, Phone, and WhatsApp. The selected input type changes the field label and placeholder before the script formats the value for the QR code.</p>
+<p>URL input keeps an existing <code>http://</code> or <code>https://</code> prefix, and adds <code>https://</code> when no prefix is entered. Email input becomes a <code>mailto:</code> value. Phone input becomes a <code>tel:</code> value with spaces removed. WhatsApp input keeps digits only and creates a <code>https://wa.me/</code> link.</p>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">QR Design Controls</h2>
+<p>The styling controls change the canvas generated by the QRCodeStyling library. The interface includes dot style, background color, dot color, marker border style and color, marker center style and color, and a transparent background option.</p>
+<p>The Frames panel can use no frame, a simple border, a rounded border, a bold bottom bar, a top banner, or a bottom banner. When a frame is selected, the phrase field is limited to 20 characters and the frame uses the selected font and color controls.</p>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Logo Image and PNG File</h2>
+<p>The logo file selector accepts PNG, JPG, SVG, and WEBP images. The JavaScript checks the selected file size and shows an alert when the logo is larger than 2 MB.</p>
+<p>The Download PNG button saves the result as <code>qrcode-toolzgarden.png</code>. If a frame is active, the page draws the QR code and frame into one canvas before downloading the PNG.</p>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Validation and Rendering</h2>
+<p>When the input is empty and you click Download PNG, the page highlights the input and shows: <code>Please enter content to generate a QR code.</code> If QR generation fails, the preview shows: <code>Error generating QR code. Input may be too long.</code></p>
+<p>The page loads <code>qr-code-styling@1.6.0-rc.1</code> from unpkg and uses <code>QRCodeStyling</code> to render a 280 by 280 canvas in the browser.</p>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Related Tools</h2>
+<ul>
+<li><a href="url-encoder.html" style="color: var(--accent-primary); text-decoration: none;">URL Encoder and Decoder</a></li>
+<li><a href="base64-encoder.html" style="color: var(--accent-primary); text-decoration: none;">Base64 Encoder and Decoder</a></li>
+<li><a href="json-formatter.html" style="color: var(--accent-primary); text-decoration: none;">JSON Formatter</a></li>
+<li><a href="image-resizer.html" style="color: var(--accent-primary); text-decoration: none;">Image Resizer</a></li>
+</ul>
+</article>
+<section class="faq-section" style="padding:3rem 0;"><div class="container"><h2 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h2><div class="faq-list"><div class="faq-item"><button class="faq-question">What QR code input types are supported? <span class="faq-icon">+</span></button><div class="faq-answer"><p>The tool supports <strong>Website URL</strong>, <strong>Plain Text</strong>, <strong>Email</strong>, <strong>Phone</strong>, and <strong>WhatsApp</strong> input types. The script formats URL, email, phone, and WhatsApp values before generating the QR code.</p></div></div><div class="faq-item"><button class="faq-question">How are URL, email, phone, and WhatsApp values formatted? <span class="faq-icon">+</span></button><div class="faq-answer"><p>A URL without <code>http://</code> or <code>https://</code> is prefixed with <code>https://</code>. Email becomes a <code>mailto:</code> value, phone becomes a <code>tel:</code> value with spaces removed, and WhatsApp keeps digits only before creating a <code>wa.me</code> link.</p></div></div><div class="faq-item"><button class="faq-question">Can I customize the QR code colors and shapes? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes. The interface includes controls for dot style, background color, dot color, marker border style and color, marker center style and color, a transparent background option, and optional frames.</p></div></div><div class="faq-item"><button class="faq-question">Can I add a logo image? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes. The logo file selector accepts PNG, JPG, SVG, and WEBP images. The JavaScript rejects logo files larger than 2 MB.</p></div></div><div class="faq-item"><button class="faq-question">What file does the download button create? <span class="faq-icon">+</span></button><div class="faq-answer"><p>The <strong>Download PNG</strong> button saves <code>qrcode-toolzgarden.png</code>. If a frame is selected, the page downloads the framed canvas as a PNG. Otherwise it uses QRCodeStyling to download the QR code as PNG.</p></div></div><div class="faq-item"><button class="faq-question">What error messages can appear? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Downloading with an empty input shows <code>Please enter content to generate a QR code.</code> A logo larger than 2 MB shows <code>Logo file must be under 2MB.</code> If QR generation fails, the preview shows <code>Error generating QR code. Input may be too long.</code></p></div></div><div class="faq-item"><button class="faq-question">Which QR code library does this page use? <span class="faq-icon">+</span></button><div class="faq-answer"><p>The page loads QRCodeStyling from <code>https://unpkg.com/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js</code> and uses it to render the QR code as a canvas.</p></div></div></div></div></section>
+</div>
+</div>
+<!-- end container -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand"><a class="footer-logo" href="/">ToolzGarden</a><p>Online tools for everyday digital tasks.</p></div>
+<div class="footer-links"><h3>File Tools</h3><ul>
+<li><a href="qr-code-generator.html">QR Code Generator</a></li>
+<li><a href="resume-builder.html">Resume Builder</a></li>
+<li><a href="url-encoder.html">URL Encoder</a></li>
+<li><a href="base64-encoder.html">Base64 Encoder</a></li>
+</ul></div>
+<div class="footer-links"><h4>Company</h4><ul>
+<li><a href="../about.html">About Us</a></li>
+<li><a href="../contact.html">Contact</a></li>
+<li><a href="../privacy.html">Privacy Policy</a></li>
+<li><a href="../terms.html">Terms of Service</a></li>
+</ul></div>
+</div>
+<div class="footer-bottom"><p>&copy; 2025 ToolzGarden. All rights reserved.</p></div>
+</div>
+</footer>
+<script src="../script.js"></script>
+<script>
+(function(){
+var qrCode      = null;
+
+window.toggleCard = function(el) {
+  el.parentElement.classList.toggle('open');
+};
+window.updateHex = function(colId, hexId) {
+  document.getElementById(hexId).value = document.getElementById(colId).value;
+};
+window.updateColor = function(hexId, colId) {
+  document.getElementById(colId).value = document.getElementById(hexId).value;
+};
+window.setDots = function(btn) {
+  document.querySelectorAll('#dots-grid .style-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentDots = btn.dataset.dots;
+  generateQR();
+};
+window.setMb = function(btn) {
+  document.querySelectorAll('#mb-grid .style-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentMb = btn.dataset.mb;
+  generateQR();
+};
+window.setMc = function(btn) {
+  document.querySelectorAll('#mc-grid .style-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentMc = btn.dataset.mc;
+  generateQR();
+};
+window.setPresetLogo = function(iconClass, btn) {
+  document.querySelectorAll('.preset-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  // Hack to use a remix icon as logo using an offscreen canvas or just skipping it to keep it simple.
+  // Actually, generating a data url from the icon requires a canvas.
+  var c = document.createElement('canvas');
+  c.width=128; c.height=128;
+  var ctx = c.getContext('2d');
+  ctx.fillStyle = document.getElementById('qr-fg').value;
+  ctx.font = '90px remixicon';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  // Mapping remix icon class to unicode is hard dynamically.
+  // A simple fallback: just load the ri-link icon
+  // As a real implementation we would fetch the SVG. Let's just alert for now or implement properly if asked.
+  alert('Preset logo requires SVG assets not currently available offline.');
+};
+
+var currentType = 'url';
+var currentDots = 'square';
+var currentMb = 'square';
+var currentMc = 'square';
+var logoDataURL = null;
+var currentFrame = 'none';
+var framedCanvas = null;
+
+var labels = {
+  url:       {label:'Website URL',                           placeholder:'https://example.com'},
+  text:      {label:'Plain Text',                            placeholder:'Type your message here...'},
+  email:     {label:'Email Address',                         placeholder:'hello@example.com'},
+  phone:     {label:'Phone Number',                          placeholder:'+1 234 567 8900'},
+  whatsapp:  {label:'WhatsApp Number (with country code)',   placeholder:'+1234567890'}
+};
+
+// ---- INPUT TYPE ----
+window.setInputType = function(type){
+  currentType = type;
+  document.querySelectorAll('.itype-btn').forEach(function(b){
+    b.classList.toggle('active', b.dataset.type === type);
+  });
+  var inp = document.getElementById('qr-input');
+  var lbl = document.getElementById('qr-input-label');
+  lbl.textContent = labels[type].label;
+  inp.placeholder = labels[type].placeholder;
+  inp.value = '';
+  generateQR();
+};
+
+// ---- QR STYLE ----
+window.setStyle = function(btn){
+  document.querySelectorAll('.style-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentDots    = btn.dataset.dots;
+  
+  generateQR();
+};
+
+// ---- LOGO ----
+window.handleLogoUpload = function(e){
+  var file = e.target.files[0];
+  if(!file) return;
+  if(file.size > 2*1024*1024){ alert('Logo file must be under 2MB.'); return; }
+  var reader = new FileReader();
+  reader.onload = function(ev){
+    logoDataURL = ev.target.result;
+    document.getElementById('logo-thumb').src = logoDataURL;
+    document.getElementById('logo-filename').textContent = file.name;
+    document.getElementById('logo-preview-wrap').style.display = 'flex';
+    document.getElementById('logo-upload-box').style.display = 'none';
+    generateQR();
+  };
+  reader.readAsDataURL(file);
+};
+window.removeLogo = function(){
+  logoDataURL = null;
+  document.getElementById('logo-file-input').value = '';
+  document.getElementById('logo-preview-wrap').style.display = 'none';
+  document.getElementById('logo-upload-box').style.display = 'block';
+  generateQR();
+};
+
+// ---- FRAME ----
+window.setFrame = function(btn){
+  document.querySelectorAll('.frame-thumb').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentFrame = btn.dataset.frame;
+  var ctrl = document.getElementById('frame-controls');
+  if(currentFrame === 'none'){
+    ctrl.classList.remove('visible');
+  } else {
+    ctrl.classList.add('visible');
+  }
+  applyFrame();
+};
+
+window.updateFrameHex = function(){
+  var col = document.getElementById('frame-color').value;
+  document.getElementById('frame-hex').textContent = col;
+};
+
+// ---- ROUND RECT HELPER ----
+function roundRectPath(ctx, x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y);
+  ctx.arcTo(x+w, y, x+w, y+r, r);
+  ctx.lineTo(x+w, y+h-r);
+  ctx.arcTo(x+w, y+h, x+w-r, y+h, r);
+  ctx.lineTo(x+r, y+h);
+  ctx.arcTo(x, y+h, x, y+h-r, r);
+  ctx.lineTo(x, y+r);
+  ctx.arcTo(x, y, x+r, y, r);
+  ctx.closePath();
+}
+
+// ---- DRAW FRAMED CANVAS ----
+function drawFrame(qrCanvas){
+  var QW = qrCanvas.width;   // 280
+  var QH = qrCanvas.height;  // 280
+  var pad = 20;
+  var barH = 50;
+  var phrase = (document.getElementById('frame-phrase').value || 'SCAN ME').substring(0, 20);
+  var fontFam = document.getElementById('frame-font').value || 'sans-serif';
+  var frameCol = document.getElementById('frame-color').value || '#000000';
+  var combined = document.createElement('canvas');
+  var ctx = combined.getContext('2d');
+
+  if(currentFrame === 'simple' || currentFrame === 'rounded'){
+    combined.width  = QW + pad*2;          // 320
+    combined.height = QH + pad*2 + 30;     // 350
+    // White background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, combined.width, combined.height);
+    // QR code
+    ctx.drawImage(qrCanvas, pad, pad);
+    // Border
+    ctx.strokeStyle = frameCol;
+    ctx.lineWidth = 2;
+    if(currentFrame === 'rounded'){
+      roundRectPath(ctx, 10, 10, combined.width-20, combined.height-20, 16);
+      ctx.stroke();
+    } else {
+      ctx.strokeRect(10, 10, combined.width-20, combined.height-20);
+    }
+    // Text
+    ctx.fillStyle = frameCol;
+    ctx.font = 'bold 14px '+fontFam;
+    ctx.textAlign = 'center';
+    ctx.fillText(phrase, combined.width/2, QH + pad*2 + 20);
+
+  } else if(currentFrame === 'bold'){
+    combined.width  = QW + pad*2;          // 320
+    combined.height = QH + 15 + barH + 15; // 280+15+50+15 = 360
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, combined.width, combined.height);
+    // Border around QR area
+    ctx.strokeStyle = frameCol;
+    ctx.lineWidth = 2;
+    ctx.strokeRect(10, 5, combined.width-20, QH+25);
+    // QR code
+    ctx.drawImage(qrCanvas, pad, 15);
+    // Bottom filled bar
+    var barY = QH + 30;
+    ctx.fillStyle = frameCol;
+    ctx.fillRect(0, barY, combined.width, barH);
+    // White text in bar
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 16px '+fontFam;
+    ctx.textAlign = 'center';
+    ctx.fillText(phrase, combined.width/2, barY + barH/2 + 6);
+
+  } else if(currentFrame === 'banner-top'){
+    combined.width  = QW + pad*2;          // 320
+    combined.height = barH + 10 + QH + 10; // 50+10+280+10 = 350
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, combined.width, combined.height);
+    // Top bar
+    ctx.fillStyle = frameCol;
+    ctx.fillRect(0, 0, combined.width, barH);
+    // Text in top bar
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 14px '+fontFam;
+    ctx.textAlign = 'center';
+    ctx.fillText(phrase, combined.width/2, barH/2 + 5);
+    // QR below bar
+    ctx.drawImage(qrCanvas, pad, barH + 10);
+
+  } else if(currentFrame === 'banner-bottom'){
+    combined.width  = QW + pad*2;          // 320
+    combined.height = 10 + QH + 10 + barH; // 10+280+10+50 = 350
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, combined.width, combined.height);
+    // QR at top
+    ctx.drawImage(qrCanvas, pad, 10);
+    // Bottom bar
+    var bBarY = 10 + QH + 10;
+    ctx.fillStyle = frameCol;
+    ctx.fillRect(0, bBarY, combined.width, barH);
+    // Text in bottom bar
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 14px '+fontFam;
+    ctx.textAlign = 'center';
+    ctx.fillText(phrase, combined.width/2, bBarY + barH/2 + 5);
+  }
+
+  return combined;
+}
+
+// ---- APPLY FRAME TO PREVIEW ----
+window.applyFrame = function(){
+  var wrap = document.getElementById('qr-canvas-wrap');
+  // Remove any previously injected framed canvas
+  var old = document.getElementById('qr-framed-canvas');
+  if(old) old.remove();
+  framedCanvas = null;
+
+  if(currentFrame === 'none') return; // show raw QR canvas as-is
+
+  var qrCanvas = wrap.querySelector('canvas');
+  if(!qrCanvas) return;
+
+  // Hide raw canvas, show framed version
+  qrCanvas.style.display = 'none';
+  framedCanvas = drawFrame(qrCanvas);
+  framedCanvas.id = 'qr-framed-canvas';
+  framedCanvas.style.cssText = 'display:block;max-width:100%;height:auto;border-radius:4px';
+  wrap.appendChild(framedCanvas);
+  // Resize wrap to fit framed canvas
+  wrap.style.width  = framedCanvas.width  + 'px';
+  wrap.style.height = framedCanvas.height + 'px';
+};
+
+// ---- FORMAT INPUT ----
+function formatInput(type, raw){
+  var s = raw.trim();
+  if(!s) return '';
+  if(type==='url')     { return (s.startsWith('http://') || s.startsWith('https://')) ? s : 'https://'+s; }
+  if(type==='email')   { return 'mailto:'+s; }
+  if(type==='phone')   { return 'tel:'+s.replace(/\s/g,''); }
+  if(type==='whatsapp'){ var num=s.replace(/\D/g,''); return 'https://wa.me/'+num; }
+  return s;
+}
+
+// ---- GENERATE QR ----
+window.generateQR = function(){
+  var raw     = document.getElementById('qr-input').value;
+  var encoded = formatInput(currentType, raw);
+  var wrap    = document.getElementById('qr-canvas-wrap');
+  var fg      = document.getElementById('qr-fg').value || '#000000';
+  var bg      = document.getElementById('qr-bg').value || '#ffffff';
+
+  // Reset wrap size
+  wrap.style.width  = '100%';
+  wrap.style.height = 'auto';
+
+  if(!encoded){
+    wrap.innerHTML = '<div id="qr-placeholder"><i class="ri-qr-code-line" style="font-size:2.5rem;color:#ddd;display:block;margin-bottom:.5rem"></i>QR code appears here</div>';
+    qrCode = null;
+    framedCanvas = null;
+    return;
+  }
+
+  wrap.innerHTML = '';
+  framedCanvas = null;
+
+  var opts = {
+    width: 280, height: 280, type: 'canvas',
+    data: encoded,
+    dotsOptions:          { color: fg, type: currentDots },
+    backgroundOptions:    { color: document.getElementById('qr-bg-trans').checked ? 'transparent' : bg },
+    cornersSquareOptions: { type: currentMb, color: document.getElementById('qr-mb-color').value },
+    cornersDotOptions: { type: currentMc, color: document.getElementById('qr-mc-color').value },
+    imageOptions: { hideBackgroundDots: !document.getElementById('logo-bg-remove').checked, crossOrigin: 'anonymous', margin: 4, imageSize: 0.2 }
+  };
+  if(logoDataURL) opts.image = logoDataURL;
+
+  try {
+    qrCode = new QRCodeStyling(opts);
+    qrCode.append(wrap);
+    // Apply frame after QR renders (qr-code-styling renders async)
+    if(currentFrame !== 'none'){
+      setTimeout(applyFrame, 150);
+    }
+  } catch(err){
+    wrap.innerHTML = '<div style="padding:1rem;font-size:.8rem;color:#ef4444;text-align:center">Error generating QR code. Input may be too long.</div>';
+  }
+};
+
+// ---- DOWNLOAD ----
+window.downloadQR = function(){
+  var raw = document.getElementById('qr-input').value.trim();
+  var err = document.getElementById('qr-err');
+  var inp = document.getElementById('qr-input');
+  if(!raw){
+    inp.classList.add('error');
+    err.style.display = 'block';
+    inp.focus();
+    return;
+  }
+  inp.classList.remove('error');
+  err.style.display = 'none';
+
+  if(currentFrame !== 'none' && framedCanvas){
+    // Download framed combined canvas
+    var link = document.createElement('a');
+    link.download = 'qrcode-toolzgarden.png';
+    link.href = framedCanvas.toDataURL('image/png');
+    link.click();
+  } else {
+    if(!qrCode){ alert('Please wait for the QR code to generate first.'); return; }
+    qrCode.download({ name: 'qrcode-toolzgarden', extension: 'png' });
+  }
+};
+
+// ---- INIT ----
+document.getElementById('qr-input').value = 'https://toolzgarden.com';
+generateQR();
+})();
+</script>
+
+
+</body></html>

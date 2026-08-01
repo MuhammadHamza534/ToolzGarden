@@ -1,0 +1,447 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO -->
+  <title>Image Upscaler - ToolzGarden</title>
+  <meta name="description" content="Use our free image upscaler online. Instant results with no sign up required. Secure and fast processing.">
+  <meta name="keywords" content="image upscaler, ai upscaler, upscale image free, enhance image quality, super resolution online, 4x image upscaler">
+  <meta name="author" content="ToolzGarden">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://toolzgarden.com/tools/image-upscaler.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Image Upscaler - ToolzGarden">
+  <meta property="og:description" content="Use our free image upscaler online. Instant results with no sign up required. Secure and fast processing.">
+  <meta property="og:url" content="https://toolzgarden.com/tools/image-upscaler.html">
+  <meta property="og:site_name" content="ToolzGarden">
+  <meta property="og:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ToolzGarden free online tools">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Image Upscaler - ToolzGarden">
+  <meta name="twitter:description" content="Use our free image upscaler online. Instant results with no sign up required. Secure and fast processing.">
+  <meta name="twitter:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../Favicon-Images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../Favicon-Images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../Favicon-Images/favicon-16x16.png">
+
+  <!-- DNS Prefetch & Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"></noscript>
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- JSON-LD WebApplication Schema -->
+  
+
+  <style>
+    .checkerboard {
+      background-image: 
+        linear-gradient(45deg, #cbd5e1 25%, transparent 25%), 
+        linear-gradient(-45deg, #cbd5e1 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #cbd5e1 75%), 
+        linear-gradient(-45deg, transparent 75%, #cbd5e1 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      background-color: #f1f5f9;
+    }
+    
+    [data-theme="dark"] .checkerboard {
+      background-image: 
+        linear-gradient(45deg, #334155 25%, transparent 25%), 
+        linear-gradient(-45deg, #334155 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #334155 75%), 
+        linear-gradient(-45deg, transparent 75%, #334155 75%);
+      background-color: #1e293b;
+    }
+
+    #loading-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      border-radius: 0.75rem;
+      color: white;
+    }
+    
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-left-color: var(--accent-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    .progress-bar-container {
+      width: 80%;
+      max-width: 300px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--accent-primary);
+      width: 0%;
+      transition: width 0.2s ease;
+    }
+
+    /* Comparison Slider */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-color);
+      display: none;
+      aspect-ratio: 16/9;
+      max-height: 60vh;
+    }
+
+    .slider-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Upscaler",
+  "url": "https://toolzgarden.com/tools/image-upscaler.html",
+  "description": "Use our free image upscaler online. Instant results with no sign up required. Secure and fast processing.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://toolzgarden.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Image Upscaler",
+      "item": "https://toolzgarden.com/tools/image-upscaler.html"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does the AI image upscaler work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our tool uses advanced Machine Learning algorithms (ESRGAN neural networks) running directly in your web browser. It analyzes the pixels in your low-resolution image and predicts what the missing details should look like, resulting in a crisp, high-resolution output."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my image data kept private?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. Because the AI model runs locally on your device via TensorFlow.js, your photos are never uploaded to our servers. 100% privacy is guaranteed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the tool take a moment to load the first time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The upscaling process requires downloading a small AI model to your browser cache on your first visit. Once cached, subsequent upscales are much faster."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there an image size limit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because the upscaling happens locally on your Graphics Card (GPU), extremely large original images may crash your browser. We recommend starting with images smaller than 1000x1000 pixels for optimal performance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this tool completely free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! There are no hidden subscriptions, watermarks, API keys, or premium tiers. You can process as many images as you want completely free of charge."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="/" class="logo">
+        <img src="../Images/logo.png" alt="ToolzGarden Logo" width="40" height="40" style="object-fit:contain;" loading="eager" fetchpriority="high">
+        ToolzGarden
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
+          <i class="ri-moon-line"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="full-page-wrapper">
+    <main class="center-main-content">
+      <section style="padding: 2rem 0;">
+        <span class="badge-private hero-animate hero-animate-2"><i class="ri-shield-check-fill"></i> 100% Private, AI Runs Locally</span>
+        <h1 class="hero-animate hero-animate-1">Free Online AI Image Upscaler</h1>
+        <p style="color: var(--text-secondary);">Upscale and enhance low-resolution images 2x or 4x without losing quality. Completely free and secure.</p>
+      </section>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          
+          <!-- Upload Area -->
+          <div id="drop-zone" class="upload-area hero-animate hero-animate-3">
+            <div class="upload-icon"><i class="ri-zoom-in-line"></i></div>
+            <h2>Drag &amp; Drop your image here</h2>
+            <p>or click to browse from your device</p>
+            <input type="file" id="file-input" hidden="" accept="image/*">
+          </div>
+
+          <!-- Preview & Slider Area -->
+          <div id="result-container" class="slider-container checkerboard">
+            
+            <img id="image-result" class="slider-img" src="" alt="Upscaled Image" loading="lazy" width="800" height="600">
+            <img id="image-original" class="slider-img" style="position: absolute; top: 0; left: 0; clip-path: inset(0 50% 0 0); image-rendering: pixelated;" src="" alt="Original" loading="lazy" width="800" height="600">
+            
+            <!-- Loading Overlay -->
+            <div id="loading-overlay" style="display: none;">
+              <div class="spinner"></div>
+              <h3 id="loading-text" style="font-weight: 600;">Loading AI Model...</h3>
+              <p id="loading-subtext" style="font-size: 0.85rem; opacity: 0.8; margin-top: 0.25rem; text-align: center; max-width: 80%;">This computation happens entirely on your device's GPU.</p>
+              <div class="progress-bar-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+              </div>
+            </div>
+
+            <input type="range" id="comparison-slider" min="0" max="100" value="50" aria-label="Compare before and after" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; z-index: 10;">
+            
+            <div id="slider-line" style="position: absolute; top: 0; left: 50%; width: 2px; height: 100%; background: white; pointer-events: none; z-index: 5;">
+              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
+                <i class="ri-arrow-left-right-line" style="color: var(--accent-primary); font-size: 1.2rem;"></i>
+              </div>
+            </div>
+            
+            <!-- Helper badges -->
+            <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.6); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; pointer-events: none; z-index: 5;">Original</div>
+            <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; pointer-events: none; z-index: 5;">Upscaled</div>
+          </div>
+        </div>
+
+        <!-- Sidebar Controls -->
+        <aside class="tool-sidebar">
+          <div class="controls-card">
+            <h3 style="margin-bottom: 1rem; font-size: 1.1rem;"><i class="ri-settings-4-line"></i> Options</h3>
+            
+            <div class="control-group">
+              <label for="scale-select">Upscale Resolution</label>
+              <select id="scale-select">
+                <option value="2">2x (Double Size)</option>
+                <option value="4">4x (Quadruple Size)</option>
+              </select>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">4x scaling takes longer and requires more device memory.</p>
+            </div>
+
+            <button id="download-btn" class="btn btn-primary" disabled="" style="width: 100%; margin-top: 1rem;">
+              <i class="ri-download-2-line"></i> Download HD Image
+            </button>
+            
+            <button id="reset-btn" class="btn btn-secondary" style="margin-top: 1rem; display: none; width: 100%;">
+              <i class="ri-restart-line"></i> Upload New Image
+            </button>
+          </div>
+        </aside>
+      </div>
+
+      <!-- SEO Content -->
+      <article class="seo-content" style="padding: 2rem; margin-top: 2rem; background: var(--bg-secondary); border-radius: 1rem; border: 1px solid var(--border-color);">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">What This Tool Does</h2>
+        <p>The ToolzGarden AI Image Upscaler is a cutting-edge super-resolution utility designed to magically enlarge small, blurry, or low-resolution images without the pixelation associated with traditional scaling methods. When you normally resize a small image in standard photo editing software, the program merely stretches the existing pixels (using bicubic or nearest-neighbor interpolation), resulting in a blurry, blocky mess. Our tool, however, utilizes state-of-the-art neural networks to accurately predict and generate missing pixel data, effectively reconstructing crisp edges, natural textures, and fine details.</p>
+        <p>What truly sets this upscaler apart is its browser-based architecture. Instead of forcing you to upload your personal photos to a remote server, wait in a processing queue, and then download the result, the entire Machine Learning inference happens locally on your own Graphics Processing Unit (GPU). By leveraging TensorFlow.js, we guarantee 100% privacy, zero server downtime, and a seamless super-resolution experience entirely within your web browser.</p>
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Key Features</h2>
+        <ul>
+          <li><strong>Local GPU Processing:</strong> Uses your device's hardware to run complex ESRGAN (Enhanced Super-Resolution Generative Adversarial Networks) models via WebGL.</li>
+          <li><strong>2x and 4x Scaling:</strong> Choose between doubling the size of your image or quadrupling it for massive resolution gains.</li>
+          <li><strong>Interactive Comparison:</strong> A smooth sliding interface allows you to instantly compare the blurry original photo against the crystal-clear upscaled result before you download.</li>
+          <li><strong>Total Privacy Guarantee:</strong> Your files never leave your computer. Because there are no uploads, there is no risk of your sensitive data being intercepted or stored by third parties.</li>
+        </ul>
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Benefits</h2>
+        <p>One of the most significant benefits of an in-browser AI tool is the complete absence of paywalls and subscription models. Professional AI upscaling software can cost hundreds of dollars, and online cloud-based upscalers usually limit you to a few free images before demanding a monthly fee. Our tool provides unlimited, high-quality upscaling completely free of charge. You can process fifty images a day without ever worrying about hitting a restrictive quota.</p>
+        <p>Additionally, this workflow dramatically saves time for digital professionals. Whether you are a web designer dealing with low-resolution client assets, a marketer trying to format a small logo for a large banner, or a photographer rescuing an old, heavily cropped photograph, this tool restores the necessary quality in seconds. The localized processing means you don't have to endure network latency when dealing with large file outputs.</p>
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">How To Use</h2>
+        <ol>
+          <li>Select the desired upscale multiplier (2x or 4x) from the sidebar options. Note that 4x requires significantly more processing power.</li>
+          <li>Drag your low-resolution image and drop it directly into the central upload zone, or click the area to browse your file system.</li>
+          <li>Wait briefly while the tool initializes the TensorFlow model and processes the image. A progress bar will keep you updated.</li>
+          <li>Use the horizontal slider across the image to inspect the enhanced details and compare the original photo with the upscaled version.</li>
+          <li>Click the blue "Download HD Image" button to save the enhanced file directly to your device.</li>
+        </ol>
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Privacy &amp; Security</h2>
+        <p>Security is paramount when dealing with personal photographs or proprietary corporate assets. The ToolzGarden AI Image Upscaler operates entirely locally. Your image files are read by your web browser and processed by your local GPU. They are never transmitted across the internet to an external server. You can confidently upscale your most sensitive, unreleased designs knowing that absolute privacy is maintained.</p>
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Common Use Cases</h2>
+        <ul>
+          <li><strong>E-commerce Listings:</strong> Enhancing low-quality product images provided by dropship suppliers to meet the strict high-resolution requirements of Amazon or Shopify.</li>
+          <li><strong>Print Media:</strong> Preparing small digital photos or digital art for physical printing on posters or canvases where high DPI (Dots Per Inch) is mandatory.</li>
+          <li><strong>Restoring Old Photos:</strong> Breathing new life into old, compressed digital photos from the early 2000s or heavily compressed images saved from social media.</li>
+        </ul>
+      </article>
+
+      <div class="seo-injections-wrapper">
+        <section style="padding: 2rem 0 0 0;">
+          <div class="container">
+            <p style="margin-top:1.5rem;">For more utilities, check out our <a href="image-resizer.html" style="color: var(--accent-primary); text-decoration: underline;">Image Resizer</a>. If you have any questions or feature requests, feel free to <a href="../contact.html" style="color: var(--accent-primary); text-decoration: underline;">Contact Us</a> or learn more <a href="../about.html" style="color: var(--accent-primary); text-decoration: underline;">About ToolzGarden</a>.</p>
+            <div class="related-tools" style="margin-top: 2rem; margin-bottom: 2rem;">
+              <h2>Related Tools</h2>
+              <ul style="list-style-type: disc; padding-left: 1.5rem; line-height: 1.8;">
+                <li><a href="image-compressor.html" style="color: var(--accent-primary); text-decoration: none;">Image Compressor</a></li>
+                <li><a href="image-resizer.html" style="color: var(--accent-primary); text-decoration: none;">Image Resizer</a></li>
+
+                <li><a href="image-to-text.html" style="color: var(--accent-primary); text-decoration: none;">Image to Text (OCR)</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="faq-section" style="padding:3rem 0;">
+          <div class="container">
+            <h2 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
+            <div class="faq-list">
+              <div class="faq-item">
+                <button class="faq-question">How does the AI image upscaler work? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Our tool uses advanced Machine Learning algorithms (ESRGAN neural networks) running directly in your web browser. It analyzes the pixels in your low-resolution image and predicts what the missing details should look like, resulting in a crisp, high-resolution output.</p></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Is my image data kept private? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Absolutely. Because the AI model runs locally on your device via TensorFlow.js, your photos are never uploaded to our servers. 100% privacy is guaranteed.</p></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Why does the tool take a moment to load the first time? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>The upscaling process requires downloading a small AI model to your browser cache on your first visit. Once cached, subsequent upscales are much faster.</p></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Is there an image size limit? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Because the upscaling happens locally on your Graphics Card (GPU), extremely large original images may crash your browser. We recommend starting with images smaller than 1000x1000 pixels for optimal performance.</p></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Is this tool completely free to use? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Yes! There are no hidden subscriptions, watermarks, API keys, or premium tiers. You can process as many images as you want completely free of charge.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+
+  <div class="container related-tools-line" style="margin-top: 2rem; margin-bottom: 2rem;"><p><strong>Related Tools:</strong> <a href="image-compressor.html" style="color: var(--accent-primary); text-decoration: underline;">Free Image Compressor</a> | <a href="image-resizer.html" style="color: var(--accent-primary); text-decoration: underline;">Free Image Resizer</a></p></div><footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">ToolzGarden</a>
+          <p>Free online tools for everyone. Professional grade, privacy-focused, and 100% free.</p>
+        </div>
+        <div class="footer-links">
+          <h3>Image Tools</h3>
+          <ul>
+            <li><a href="image-compressor.html">Image Compressor</a></li>
+            <li><a href="image-upscaler.html">AI Image Upscaler</a></li>
+
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about.html">About Us</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Â© 2025 ToolzGarden. All images processed locally.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <!-- Load TensorFlow.js and UpscalerJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.11.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@upscalerjs/default-model@1.0.0/dist/umd/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/upscaler@1.0.0/dist/browser/umd/upscaler.min.js"></script>
+  <script src="image-upscaler.js"></script>
+
+
+</body></html>

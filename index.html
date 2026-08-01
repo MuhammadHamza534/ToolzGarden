@@ -1,0 +1,1342 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="preload" as="image" href="Images/logo.webp" type="image/webp">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online Tools for Everyday Tasks | ToolzGarden</title>
+
+  <link rel="icon" type="image/png" href="Images/logo.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="Favicon-Images/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="Favicon-Images/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Favicon-Images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="Favicon-Images/apple-touch-icon.png">
+    <link rel="manifest" href="Favicon-Images/site.webmanifest">
+    <link rel="shortcut icon" href="Favicon-Images/favicon.ico">
+    <meta name="msapplication-TileColor" content="#2563eb">
+    <meta name="description" content="Need help with an image, PDF, JSON, text, calculator, or social media task? Browse ToolzGarden's free online tools from one simple homepage.">
+    <link rel="canonical" href="https://toolzgarden.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolzgarden.com/">
+    <meta property="og:title" content="Free Online Tools for Everyday Tasks | ToolzGarden">
+    <meta property="og:description" content="Need help with an image, PDF, JSON, text, calculator, or social media task? Browse ToolzGarden's free online tools from one simple homepage.">
+    <meta property="og:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ToolzGarden free online tools">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://toolzgarden.com/">
+    <meta property="twitter:title" content="Free Online Tools for Everyday Tasks | ToolzGarden">
+    <meta property="twitter:description" content="Need help with an image, PDF, JSON, text, calculator, or social media task? Browse ToolzGarden's free online tools from one simple homepage.">
+    <meta name="twitter:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+
+    <!-- Remix Icon for aesthetics (Standard practice for premium feel) -->
+    <style>
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 300 700;
+        font-display: swap;
+        src: local('Inter');
+      }
+      :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-tertiary: #f1f5f9;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --accent-primary: #2563eb;
+        --accent-hover: #1d4ed8;
+        --border-color: #e2e8f0;
+        --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --transition: all 0.3s ease;
+      }
+      [data-theme="dark"] {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-tertiary: #334155;
+        --text-primary: #f8fafc;
+        --text-secondary: #94a3b8;
+        --accent-primary: #3b82f6;
+        --accent-hover: #60a5fa;
+        --border-color: #334155;
+        --card-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+      }
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        width: 100%;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: var(--bg-primary);
+        border-bottom: 1px solid var(--border-color);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        transition: box-shadow 0.3s ease;
+        /* overflow:visible ensures fixed mobile menu can escape header stacking context */
+        overflow: visible;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 4.5rem;
+        position: relative;
+        overflow: visible;
+      }
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+      .logo img {
+        height: 40px;
+        width: 40px;
+        object-fit: contain;
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        /* High z-index so it always appears clickable above other elements */
+        z-index: 10001;
+        position: relative;
+      }
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+      .hamburger.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      /* Desktop: centered nav links */
+      .nav-links {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-links a {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        text-decoration: none;
+      }
+      .nav-links a:hover, .nav-links a.active {
+        color: var(--accent-primary);
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .theme-toggle {
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-accent-text {
+        color: var(--accent-primary);
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+      .tool-grid-hidden {
+        display: none;
+      }
+      .seo-content-section {
+        padding: 4rem 1.5rem;
+        background: var(--bg-secondary);
+        border-radius: 16px;
+        margin-bottom: 2rem;
+      }
+      .seo-content-inner {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .seo-section-block {
+        margin-bottom: 3rem;
+      }
+      .seo-section-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-primary);
+      }
+      .seo-section-paragraph {
+        margin-bottom: 1rem;
+        line-height: 1.7;
+      }
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+      }
+      .step-card {
+        text-align: center;
+      }
+      .step-icon-box {
+        height: 60px;
+        width: 60px;
+        background: var(--bg-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.5rem;
+        color: var(--accent-primary);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+      .step-title {
+        margin-bottom: 0.5rem;
+        font-size: 1.125rem;
+      }
+      .step-description {
+        font-size: 0.9rem;
+      }
+      .audience-list {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        font-size: 1.05rem;
+      }
+      .audience-check {
+        color: #16a34a;
+        margin-right: 8px;
+      }
+      .footer-brand-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .footer-logo {
+        height: 40px;
+        width: 40px;
+        object-fit: contain;
+      }
+      .footer-title {
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: #2563eb;
+      }
+      .footer-heading {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+      .hidden-panel {
+        display: none;
+      }
+      .hero {
+        padding: 4rem 0;
+        text-align: center;
+        background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      }
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+        animation: fadeUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+        will-change: transform, opacity;
+      }
+      .hero p {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        animation: fadeUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+        will-change: transform, opacity;
+      }
+      .badge-private {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.25rem 0.75rem;
+        background: rgba(16, 185, 129, 0.1);
+        color: #059669;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+      .search-container {
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+        animation: fadeUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+        will-change: transform, opacity;
+      }
+      .search-input {
+        width: 100%;
+        padding: 1rem 1.5rem 1rem 3rem;
+        border-radius: 9999px;
+        border: 2px solid var(--border-color);
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+      .search-input:focus {
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+      }
+      .search-icon {
+        position: absolute;
+        left: 1.25rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-secondary);
+      }
+      .category-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+        padding: 0.5rem;
+        background: var(--bg-secondary);
+        border-radius: 1.5rem;
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--border-color);
+      }
+      .cat-tab {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.8rem 1.6rem;
+        border-radius: 1rem;
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      .cat-tab i {
+        font-size: 1.25rem;
+      }
+      .cat-tab:hover:not(.coming-soon) {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        border-color: var(--border-color);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px);
+      }
+      .cat-tab.active {
+        background: var(--accent-primary);
+        color: #ffffff;
+        border-color: var(--accent-primary);
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+        transform: translateY(-2px);
+      }
+      .cat-tab.coming-soon {
+        color: #e2e8f0;
+        opacity: 0.6;
+        cursor: not-allowed;
+        background: transparent;
+      }
+      .soon-badge {
+        background-color: #1e3a5f;
+        color: #e2e8f0;
+        font-size: 0.62rem;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 4px;
+        letter-spacing: 0.04em;
+        vertical-align: middle;
+        display: inline-block;
+      }
+      .cat-tab.active .soon-badge {
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        border-color: transparent;
+      }
+      [data-theme="dark"] .cat-tab {
+        color: #cbd5e1;
+      }
+      [data-theme="dark"] .cat-tab:not(.active):not(.coming-soon) {
+        color: #94a3b8;
+      }
+      [data-theme="light"] .cat-tab {
+        color: #334155;
+      }
+      .scroll-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(to right, #2563EB, #60a5fa);
+        width: 0%;
+        z-index: 101;
+        transition: width 0.1s linear;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-animate {
+        animation: slideUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        opacity: 0;
+      }
+      .hero-animate-1 { animation-delay: 0.05s; }
+      .hero-animate-2 { animation-delay: 0.1s; }
+      .hero-animate-3 { animation-delay: 0.15s; }
+      .hero-animate-4 { animation-delay: 0.2s; }
+
+      @media (max-width: 768px) {
+        html, body {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+          overflow-x: hidden !important;
+          max-width: 100vw !important;
+          box-sizing: border-box !important;
+        }
+        *, *::before, *::after {
+          box-sizing: border-box !important;
+        }
+        header {
+          margin-left: -16px !important;
+          margin-right: -16px !important;
+          width: auto !important;
+          position: sticky !important;
+          top: 0 !important;
+          z-index: 1000 !important;
+          overflow: visible !important;
+          /* Remove backdrop-filter on mobile - it creates a containing block
+             that traps position:fixed children and prevents fullscreen overlay */
+          -webkit-backdrop-filter: none !important;
+          backdrop-filter: none !important;
+        }
+        header .container, nav.container, nav {
+          overflow: visible !important;
+        }
+        .container {
+          padding-left: 1.25rem !important;
+          padding-right: 1.25rem !important;
+          box-sizing: border-box !important;
+          max-width: 100% !important;
+        }
+        h2 {
+          font-size: 1.6rem !important;
+          line-height: 1.3 !important;
+          word-break: break-word !important;
+          overflow-wrap: break-word !important;
+        }
+        p {
+          font-size: 0.95rem !important;
+          line-height: 1.6 !important;
+          word-break: break-word !important;
+        }
+        nav {
+          position: relative !important;
+          display: flex !important;
+          justify-content: space-between !important;
+          align-items: center !important;
+          flex-wrap: nowrap !important;
+          padding: 0 1rem !important;
+          height: auto !important;
+          min-height: 4rem !important;
+          width: 100% !important;
+        }
+        .logo {
+          font-size: 1.2rem;
+          padding: 0.75rem 0;
+          flex-shrink: 0;
+        }
+        .logo img {
+          height: 36px;
+          width: 36px;
+        }
+        .nav-actions {
+          display: none !important;
+        }
+        .hamburger {
+          display: flex !important;
+          margin-left: auto !important;
+          margin-right: 8px !important;
+          z-index: 10001 !important;
+          position: relative !important;
+          cursor: pointer !important;
+          pointer-events: auto !important;
+        }
+        .hamburger span {
+          display: block;
+          width: 24px;
+          height: 2px;
+          background: var(--text-primary);
+          border-radius: 2px;
+          transition: all 0.3s ease;
+        }
+        .nav-links {
+          display: none;
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100% !important;
+          height: 100vh !important;
+          flex-direction: column !important;
+          background: var(--bg-primary) !important;
+          z-index: 9999 !important;
+          padding-top: 5rem !important;
+          padding-left: 1.5rem !important;
+          padding-right: 1.5rem !important;
+          overflow-y: auto !important;
+          box-shadow: none !important;
+          transform: none !important;
+          margin: 0 !important;
+          list-style: none !important;
+          gap: 0 !important;
+          border: none !important;
+        }
+        .nav-links.open {
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          pointer-events: auto !important;
+        }
+        .nav-links li {
+          width: 100%;
+          list-style: none;
+        }
+        .nav-links a {
+          display: block !important;
+          padding: 1.25rem 0 !important;
+          border-bottom: 1px solid var(--border-color) !important;
+          font-size: 1.1rem !important;
+          font-weight: 500 !important;
+          color: var(--text-primary) !important;
+          text-align: left !important;
+          width: 100% !important;
+          text-decoration: none !important;
+        }
+        .nav-links li:last-child a {
+          border-bottom: none;
+        }
+        .hero {
+          padding: 2rem 0 1.5rem;
+          text-align: center;
+          overflow: hidden;
+        }
+        .hero h1 {
+          font-size: 1.75rem !important;
+          line-height: 1.25 !important;
+          padding: 0 0.5rem !important;
+          word-break: break-word;
+          text-align: center !important;
+        }
+        .hero p {
+          font-size: 0.95rem !important;
+          padding: 0 0.5rem !important;
+          margin-bottom: 1.5rem;
+          line-height: 1.6 !important;
+          word-break: break-word !important;
+        }
+        .search-container {
+          width: 100%;
+          max-width: 100%;
+          padding: 0 0.5rem;
+          margin: 0 auto;
+        }
+        .search-input {
+          width: 100%;
+          font-size: 0.9rem;
+          padding: 0.85rem 1rem 0.85rem 2.75rem;
+        }
+        .category-tabs {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+          width: 100%;
+          overflow-x: visible;
+          overflow-y: visible;
+          padding: 0.75rem 1rem;
+          flex-wrap: wrap;
+          margin: 0;
+          max-width: 100%;
+        }
+        .cat-tab {
+          width: 100%;
+          text-align: center;
+          font-size: 0.78rem;
+          padding: 0.5rem 0.5rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          flex-shrink: unset;
+          scroll-snap-align: unset;
+          border-radius: 0.75rem;
+        }
+        .soon-badge {
+          font-size: 0.6rem;
+          padding: 1px 5px;
+        }
+        .scroll-progress {
+          height: 2px;
+        }
+        .theme-toggle {
+          display: none !important;
+        }
+      }
+      @media (max-width: 480px) {
+        nav {
+          display: flex !important;
+          flex-direction: row !important;
+          flex-wrap: nowrap !important;
+          justify-content: space-between !important;
+          align-items: center !important;
+          height: 4rem !important;
+          min-height: 4rem !important;
+          padding: 0 0.5rem !important;
+        }
+        .logo {
+          font-size: 0.95rem !important;
+          display: flex !important;
+          align-items: center !important;
+          gap: 0.25rem !important;
+          flex-shrink: 0 !important;
+          white-space: nowrap !important;
+        }
+        .logo img {
+          height: 28px !important;
+          width: 28px !important;
+          flex-shrink: 0 !important;
+        }
+        .hamburger {
+          flex-shrink: 0 !important;
+          padding: 0.35rem !important;
+        }
+        .hamburger span {
+          width: 20px !important;
+          height: 2px !important;
+          gap: 4px !important;
+        }
+        .nav-actions {
+          display: none !important;
+        }
+        .theme-toggle {
+          padding: 0.35rem !important;
+        }
+        .category-tabs {
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 0.4rem !important;
+          padding: 0.5rem !important;
+        }
+        .cat-tab {
+          font-size: 0.72rem !important;
+          padding: 0.4rem 0.35rem !important;
+        }
+      }
+      @media (max-width: 400px) {
+        .hero h1 {
+          font-size: 1.5rem;
+        }
+        .logo {
+          font-size: 1rem;
+        }
+        .logo img {
+          height: 30px;
+          width: 30px;
+        }
+        .cat-tab {
+          font-size: 0.72rem;
+          padding: 0.35rem 0.7rem;
+        }
+      }
+      body.nav-open {
+        overflow: hidden !important;
+      }
+      .nav-close-btn {
+        position: absolute !important;
+        top: 1rem !important;
+        right: 1rem !important;
+        background: none !important;
+        border: none !important;
+        color: var(--text-primary) !important;
+        font-size: 1.5rem !important;
+        cursor: pointer !important;
+        padding: 0.5rem !important;
+        z-index: 10000 !important;
+        display: none !important;
+      }
+      @media (max-width: 768px) {
+        .nav-close-btn {
+          display: block !important;
+        }
+      }
+    </style>
+
+  <!-- Asynchronous Non-blocking Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+
+  <!-- Asynchronous Non-blocking Remix Icon stylesheet -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"></noscript>
+
+  <!-- Non-render-blocking Main stylesheet -->
+  <link rel="stylesheet" href="./style.css?v=1.4" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="./style.css?v=1.4">
+  </noscript>
+
+    <!-- Google AdSense -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+    <!-- Google Analytics -->
+    <!-- Paste your GA4 code here -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "ToolzGarden",
+        "url": "https://toolzgarden.com/",
+        "description": "Free online tools for image, PDF, developer, text, calculator, and social media tasks."
+      }
+    </script>
+  <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Online Tools for Everyday Tasks | ToolzGarden">
+<meta name="twitter:description" content="Need help with an image, PDF, JSON, text, calculator, or social media task? Browse ToolzGarden's free online tools from one simple homepage.">
+<meta name="robots" content="index, follow">
+</head>
+  <body>
+    <header>
+      <nav class="container">
+        <a href="/" class="logo">
+          <img src="Images/logo.webp" alt="ToolzGarden Logo" loading="eager" decoding="async" width="40" height="40">
+          ToolzGarden
+        </a>
+
+        <!-- Hamburger Button -->
+        <button class="hamburger" id="hamburger" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Nav Links -->
+        <ul class="nav-links" id="nav-links" aria-label="Mobile Navigation">
+          <button class="nav-close-btn" id="nav-close-btn" aria-label="Close Menu">Ã—</button>
+          <li><a href="/">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
+            <i class="ri-moon-line"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="full-page-wrapper">
+
+      <main class="center-main-content">
+        <section class="hero">
+          <div class="container">
+            <span class="badge-private hero-animate hero-animate-1"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 14l-3-3 1.41-1.41L11 12.17l4.59-4.58L17 9l-6 6z"></path></svg> Free Online Tools</span>
+            <h1 class="hero-animate hero-animate-2">
+              Free Online Tools
+              <span class="hero-accent-text">for Everyday Digital Tasks</span>
+            </h1>
+            <p class="hero-animate hero-animate-3">
+              Choose a category or search by task, then open the tool that
+              matches what you need to edit, convert, format, calculate, or
+              prepare.
+            </p>
+
+            <div class="search-container hero-animate hero-animate-4">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z"></path></svg>
+              <input type="text" id="tool-search" class="search-input" placeholder="Search for a tool (e.g., compressor, png)...">
+            </div>
+          </div>
+        </section>
+
+        <div class="container">
+          <section class="content-section">
+            <h2 class="sr-only">Browse Free Online Tools by Category</h2>
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+              <button class="cat-tab" data-category="image">
+                <i class="ri-image-line"></i> Image Tools
+              </button>
+              <button class="cat-tab" data-category="pdf">
+                <i class="ri-file-pdf-line"></i> PDF Tools
+              </button>
+              <button class="cat-tab" data-category="text">
+                <i class="ri-text"></i> Text Tools
+              </button>
+              <button class="cat-tab" data-category="file">
+                <i class="ri-folder-line"></i> File Tools
+              </button>
+              <button class="cat-tab" data-category="calculator">
+                <i class="ri-calculator-line"></i> Calculator Tools
+              </button>
+              <button class="cat-tab" data-category="seo">
+                <i class="ri-search-eye-line"></i> SEO Tools
+              </button>
+              <button class="cat-tab" data-category="social">
+                <i class="ri-share-line"></i> Social Media Tools
+              </button>
+              <button class="cat-tab coming-soon" data-category="video">
+                <i class="ri-video-line"></i> Video Tools
+                <span class="soon-badge">Coming Soon</span>
+              </button>
+            </div>
+
+            <!-- Initial Placeholder Panel -->
+            <div class="placeholder-panel" id="initial-placeholder-panel">
+              <div class="icon-glow">
+                <i class="ri-cursor-line"></i>
+              </div>
+              <h3>Select a Category</h3>
+              <p>Choose a category above to explore our tools.</p>
+            </div>
+
+            <!-- Coming Soon Panel (hidden by default) -->
+            <div class="placeholder-panel hidden-panel" id="coming-soon-panel">
+              <div class="icon-glow">
+                <i class="ri-tools-line"></i>
+              </div>
+              <h3>Work in Progress</h3>
+              <p>We are building this category. Check back soon.</p>
+            </div>
+
+            <div class="tool-grid tool-grid-hidden">
+
+              <!-- Tool: Image to Text (OCR) -->
+              <a href="tools/image-to-text.html" class="tool-card" data-category="image">
+                <div class="tool-icon">
+                  <i class="ri-file-text-line"></i>
+                </div>
+                <h3>Image to Text</h3>
+                <p>
+                  Extract text from images with the OCR tool.
+                </p>
+              </a>
+
+              <!-- Tool: AI Image Upscaler -->
+              <a href="tools/image-upscaler.html" class="tool-card" data-category="image">
+                <div class="tool-icon">
+                  <i class="ri-zoom-in-line"></i>
+                </div>
+                <h3>Image Upscaler</h3>
+                <p>
+                  Enlarge low-resolution images with the upscaler tool.
+                </p>
+              </a>
+
+              <!-- Tool: Remove Metadata -->
+              <a href="tools/remove-metadata.html" class="tool-card" data-category="image">
+                <div class="tool-icon">
+                  <i class="ri-eraser-fill"></i>
+                </div>
+                <h3>Remove Metadata</h3>
+                <p>
+                  Remove hidden EXIF, GPS, and camera data from photos before sharing.
+                </p>
+              </a>
+
+              <!-- Tool: Image Compressor -->
+              <a href="tools/image-compressor.html" class="tool-card" data-category="image">
+                <div class="tool-icon">
+                  <i class="ri-contract-up-down-line"></i>
+                </div>
+                <h3>Image Compressor</h3>
+                <p>
+                  Reduce image file size and download an optimized JPG.
+                </p>
+              </a>
+
+              <!-- Tool: Image Resizer -->
+              <a href="tools/image-resizer.html" class="tool-card" data-category="image">
+                <div class="tool-icon">
+                  <i class="ri-aspect-ratio-line"></i>
+                </div>
+                <h3>Image Resizer</h3>
+                <p>
+                  Change image width and height in pixels, with an aspect-ratio
+                  option.
+                </p>
+              </a>
+
+              <!-- Tool: Image Cropper -->
+              <a href="tools/image-cropper.html" class="tool-card" data-category="image">
+                <div class="tool-icon"><i class="ri-crop-2-line"></i></div>
+                <h3>Image Cropper</h3>
+                <p>
+                  Crop images to selected areas with an interactive editor.
+                </p>
+              </a>
+
+              <!-- Tool: To PNG -->
+              <a href="tools/image-to-png.html" class="tool-card" data-category="image">
+                <div class="tool-icon"><i class="ri-file-image-line"></i></div>
+                <h3>Image to PNG</h3>
+                <p>
+                  Convert uploaded images to PNG for a widely supported output
+                  format.
+                </p>
+              </a>
+
+              <!-- Tool: To JPG -->
+              <a href="tools/image-to-jpg.html" class="tool-card" data-category="image">
+                <div class="tool-icon"><i class="ri-file-image-line"></i></div>
+                <h3>Image to JPG</h3>
+                <p>
+                  Convert uploaded images to the widely compatible JPG format.
+                </p>
+              </a>
+
+              <!-- Tool: To WebP -->
+              <a href="tools/image-to-webp.html" class="tool-card" data-category="image">
+                <div class="tool-icon"><i class="ri-windy-line"></i></div>
+                <h3>Image to WebP</h3>
+                <p>
+                  Convert uploaded images to WebP for web projects.
+                </p>
+              </a>
+
+              <!-- Tool: To Base64 -->
+              <a href="tools/image-to-base64.html" class="tool-card" data-category="image">
+                <div class="tool-icon"><i class="ri-code-line"></i></div>
+                <h3>Image to Base64</h3>
+                <p>
+                  Convert images to Base64 strings for easy embedding in CSS or
+                  HTML.
+                </p>
+              </a>
+
+              <!-- Tool: Bulk Downloader -->
+              <a href="tools/bulk-downloader.html" class="tool-card" data-category="image">
+                <div class="tool-icon">
+                  <i class="ri-download-cloud-2-line"></i>
+                </div>
+                <h3>Bulk Downloader</h3>
+                <p>
+                  Upload multiple images and download them in a single ZIP file.
+                </p>
+              </a>
+
+              <!-- PDF Tools -->
+              <a href="tools/pdf-compress.html" class="tool-card" data-category="pdf">
+                <div class="tool-icon"><i class="ri-file-pdf-line"></i></div>
+                <h3>PDF Compress</h3>
+                <p>Try reducing PDF file size in the PDF compressor.</p>
+              </a>
+              <a href="tools/pdf-merge.html" class="tool-card" data-category="pdf">
+                <div class="tool-icon"><i class="ri-file-pdf-line"></i></div>
+                <h3>PDF Merge</h3>
+                <p>Combine multiple PDFs into a single file.</p>
+              </a>
+              <a href="tools/pdf-split.html" class="tool-card" data-category="pdf">
+                <div class="tool-icon"><i class="ri-file-pdf-line"></i></div>
+                <h3>PDF Split</h3>
+                <p>Extract specific pages from your PDF document.</p>
+              </a>
+              <a href="tools/pdf-to-image.html" class="tool-card" data-category="pdf">
+                <div class="tool-icon"><i class="ri-file-pdf-line"></i></div>
+                <h3>PDF to Image</h3>
+                <p>Convert PDF pages into PNG images.</p>
+              </a>
+              <a href="tools/image-to-pdf.html" class="tool-card" data-category="pdf">
+                <div class="tool-icon"><i class="ri-file-pdf-line"></i></div>
+                <h3>Image to PDF</h3>
+                <p>Combine your JPG and PNG images into a PDF.</p>
+              </a>
+              <a href="tools/pdf-page-remover.html" class="tool-card" data-category="pdf">
+                <div class="tool-icon"><i class="ri-file-pdf-line"></i></div>
+                <h3>PDF Page Remover</h3>
+                <p>Delete specific pages from your PDF file.</p>
+              </a>
+
+              <!-- Text Tools -->
+              <a href="tools/word-counter.html" class="tool-card" data-category="text">
+                <div class="tool-icon"><i class="ri-text"></i></div>
+                <h3>Word Counter</h3>
+                <p>Count words, characters, sentences and reading time.</p>
+              </a>
+              <a href="tools/character-counter.html" class="tool-card" data-category="text">
+                <div class="tool-icon"><i class="ri-text"></i></div>
+                <h3>Character Counter</h3>
+                <p>Count letters, numbers, spaces, and symbols.</p>
+              </a>
+              <a href="tools/case-converter.html" class="tool-card" data-category="text">
+                <div class="tool-icon"><i class="ri-text"></i></div>
+                <h3>Case Converter</h3>
+                <p>Convert text to uppercase, lowercase, title case, and more.</p>
+              </a>
+              <a href="tools/text-reverser.html" class="tool-card" data-category="text">
+                <div class="tool-icon"><i class="ri-text"></i></div>
+                <h3>Text Reverser</h3>
+                <p>Reverse text or flip characters upside down.</p>
+              </a>
+              <a href="tools/remove-duplicates.html" class="tool-card" data-category="text">
+                <div class="tool-icon"><i class="ri-text"></i></div>
+                <h3>Remove Duplicates</h3>
+                <p>Clean up your lists by removing duplicate lines.</p>
+              </a>
+              <a href="tools/text-to-slug.html" class="tool-card" data-category="text">
+                <div class="tool-icon"><i class="ri-text"></i></div>
+                <h3>Text to Slug</h3>
+                <p>Create clean, SEO-friendly URL slugs from text.</p>
+              </a>
+
+              <!-- File Tools -->
+              <a href="tools/json-formatter.html" class="tool-card" data-category="file">
+                <div class="tool-icon"><i class="ri-braces-line"></i></div>
+                <h3>JSON Formatter</h3>
+                <p>Format JSON data with spaces, tabs, and readable line breaks.</p>
+              </a>
+              <a href="tools/json-minifier.html" class="tool-card" data-category="file">
+                <div class="tool-icon"><i class="ri-braces-line"></i></div>
+                <h3>JSON Minifier</h3>
+                <p>Compress JSON by removing whitespace.</p>
+              </a>
+              <a href="tools/base64-encoder.html" class="tool-card" data-category="file">
+                <div class="tool-icon"><i class="ri-braces-line"></i></div>
+                <h3>Base64 Encoder</h3>
+                <p>Encode text or files to Base64 format and decode back.</p>
+              </a>
+              <a href="tools/url-encoder.html" class="tool-card" data-category="file">
+                <div class="tool-icon"><i class="ri-braces-line"></i></div>
+                <h3>URL Encoder</h3>
+                <p>Safely encode and decode URL strings.</p>
+              </a>
+              <a href="tools/html-encoder.html" class="tool-card" data-category="file">
+                <div class="tool-icon"><i class="ri-braces-line"></i></div>
+                <h3>HTML Encoder</h3>
+                <p>Convert special characters to HTML entities.</p>
+              </a>
+              <!-- Calculator Tools -->
+              <a href="tools/loan-calculator.html" class="tool-card" data-category="calculator">
+                <div class="tool-icon"><i class="ri-bank-card-line"></i></div>
+                <h3>Loan &amp; Installment Calculator</h3>
+                <p>
+                  Calculate monthly installments, total payment, and interest
+                  for a loan.
+                </p>
+              </a>
+              <a href="tools/emi-calculator.html" class="tool-card" data-category="calculator">
+                <div class="tool-icon"><i class="ri-calculator-line"></i></div>
+                <h3>EMI Calculator</h3>
+                <p>
+                  Calculate your EMI. Enter loan amount,
+                  interest rate and tenure to get monthly payment.
+                </p>
+              </a>
+              <a href="tools/resume-builder.html" class="tool-card" data-category="file">
+                <div class="tool-icon"><i class="ri-file-user-line"></i></div>
+                <h3>Resume Builder</h3>
+                <p>
+                  Enter resume details, choose a template,
+                  and download a PDF.
+                </p>
+              </a>
+              <a href="tools/qr-code-generator.html" class="tool-card" data-category="file">
+                <div class="tool-icon"><i class="ri-qr-code-line"></i></div>
+                <h3>QR Code Generator</h3>
+                <p>
+                  Generate QR codes for URLs, text, email, phone,
+                  and WhatsApp, then download a PNG.
+                </p>
+              </a>
+              <!-- Tool: YouTube Thumbnail Downloader -->
+              <a href="tools/youtube-thumbnail-downloader.html" class="tool-card" data-category="social">
+                <div class="tool-icon">
+                  <i class="ri-youtube-fill"></i>
+                </div>
+                <h3>YouTube Thumbnail Downloader</h3>
+                <p>
+                  View and download available thumbnail sizes from a YouTube video link.
+                </p>
+              </a>
+
+              <!-- Tool: Meta Tag Generator -->
+              <a href="tools/meta-tag-generator.html" class="tool-card" data-category="seo">
+                <div class="tool-icon">
+                  <i class="ri-code-s-slash-line"></i>
+                </div>
+                <h3>Meta Tag Generator</h3>
+                <p>
+                  Create SEO meta tags, Open Graph tags, and Twitter Card markup.
+                </p>
+              </a>
+
+              <!-- Tool: Schema Markup Generator -->
+              <a href="tools/schema-generator.html" class="tool-card" data-category="seo">
+                <div class="tool-icon">
+                  <i class="ri-braces-line"></i>
+                </div>
+                <h3>Schema Markup Generator</h3>
+                <p>
+                  Create JSON-LD markup for supported schema types.
+                </p>
+              </a>
+
+            </div>
+          </section>
+        </div>
+        <!-- End of container -->
+
+        <section class="seo-content-section">
+          <div class="container seo-content-inner">
+            <div class="seo-section-block">
+              <h2 class="seo-section-title">
+                What You Can Do on ToolzGarden
+              </h2>
+              <p class="seo-section-paragraph">
+                ToolzGarden is a directory of free online tools for common
+                digital tasks. Use the category tabs or search field to find
+                tools for images, PDFs, developer data, text, calculators, and
+                social media workflows.
+              </p>
+              <p class="seo-section-paragraph">
+                Image tools include the <a href="tools/image-compressor.html">image
+                compressor</a>, <a href="tools/image-resizer.html">image
+                resizer</a>, cropper, format converters, OCR, and metadata
+                remover. Each tool page focuses on one task so you can choose
+                the right tool without sorting through unrelated options.
+              </p>
+              <p class="seo-section-paragraph">
+                PDF tools cover tasks such as <a href="tools/pdf-merge.html">merging
+                PDF files</a>, splitting PDFs, removing pages, compressing PDFs,
+                converting PDF pages to images, and creating PDFs from images.
+              </p>
+              <p class="seo-section-paragraph">
+                Developer and text utilities include the <a href="tools/json-formatter.html">JSON
+                formatter</a>, JSON minifier, Base64 encoder, URL encoder, HTML
+                encoder, word counter, case converter, duplicate-line remover,
+                and slug generator. Calculators, a <a href="tools/qr-code-generator.html">QR
+                code generator</a>, and a YouTube thumbnail downloader are also
+                listed from the homepage.
+              </p>
+            </div>
+
+            <div class="seo-section-block">
+              <h2 class="seo-section-title">
+                How It Works
+              </h2>
+              <div class="steps-grid">
+                <div class="step-card">
+                  <div class="step-icon-box">
+                    <i class="ri-upload-cloud-2-line"></i>
+                  </div>
+                  <h3 class="step-title">Step 1: Upload or Paste</h3>
+                  <p class="step-description">
+                    Pick a category, search for a tool, or open one of the
+                    featured tool cards on the homepage.
+                  </p>
+                </div>
+                <div class="step-card">
+                  <div class="step-icon-box">
+                    <i class="ri-settings-4-line"></i>
+                  </div>
+                  <h3 class="step-title">Step 2: Choose Settings</h3>
+                  <p class="step-description">
+                    Add the file, text, URL, or numbers requested by that tool,
+                    then choose any available options.
+                  </p>
+                </div>
+                <div class="step-card">
+                  <div class="step-icon-box">
+                    <i class="ri-download-2-line"></i>
+                  </div>
+                  <h3 class="step-title">Step 3: Download Result</h3>
+                  <p class="step-description">
+                    Use the copy, preview, reset, or download controls shown on
+                    the selected tool page.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h2 class="seo-section-title">
+                Who Is ToolzGarden For?
+              </h2>
+              <ul class="audience-list">
+                <li>
+                  <i class="ri-checkbox-circle-fill audience-check"></i>
+                  <strong>Students</strong> who need image, PDF, text, and
+                  calculator tools for school assignments or presentations.
+                </li>
+                <li>
+                  <i class="ri-checkbox-circle-fill audience-check"></i>
+                  <strong>Freelancers &amp; Professionals</strong> who work with
+                  PDFs, images, QR codes, resumes, and everyday document tasks.
+                </li>
+                <li>
+                  <i class="ri-checkbox-circle-fill audience-check"></i>
+                  <strong>Developers &amp; Programmers</strong> who need JSON,
+                  Base64, URL, HTML, schema, and meta tag utilities.
+                </li>
+                <li>
+                  <i class="ri-checkbox-circle-fill audience-check"></i>
+                  <strong>Anyone</strong> who wants a searchable set of online
+                  tools grouped by task.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <!-- End of full-page-wrapper -->
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-brand-row">
+              <img src="./Images/logo.webp" alt="ToolzGarden Logo" loading="lazy" class="footer-logo">
+              <span class="footer-title">ToolzGarden</span>
+            </div>
+            <p>
+              Free online tools for image, PDF, text, developer, calculator,
+              and social media tasks.
+            </p>
+          </div>
+          <div class="footer-links">
+            <h2 class="sr-only">Footer Links</h2>
+            <h3 class="footer-heading">Image Tools</h3>
+            <ul>
+              <li><a href="tools/image-compressor.html">Compress Image</a></li>
+              <li><a href="tools/image-resizer.html">Resize Image</a></li>
+              <li><a href="tools/image-cropper.html">Crop Image</a></li>
+              <li><a href="tools/image-to-png.html">Image to PNG</a></li>
+              <li><a href="tools/image-to-jpg.html">Image to JPG</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3 class="footer-heading">Other Tools</h3>
+            <ul>
+              <li><a href="tools/pdf-merge.html">Merge PDF files</a></li>
+              <li><a href="tools/word-counter.html">Count words and characters</a></li>
+              <li><a href="tools/json-formatter.html">Format JSON</a></li>
+              <li><a href="tools/qr-code-generator.html">Generate QR codes</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3 class="footer-heading">Company</h3>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 ToolzGarden. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    
+    <!-- Google Analytics Placeholder -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
+    <script src="script.js?v=1.4" defer=""></script>
+  
+
+</body></html>

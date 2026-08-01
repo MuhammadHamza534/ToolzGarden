@@ -1,0 +1,205 @@
+{
+  "base64-encoder.html": [
+    {"q": "What is Base64 encoding used for?", "a": "Base64 encoding converts binary data or text into an ASCII string format. It is commonly used to safely transmit data across networks, embed images in HTML/CSS, or ensure text isn't corrupted during transfer."},
+    {"q": "Is this Base64 encoder tool free?", "a": "Yes, our Base64 encoder is completely free to use with no hidden limits. You can encode as much text as you need directly in your browser without creating an account."},
+    {"q": "Can I encode large strings with this tool?", "a": "Absolutely. Since the encoding process runs locally in your browser, you can encode very large strings instantly. The only limit is your device's memory."},
+    {"q": "Is my data sent to any server when encoding?", "a": "No, your data remains 100% private. All Base64 encoding happens client-side in your browser using JavaScript. Nothing is ever uploaded to our servers."},
+    {"q": "Does Base64 encoding encrypt my data?", "a": "No, Base64 is not an encryption method. It is simply an encoding scheme. Anyone can easily decode a Base64 string back to its original form, so it should not be used to hide sensitive information."}
+  ],
+  "bulk-downloader.html": [
+    {"q": "How does the image bulk downloader work?", "a": "The tool extracts all image URLs from a given webpage or a list of URLs you provide, allowing you to preview and download them all simultaneously in a single click."},
+    {"q": "Is there a limit to how many images I can download?", "a": "No strict limits are enforced by our tool, but downloading thousands of high-resolution images at once may slow down your browser or use significant local memory."},
+    {"q": "Can I download images from Instagram or Pinterest?", "a": "This depends on the website's security policies. Many modern social media platforms use CORS (Cross-Origin Resource Sharing) restrictions that prevent browser-based tools from fetching their images directly."},
+    {"q": "Is this bulk downloader safe to use?", "a": "Yes. The bulk downloader runs entirely in your browser and downloads images directly from the source URLs to your computer. We do not proxy or store any of your downloaded files."},
+    {"q": "Do I need to install any software to use this?", "a": "No installation or browser extension is required. The bulk downloader works instantly in any modern web browser like Chrome, Firefox, Safari, or Edge."}
+  ],
+  "case-converter.html": [
+    {"q": "What types of case conversions are supported?", "a": "Our case converter supports uppercase, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, and kebab-case formatting."},
+    {"q": "Is there a word or character limit for conversion?", "a": "There are no character limits. You can paste thousands of words or entire documents, and the tool will convert the text instantly within your browser."},
+    {"q": "How do I capitalize the first letter of each word?", "a": "Simply paste your text into the input field and select the 'Title Case' option. It will automatically capitalize the first letter of every word while keeping the rest lowercase."},
+    {"q": "Does the case converter save my text?", "a": "No. All text processing happens locally on your device. We do not store, log, or transmit any of the text you enter into the case converter."},
+    {"q": "Can I use this tool to format my essay or article?", "a": "Yes! The 'Sentence case' feature is perfect for correcting essay drafts where capitalization might be inconsistent, saving you time from manually editing each sentence."}
+  ],
+  "character-counter.html": [
+    {"q": "How does the character counter work?", "a": "The character counter analyzes your text in real-time as you type or paste it, instantly updating the count for characters, words, sentences, and paragraphs."},
+    {"q": "Does it count spaces as characters?", "a": "Yes, by default, spaces are counted as characters. However, our tool also provides a separate metric for 'Characters (no spaces)' if you need that specific count."},
+    {"q": "Can it count words and sentences too?", "a": "Yes, in addition to characters, the tool provides comprehensive statistics including total words, sentences, paragraphs, and reading time."},
+    {"q": "Is my text saved or uploaded when using the counter?", "a": "Never. The character counter is a purely client-side tool. Your text is analyzed within your own browser and is never sent to our servers or saved anywhere."},
+    {"q": "Is this tool helpful for Twitter or SEO meta tags?", "a": "Absolutely. It's the perfect utility to ensure your tweets stay under the 280-character limit, or to verify your SEO meta titles and descriptions are optimized for search engine displays."}
+  ],
+  "emi-calculator.html": [
+    {"q": "What does EMI stand for in loans?", "a": "EMI stands for Equated Monthly Installment. It is the fixed payment amount made by a borrower to a lender at a specified date each calendar month."},
+    {"q": "How is my monthly EMI calculated?", "a": "EMI is calculated using a mathematical formula that takes into account the total principal loan amount, the annual interest rate, and the loan tenure (in months)."},
+    {"q": "Is this EMI calculator completely free?", "a": "Yes, the EMI calculator is 100% free to use. There are no paywalls, hidden fees, or signup requirements to access the full amortization schedule."},
+    {"q": "What is the difference between flat rate and reducing balance?", "a": "A flat rate calculates interest on the original principal amount throughout the loan tenure. A reducing balance calculates interest only on the outstanding loan amount, resulting in lower total interest paid over time."},
+    {"q": "Can I use this for home and auto loans?", "a": "Yes! You can use this calculator for any type of fixed-rate loan, including home mortgages, auto loans, personal loans, and education loans."}
+  ],
+  "html-encoder.html": [
+    {"q": "Why do I need to encode HTML entities?", "a": "HTML encoding converts special characters (like <, >, and &) into safe HTML entities (like &lt;, &gt;, and &amp;). This prevents web browsers from interpreting the text as code, protecting against layout breaking and XSS (Cross-Site Scripting) attacks."},
+    {"q": "What characters does the HTML encoder convert?", "a": "The tool converts all reserved HTML characters into their respective entities. It also handles special characters, symbols, and accented letters, ensuring your text renders perfectly across all browsers."},
+    {"q": "Is this tool safe for sensitive HTML code?", "a": "Yes, it is entirely safe. The HTML encoding and decoding happen directly in your browser. No sensitive code is ever sent to or stored on our servers."},
+    {"q": "Can I decode HTML back to text with this tool?", "a": "Yes! The tool includes a toggle allowing you to switch between Encoding raw text into HTML entities and Decoding HTML entities back into readable raw text."},
+    {"q": "Is there a limit to how much HTML I can encode?", "a": "There are no hard limits. You can paste thousands of lines of code or text, and the browser will process it almost instantly."}
+  ],
+  "image-compressor.html": [
+    {"q": "How does the image compressor reduce file size?", "a": "Our image compressor uses advanced browser-based algorithms to optimize image data. It carefully balances image quality and compression level, removing unnecessary metadata and optimizing pixel data to drastically shrink the file size."},
+    {"q": "Will compressing my image reduce its quality?", "a": "You have full control over the compression ratio. At standard settings (around 80%), the reduction in file size is significant while the loss in visual quality is virtually unnoticeable to the human eye."},
+    {"q": "Is this image compressor free and without limits?", "a": "Yes! Our image compressor is 100% free. Unlike many other services, there are no daily limits, file size caps, or required account registrations."},
+    {"q": "Are my images uploaded to your servers for compression?", "a": "No, your privacy is fully protected. All image compression occurs locally on your device within your web browser. We never upload, process, or store your personal photos on our servers."},
+    {"q": "Which image formats are supported?", "a": "The tool supports all major web image formats, including JPG, JPEG, PNG, and WebP."}
+  ],
+  "image-cropper.html": [
+    {"q": "Is this image cropper free to use?", "a": "Yes, our image cropper is completely free. There are no premium features hidden behind paywalls and no watermarks added to your cropped images."},
+    {"q": "Does ToolzGarden store my uploaded images?", "a": "Never. All image cropping and processing is done locally within your browser. Your images are never uploaded to any server or saved in any database."},
+    {"q": "Can I crop images on my mobile device?", "a": "Absolutely. The image cropper is fully responsive and optimized for mobile browsers, allowing you to pinch, zoom, and crop photos directly from your smartphone or tablet."},
+    {"q": "Does cropping reduce image quality?", "a": "Cropping simply removes the outer edges of your image to change its framing or aspect ratio. The portion of the image that remains retains its original resolution and quality."},
+    {"q": "Which file formats can I crop?", "a": "Our tool supports all standard image formats including JPG, PNG, GIF, and WebP."}
+  ],
+  "image-resizer.html": [
+    {"q": "How do I resize an image without losing quality?", "a": "Our tool uses advanced HTML5 canvas algorithms to scale images smoothly. While enlarging an image can sometimes reduce sharpness, downscaling images generally preserves excellent visual quality."},
+    {"q": "Can I resize images for social media platforms?", "a": "Yes, this tool is perfect for resizing images to meet the exact pixel requirements for Instagram posts, Facebook covers, YouTube thumbnails, and Twitter headers."},
+    {"q": "Does this image resizer stretch or distort my photos?", "a": "By default, the tool locks the aspect ratio so your image scales proportionally without stretching. You can unlock the aspect ratio if you need specific, non-proportional dimensions."},
+    {"q": "Are my images kept private and secure?", "a": "Yes. All image resizing happens strictly in your browser. We do not upload your pictures to our servers, ensuring 100% data privacy."},
+    {"q": "What is the maximum image size I can upload?", "a": "Because the processing happens locally on your device, there are no strict file size limits. However, extremely large images (over 50MB) may take slightly longer to process depending on your device's memory."}
+  ],
+  "image-to-base64.html": [
+    {"q": "What is an Image to Base64 converter?", "a": "It is a tool that transforms a standard image file (like a JPG or PNG) into a long string of ASCII text. This Base64 string can be directly embedded into HTML or CSS code."},
+    {"q": "Why should I use Base64 strings for images?", "a": "Embedding a Base64 string directly into your code reduces the number of HTTP requests your website has to make, which can significantly speed up page load times for small icons and logos."},
+    {"q": "Does converting an image to Base64 increase its size?", "a": "Yes, a Base64 encoded string is typically about 33% larger than the original binary image file. This is why it is recommended mostly for small images, icons, and low-resolution graphics."},
+    {"q": "Is this converter tool completely browser-based?", "a": "Yes! The conversion happens instantly within your web browser. No files are ever uploaded to an external server."},
+    {"q": "Which image types can be converted?", "a": "You can convert almost any image format into Base64, including JPG, PNG, GIF, SVG, and WebP."}
+  ],
+  "image-to-jpg.html": [
+    {"q": "Why should I convert my images to JPG format?", "a": "JPG (or JPEG) is the most universally compatible image format. It offers an excellent balance between visual quality and small file size, making it ideal for web use, emails, and general digital storage."},
+    {"q": "Does converting to JPG reduce the file size?", "a": "Often, yes. Converting uncompressed formats like BMP or heavy formats like PNG into JPG can significantly reduce the file size while maintaining acceptable quality."},
+    {"q": "Are my images uploaded to an external server?", "a": "No. Our Image to JPG converter operates entirely client-side. Your original image and the converted JPG never leave your personal device, guaranteeing complete privacy."},
+    {"q": "Can I convert PNG or WebP images to JPG?", "a": "Yes, this tool seamlessly converts PNGs, WebPs, GIFs, and other image formats directly into standard JPG files."},
+    {"q": "Is this JPG converter free to use?", "a": "Yes, the converter is 100% free with no registration required and no watermarks applied to your final images."}
+  ],
+  "image-to-pdf.html": [
+    {"q": "How do I convert an image to a PDF file?", "a": "Simply upload your image (or multiple images) into the tool, arrange the order if necessary, and click the convert button. The tool will generate a professional PDF document instantly."},
+    {"q": "Can I combine multiple images into a single PDF?", "a": "Yes, our tool supports bulk uploads. You can select multiple JPG, PNG, or WebP files and combine them all into a single, multi-page PDF document."},
+    {"q": "Is my privacy protected when using this converter?", "a": "Absolutely. The image-to-PDF conversion takes place entirely within your browser using JavaScript. Your sensitive images are never uploaded or stored on our servers."},
+    {"q": "Will the image quality be maintained in the PDF?", "a": "Yes, the tool embeds your images into the PDF format while preserving their original resolution and visual quality."},
+    {"q": "Is this tool compatible with mobile phones?", "a": "Yes, you can easily select photos from your smartphone's camera roll or gallery and convert them into a PDF document directly from your mobile browser."}
+  ],
+  "image-to-png.html": [
+    {"q": "What are the benefits of converting images to PNG?", "a": "PNG is a lossless image format, meaning it retains the highest possible visual quality without compression artifacts. It also supports transparent backgrounds, which is essential for logos and web design."},
+    {"q": "Does a PNG file support a transparent background?", "a": "Yes, one of the main advantages of the PNG format over JPG is its support for alpha-channels, allowing for fully transparent backgrounds."},
+    {"q": "Will converting from JPG to PNG improve quality?", "a": "No, converting a compressed format like JPG into PNG will not restore lost quality. However, saving a file as a PNG prevents any further loss of quality when editing and re-saving."},
+    {"q": "Are my image files safe and private during conversion?", "a": "Yes. Our tool is completely browser-based. Your images are processed locally on your device and are never uploaded to any external servers."},
+    {"q": "Is there any software installation required?", "a": "None at all. Our Image to PNG converter runs directly in your web browser (Chrome, Safari, Edge, Firefox) without requiring any downloads, plugins, or extensions."}
+  ],
+  "image-to-webp.html": [
+    {"q": "Why is WebP better than JPG or PNG?", "a": "WebP is a modern image format created by Google that provides superior lossless and lossy compression. It can reduce file sizes by up to 34% compared to JPG or PNG, making websites load much faster."},
+    {"q": "Does WebP compression reduce image quality?", "a": "WebP offers an excellent balance. While heavy compression can introduce minor visual changes, standard WebP compression drastically reduces file size while maintaining a quality virtually identical to the original image."},
+    {"q": "Are my files uploaded to a server to convert to WebP?", "a": "No, your privacy is guaranteed. All format conversions happen locally on your device. We do not upload, host, or store any of your images."},
+    {"q": "Which browsers support WebP images?", "a": "Almost all modern web browsers support WebP, including Google Chrome, Safari, Firefox, Microsoft Edge, and Opera."},
+    {"q": "Is this WebP converter free and unlimited?", "a": "Yes, our tool is completely free to use. There are no hidden fees, file limits, or watermarks attached to your converted WebP images."}
+  ],
+  "json-formatter.html": [
+    {"q": "What does a JSON formatter do?", "a": "A JSON formatter (or beautifier) takes unformatted, minified, or messy JSON data and adds proper indentation, line breaks, and spacing to make it highly readable for humans and developers."},
+    {"q": "Can this tool format invalid JSON data?", "a": "If the JSON contains severe syntax errors, the tool will alert you. However, it handles and formats valid JSON effortlessly, helping you spot errors visually through proper indentation."},
+    {"q": "Does the JSON formatter upload my data anywhere?", "a": "No. All formatting is processed client-side inside your web browser. Your data is entirely secure and never leaves your device, making it safe for sensitive API payloads."},
+    {"q": "How do I prettify a minified JSON string?", "a": "Simply paste your minified JSON code into the input area, and the tool will instantly parse and structure it with standard tab or space indentations."},
+    {"q": "Is there a file size limit for formatting?", "a": "Because the tool runs entirely in your browser, there is no strict limit. However, extremely large JSON files (e.g., hundreds of megabytes) might cause your browser to lag."}
+  ],
+  "json-minifier.html": [
+    {"q": "Why should I minify my JSON files?", "a": "Minifying JSON removes all unnecessary whitespace, line breaks, and indentation. This significantly reduces the overall file size, leading to faster data transmission over networks and quicker API response times."},
+    {"q": "Does minification change the data in my JSON?", "a": "No, minification only removes formatting characters (spaces and line breaks). The actual keys, values, and data structure of your JSON remain perfectly intact and identical."},
+    {"q": "Is this JSON minifier secure for sensitive data?", "a": "Yes, absolutely. The minification process happens entirely locally within your browser. Your JSON data is never transmitted to our servers or saved anywhere."},
+    {"q": "Can I reverse the minification later?", "a": "Yes. If you need to read the minified JSON later, you can simply paste it into our JSON Formatter tool to restore the indentation and line breaks."},
+    {"q": "How does minifying JSON improve website speed?", "a": "Smaller JSON payloads take less time to download over a user's internet connection. This reduces latency and helps front-end applications parse and render data much faster."}
+  ],
+  "loan-calculator.html": [
+    {"q": "How is the monthly loan installment calculated?", "a": "The monthly installment (EMI) is calculated using a standard financial formula that factors in the principal loan amount, the annual interest rate divided into a monthly rate, and the total number of months in the loan tenure."},
+    {"q": "Is this loan calculator free to use?", "a": "Yes, our loan calculator is completely free. There are no paywalls, hidden fees, or signup requirements to view your full amortization schedule."},
+    {"q": "Does a longer loan term reduce my monthly payment?", "a": "Yes, spreading the repayment over a longer term will lower your monthly payments. However, you will end up paying significantly more total interest over the life of the loan."},
+    {"q": "Can I use this for a mortgage or auto loan?", "a": "Absolutely. This calculator works for any fixed-rate loan, including home mortgages, auto loans, personal unsecured loans, and commercial business loans."},
+    {"q": "Are my financial details stored on your server?", "a": "No. The calculator runs entirely within your web browser. Your loan amounts, interest rates, and personal financial explorations are never sent to or stored on our servers."}
+  ],
+  "pdf-compress.html": [
+    {"q": "How does the PDF compressor reduce file size?", "a": "The compressor optimizes the PDF by applying advanced compression to embedded images, removing unnecessary metadata, and streamlining the internal document structure without altering the text."},
+    {"q": "Will compressing my PDF affect the text quality?", "a": "No, vector text and fonts remain crisp and sharp. The compression primarily affects high-resolution embedded images, reducing their footprint while maintaining acceptable visual quality."},
+    {"q": "Is this PDF compressor free and safe to use?", "a": "Yes! Our PDF compressor is entirely free. Furthermore, processing happens locally in your browser, so your private documents are completely safe and never uploaded to any server."},
+    {"q": "Are my PDF files uploaded to your servers?", "a": "Never. Unlike traditional PDF tools that require you to upload files to a cloud server, our tool utilizes modern browser technology to compress your files directly on your device."},
+    {"q": "Can I compress a PDF on my smartphone?", "a": "Yes, the tool is mobile-friendly. You can easily upload and compress PDF files directly from your mobile phone's browser and save the optimized file back to your device."}
+  ],
+  "pdf-merge.html": [
+    {"q": "How do I merge multiple PDF files into one?", "a": "Simply drag and drop or select the PDF files you want to combine. Once loaded, you can rearrange them into your preferred order and click merge to instantly generate a single, unified PDF document."},
+    {"q": "Can I rearrange the order of the PDFs before merging?", "a": "Yes, after uploading your files, you can easily drag and arrange them visually to ensure they appear in the exact sequence you want in the final merged document."},
+    {"q": "Is it safe to merge confidential documents here?", "a": "Absolutely. The merging process runs locally inside your web browser. Your confidential PDFs are never uploaded, transmitted, or saved to any external servers."},
+    {"q": "Does merging PDFs reduce their quality?", "a": "No, merging simply combines the existing pages into a single file container. The original quality of your text, images, and formatting is 100% preserved."},
+    {"q": "Is there a limit to how many files I can merge?", "a": "There is no hard limit imposed by the tool. However, combining hundreds of massive PDF files at once may slow down your browser depending on your computer's available memory."}
+  ],
+  "pdf-page-remover.html": [
+    {"q": "How do I delete specific pages from a PDF?", "a": "Upload your PDF into the tool to generate a visual preview of all pages. Simply click the delete icon on the pages you wish to remove, then click to generate and download your new, trimmed PDF."},
+    {"q": "Can I remove multiple pages at once?", "a": "Yes, you can visually select and remove as many pages as you like from the document before generating the final output file."},
+    {"q": "Is my PDF document uploaded or stored anywhere?", "a": "No. The entire page removal process is executed client-side in your web browser. Your documents never leave your device, ensuring total privacy and security."},
+    {"q": "Will removing pages change the rest of the PDF?", "a": "No, deleting pages does not affect the text, image quality, or formatting of the remaining pages. They will be perfectly preserved in the exact state they were in the original file."},
+    {"q": "Is this page removal tool completely free?", "a": "Yes, the PDF page remover is 100% free to use. There are no limits, no watermarks, and no software installations required."}
+  ],
+  "pdf-split.html": [
+    {"q": "How do I split a large PDF into smaller files?", "a": "Upload your PDF into the tool, and visually select the exact pages you want to extract. The tool will then generate a new PDF containing only those specific pages."},
+    {"q": "Can I extract just one specific page from a PDF?", "a": "Yes, you can select a single page or multiple specific pages to extract. It's perfect for pulling a specific invoice or contract page out of a massive document."},
+    {"q": "Are my PDF files processed securely and privately?", "a": "Yes. Our PDF splitter works entirely locally within your browser. Your files are never uploaded to a cloud server, ensuring your sensitive data remains completely private."},
+    {"q": "Does splitting a PDF affect the formatting?", "a": "No. The extracted pages maintain their exact original formatting, text quality, embedded fonts, and image resolutions."},
+    {"q": "Do I need to pay to split PDF documents?", "a": "No, this tool is completely free. There are no subscriptions, hidden fees, or daily limits, and we never place watermarks on your extracted pages."}
+  ],
+  "pdf-to-image.html": [
+    {"q": "How do I convert a PDF to an image file?", "a": "Simply upload your PDF document. The tool will render each page of the document visually, allowing you to download them individually as high-quality image files."},
+    {"q": "Which image formats can I convert my PDF into?", "a": "Our tool currently converts PDF pages directly into high-quality JPG or PNG image files, which are perfect for sharing or embedding on websites."},
+    {"q": "Will the converted images be high resolution?", "a": "Yes, the tool renders the PDF pages at a high DPI (dots per inch) to ensure that the resulting images are sharp, readable, and professional."},
+    {"q": "Is this PDF to image converter safe and private?", "a": "Absolutely. The conversion process is powered by browser-based technology. Your PDFs are never uploaded to our servers, ensuring your sensitive documents remain 100% confidential."},
+    {"q": "Can I convert a multi-page PDF into separate images?", "a": "Yes, the tool loads all pages of your PDF. You can preview them all and click download on any specific page you wish to save as an image."}
+  ],
+  "qr-code-generator.html": [
+    {"q": "How do I generate a QR code for a URL?", "a": "Select 'Website URL' from the input options, paste your link into the text box, and the QR code will instantly generate on the screen. Click 'Download PNG' to save it."},
+    {"q": "Is this QR code generator completely free?", "a": "Yes, it is 100% free. There are no account signups required, no hidden paywalls, and absolutely no watermarks placed on your generated QR codes."},
+    {"q": "Can I customize the color and style of my QR code?", "a": "Yes, the tool offers deep customization. You can change the foreground and background colors, alter the dot patterns, and even wrap the code in a 'SCAN ME' frame."},
+    {"q": "Do the generated QR codes ever expire?", "a": "No, the QR codes generated by this tool are 'static', meaning the data is encoded directly into the pattern. As long as your destination URL remains active, the QR code will work forever."},
+    {"q": "Is my data kept private when generating a QR code?", "a": "Yes, all data processing occurs locally on your device. Your URLs, text, phone numbers, and uploaded logos are never transmitted to our servers."}
+  ],
+  "remove-duplicates.html": [
+    {"q": "How does the duplicate line remover work?", "a": "The tool reads through your provided list of text line by line. It identifies any exact matches and removes the redundant lines, leaving you with a clean, unique list of items."},
+    {"q": "Can it remove duplicates without sorting the list?", "a": "Yes, by default, the tool preserves the original order of your text. It simply removes the subsequent appearances of duplicate lines while keeping the first occurrence exactly where it was."},
+    {"q": "Is there a limit to how many lines I can process?", "a": "There is no strict limit. You can paste lists containing thousands or even tens of thousands of lines. The browser-based tool handles large datasets quickly and efficiently."},
+    {"q": "Does this tool store my lists or data on a server?", "a": "No, all text processing happens purely client-side within your browser. Your sensitive data, email lists, or codes are never uploaded or saved."},
+    {"q": "Can it handle case-sensitive duplicates?", "a": "Yes, the tool offers an option to toggle case sensitivity. You can choose to treat 'Apple' and 'apple' as unique items, or as duplicates depending on your needs."}
+  ],
+  "resume-builder.html": [
+    {"q": "Is this resume builder completely free to use?", "a": "Yes, 100% free. Unlike many commercial builders, there is no account creation required, no premium paywall, and no watermarks added to your downloaded resume."},
+    {"q": "How do I download my completed resume as a PDF?", "a": "Once you finish entering your details, click the 'Download PDF' button. Your browser's print dialog will open—simply set the destination to 'Save as PDF' and click save."},
+    {"q": "Is my personal resume data stored on your server?", "a": "Never. All data entered into the resume builder stays strictly within your local browser. Your work history, contact information, and personal details are entirely secure and private."},
+    {"q": "Can I use this resume builder offline?", "a": "Yes! Once the builder page has fully loaded in your browser, you can disconnect from the internet. The tool will continue to function flawlessly and generate your PDF offline."},
+    {"q": "Are there multiple templates available to choose from?", "a": "Yes, you can instantly toggle between different professional layouts, including a clean, ATS-optimized 'Classic' template and a striking, two-column 'Modern' template."}
+  ],
+  "text-reverser.html": [
+    {"q": "What does the text reverser tool do?", "a": "The text reverser takes any string of text you input and flips it completely backwards. For example, 'hello' becomes 'olleh'."},
+    {"q": "Can it reverse the words instead of characters?", "a": "Yes, the tool includes advanced toggle options. You can choose to reverse the entire string of characters, or simply reverse the order of the words while keeping the words themselves readable."},
+    {"q": "Is my text data uploaded to any external server?", "a": "No. The text reversal is processed instantly and locally inside your web browser. Your text is never transmitted to our servers or logged in any database."},
+    {"q": "Is there a character limit for the text reverser?", "a": "There are no hard limits. You can paste massive blocks of text or entire documents, and the tool will reverse the content in milliseconds."},
+    {"q": "Can this tool be used for passwords or coding?", "a": "Yes, text reversers are often used by developers to test string manipulation logic, or by individuals looking to obfuscate passwords or create simple ciphers."}
+  ],
+  "text-to-slug.html": [
+    {"q": "What is a URL slug and why is it important?", "a": "A slug is the part of a URL that identifies a specific page on a website in a readable format (e.g., 'my-new-post'). Clean slugs improve Search Engine Optimization (SEO) and user readability."},
+    {"q": "How does the text to slug converter work?", "a": "The tool takes your input text (like a blog post title), converts it all to lowercase, replaces spaces with hyphens, and completely strips out punctuation and special characters."},
+    {"q": "Does it remove special characters and punctuation?", "a": "Yes, all non-alphanumeric characters, including commas, apostrophes, and exclamation marks, are automatically removed to ensure the resulting slug is completely URL-safe."},
+    {"q": "Is this tool helpful for SEO optimization?", "a": "Absolutely. Creating clean, hyphenated, and descriptive URL slugs is a fundamental best practice for improving a website's organic search engine rankings."},
+    {"q": "Is my input text processed securely in the browser?", "a": "Yes. The text-to-slug conversion happens instantaneously via client-side JavaScript. Your titles and text are never uploaded or stored on external servers."}
+  ],
+  "url-encoder.html": [
+    {"q": "What does a URL encoder do?", "a": "A URL encoder translates unsafe or special characters (like spaces, &, and =) into a secure, percent-encoded format (like %20, %26) so the data can be safely transmitted over the internet."},
+    {"q": "Why do I need to percent-encode special characters?", "a": "Web browsers and servers rely on specific characters to structure URLs. If your data contains those reserved characters, it can break the link or corrupt the data submission unless properly encoded."},
+    {"q": "Is this URL encoder tool completely free?", "a": "Yes, our URL Encoder/Decoder is completely free to use without any limitations, subscriptions, or hidden charges."},
+    {"q": "Does the encoder send my URLs to a server?", "a": "No, all encoding and decoding operations happen locally on your device within the browser. Your URLs and sensitive data parameters are never uploaded to our servers."},
+    {"q": "Can I decode URLs back to normal text here?", "a": "Yes, the tool is bi-directional. You can easily paste a complex, percent-encoded URL and click 'Decode' to translate it back into a readable format."}
+  ],
+  "word-counter.html": [
+    {"q": "How accurate is this online word counter?", "a": "Our tool is highly accurate. It uses advanced JavaScript algorithms to instantly parse text, separate words by spaces and punctuation, and deliver precise word and character counts in real-time."},
+    {"q": "Does the tool count characters and spaces too?", "a": "Yes, in addition to the total word count, the tool provides a detailed breakdown including total characters (with spaces), characters (without spaces), sentences, and paragraphs."},
+    {"q": "Is my text saved or uploaded when I count words?", "a": "Never. The word counting process is entirely client-side. Your essays, articles, and sensitive documents are analyzed securely within your browser and never leave your device."},
+    {"q": "Can I use this tool for essays and articles?", "a": "Absolutely. It's the perfect companion for students meeting strict essay word limits, copywriters optimizing article lengths, or authors tracking their daily writing goals."},
+    {"q": "Is there a maximum word limit for this counter?", "a": "There is no built-in limit. You can paste a short tweet or a massive 100,000-word novel, and the tool will calculate the metrics instantly without any issues."}
+  ]
+}

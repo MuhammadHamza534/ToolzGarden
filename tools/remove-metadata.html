@@ -1,0 +1,473 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO -->
+  <title>Remove Metadata - ToolzGarden</title>
+  <meta name="description" content="Use our free remove metadata online. Instant results with no sign up required. Secure and fast processing.">
+  <meta name="keywords" content="remove exif data, remove image metadata, strip exif, delete gps from photo, exif scrubber online, free metadata remover">
+  <meta name="author" content="ToolzGarden">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://toolzgarden.com/tools/remove-metadata.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Remove Metadata - ToolzGarden">
+  <meta property="og:description" content="Use our free remove metadata online. Instant results with no sign up required. Secure and fast processing.">
+  <meta property="og:url" content="https://toolzgarden.com/tools/remove-metadata.html">
+  <meta property="og:site_name" content="ToolzGarden">
+  <meta property="og:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ToolzGarden free online tools">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Remove Metadata - ToolzGarden">
+  <meta name="twitter:description" content="Use our free remove metadata online. Instant results with no sign up required. Secure and fast processing.">
+  <meta name="twitter:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../Favicon-Images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../Favicon-Images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../Favicon-Images/favicon-16x16.png">
+
+  <!-- DNS Prefetch & Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"></noscript>
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- JSON-LD WebApplication Schema -->
+  
+
+  <style>
+    .result-container {
+      display: none;
+      width: 100%;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+    }
+
+    .report-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .report-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .report-status {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .status-danger {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    
+    .status-safe {
+      background: rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .metadata-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .metadata-item {
+      background: var(--bg-tertiary);
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .metadata-item i {
+      color: var(--accent-primary);
+    }
+
+    .image-preview-wrapper {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 1.5rem;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .image-preview-wrapper img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    #loading-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      border-radius: 0.75rem;
+      color: white;
+    }
+    
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-left-color: var(--accent-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Remove Metadata",
+  "url": "https://toolzgarden.com/tools/remove-metadata.html",
+  "description": "Use our free remove metadata online. Instant results with no sign up required. Secure and fast processing.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://toolzgarden.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Remove Metadata",
+      "item": "https://toolzgarden.com/tools/remove-metadata.html"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is EXIF metadata?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EXIF (Exchangeable Image File Format) is hidden data embedded in your photos by your smartphone or digital camera. It often contains sensitive information including exact GPS coordinates, date and time, camera settings, and device models."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why should I remove image metadata?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Removing metadata protects your privacy. If you upload an unscrubbed photo to social media, forums, or a blog, anyone can download it and extract your home address or location from the embedded GPS data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will removing metadata reduce image quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No! Our tool uses an advanced process for JPEGs that surgically strips the binary EXIF header data without touching the actual image pixels. This guarantees 100% zero quality loss."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my image data kept private?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. The metadata stripping process happens entirely within your web browser using JavaScript. Your photos are never uploaded to any remote servers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this tool completely free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! There are no hidden subscriptions, watermarks, API keys, or premium tiers. You can scrub as many images as you want completely free of charge."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="/" class="logo">
+        <img src="../Images/logo.png" alt="ToolzGarden Logo" width="40" height="40" style="object-fit:contain;" loading="eager" fetchpriority="high">
+        ToolzGarden
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
+          <i class="ri-moon-line"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="full-page-wrapper">
+    <main class="center-main-content">
+      <section style="padding: 2rem 0;">
+        <span class="badge-private hero-animate hero-animate-2"><i class="ri-shield-check-fill"></i> 100% Private, Zero Server Uploads</span>
+        <h1 class="hero-animate hero-animate-1">Remove Metadata Online</h1>
+        <p style="color: var(--text-secondary);">Protect your privacy by instantly stripping hidden GPS and camera data from your photos before sharing them.</p>
+      </section>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          
+          <!-- Upload Area -->
+          <div id="drop-zone" class="upload-area hero-animate hero-animate-3">
+            <div class="upload-icon"><i class="ri-eraser-fill"></i></div>
+            <h2>Drag &amp; Drop your photo here</h2>
+            <p>or click to browse from your device</p>
+            <input type="file" id="file-input" hidden="" accept="image/*">
+          </div>
+
+          <!-- Result Area -->
+          <div id="result-container" class="result-container" style="position: relative;">
+            
+            <div id="loading-overlay" style="display: none;">
+              <div class="spinner"></div>
+              <h3 id="loading-text" style="font-weight: 600;">Scanning Metadata...</h3>
+            </div>
+
+            <div class="image-preview-wrapper">
+              <img id="image-preview" src="" alt="Uploaded image" loading="lazy" width="800" height="600">
+            </div>
+
+            <!-- Metadata Report -->
+            <div class="report-card">
+              <div class="report-header">
+                <i class="ri-radar-line"></i> Metadata Scan Report
+                <span id="status-badge" class="report-status status-danger">Data Detected</span>
+              </div>
+              <p id="report-summary" style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.95rem;">
+                Warning: This image contains embedded tracking metadata.
+              </p>
+              
+              <ul class="metadata-list" id="metadata-list">
+                <!-- Dynamically populated via JS -->
+              </ul>
+            </div>
+
+            <div class="action-buttons">
+              <button id="clean-download-btn" class="btn btn-primary" style="flex: 1; padding: 1rem; font-size: 1.1rem;">
+                <i class="ri-shield-keyhole-line"></i> Strip Metadata &amp; Download
+              </button>
+              <button id="reset-btn" class="btn btn-secondary">
+                <i class="ri-restart-line"></i> New Image
+              </button>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- Sidebar Controls -->
+        <aside class="tool-sidebar">
+          <div class="controls-card">
+            <h3 style="margin-bottom: 1rem; font-size: 1.1rem;"><i class="ri-information-line"></i> How it works</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              When you take a picture with a smartphone, the device secretly embeds a block of data known as EXIF. This data often includes your exact GPS location, the time the photo was taken, and your phone model.
+            </p>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">
+              This tool surgically strips that invisible block of text from the image file without touching the actual pixels. <strong>Your image quality remains exactly the same.</strong>
+            </p>
+          </div>
+        </aside>
+      </div>
+
+      <!-- SEO Content -->
+      <article class="seo-content" style="padding: 2rem; margin-top: 2rem; background: var(--bg-secondary); border-radius: 1rem; border: 1px solid var(--border-color);">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">What This Tool Does</h2>
+        <p>The ToolzGarden EXIF &amp; Image Metadata Remover is a specialized privacy utility designed to scrub hidden information from your photographs. Whenever you snap a picture using an iPhone, Android device, or digital camera, the hardware automatically embeds a hidden payload of metadata known as EXIF (Exchangeable Image File Format) straight into the image file. This data is entirely invisible to the naked eye but can easily be read by software or malicious actors. Our tool safely and permanently deletes this data.</p>
+        <p>Unlike generic photo converters that blindly re-encode your image (causing frustrating drops in visual quality), our utility utilizes surgical JavaScript processing to locate the binary EXIF header and remove it without touching the underlying image compression. This guarantees <strong>100% zero quality loss</strong> for JPEG images while providing maximum security.</p>
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Why You Need to Remove Image Metadata</h2>
+        <p>Sharing an unscrubbed photo on a forum, social media platform, or personal blog is a massive privacy risk. EXIF data acts as a digital fingerprint. It commonly contains your exact, pinpoint GPS coordinates (latitude and longitude), the exact date and time the photo was taken, your device's make and model, and even the software version you are running. If you take a picture of your cat at home and post it online, anyone who downloads that image can extract those coordinates and discover exactly where you live.</p>
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Key Features</h2>
+        <ul>
+          <li><strong>Zero-Loss Processing:</strong> We use advanced binary stripping for JPEGs, meaning your photo retains its original crisp resolution and compression quality.</li>
+          <li><strong>Pre-Scan Reporting:</strong> Before you even clean the image, our tool scans it and generates a human-readable report showing exactly what hidden data it found, so you know exactly what is at risk.</li>
+          <li><strong>Complete Local Processing:</strong> The entire scanning and stripping process occurs directly inside your web browser. No photos are ever uploaded to a remote server.</li>
+          <li><strong>Universal Format Support:</strong> Safely scrub EXIF profiles from standard digital image formats including JPG, JPEG, PNG, and WEBP.</li>
+        </ul>
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">How To Use</h2>
+        <ol>
+          <li>Drag your photograph directly into the central upload zone, or click to browse your files.</li>
+          <li>Wait a split second for the tool to scan the image. Review the Metadata Scan Report to see if your camera left GPS coordinates or device timestamps embedded inside.</li>
+          <li>Click the blue "Strip Metadata &amp; Download" button.</li>
+          <li>The tool will instantaneously delete the hidden EXIF payload and trigger a secure download of the cleaned image to your device, ready for safe sharing.</li>
+        </ol>
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Privacy &amp; Security Guarantee</h2>
+        <p>Because the primary purpose of this tool is to protect your privacy, we engineered it with a zero-data-retention architecture. Your photographs never leave your device. The HTML5 File API reads the file locally, and client-side JavaScript removes the EXIF tags directly in your computer's RAM. We do not have servers logging your uploads or harvesting your data. It is mathematically impossible for us to view your images.</p>
+      </article>
+
+      <div class="seo-injections-wrapper">
+        <section style="padding: 2rem 0 0 0;">
+          <div class="container">
+            <p style="margin-top:1.5rem;">For more utilities, check out our <a href="image-compressor.html" style="color: var(--accent-primary); text-decoration: underline;">Image Compressor</a>. If you have any questions or feature requests, feel free to <a href="../contact.html" style="color: var(--accent-primary); text-decoration: underline;">Contact Us</a> or learn more <a href="../about.html" style="color: var(--accent-primary); text-decoration: underline;">About ToolzGarden</a>.</p>
+            <div class="related-tools" style="margin-top: 2rem; margin-bottom: 2rem;">
+              <h2>Related Tools</h2>
+              <ul style="list-style-type: disc; padding-left: 1.5rem; line-height: 1.8;">
+                <li><a href="image-compressor.html" style="color: var(--accent-primary); text-decoration: none;">Image Compressor</a></li>
+                <li><a href="image-upscaler.html" style="color: var(--accent-primary); text-decoration: none;">AI Image Upscaler</a></li>
+
+                <li><a href="image-to-text.html" style="color: var(--accent-primary); text-decoration: none;">Image to Text (OCR)</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="faq-section" style="padding:3rem 0;">
+          <div class="container">
+            <h2 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
+            <div class="faq-list">
+              <div class="faq-item">
+                <button class="faq-question">What is EXIF metadata? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>EXIF (Exchangeable Image File Format) is hidden data embedded in your photos by your smartphone or digital camera. It often contains sensitive information including exact GPS coordinates, date and time, camera settings, and device models.</p></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Why should I remove image metadata? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Removing metadata protects your privacy. If you upload an unscrubbed photo to social media, forums, or a blog, anyone can download it and extract your home address or location from the embedded GPS data.</p></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Will removing metadata reduce image quality? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>No! Our tool uses an advanced process for JPEGs that surgically strips the binary EXIF header data without touching the actual image pixels. This guarantees 100% zero quality loss.</p></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Is my image data kept private? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Absolutely. The metadata stripping process happens entirely within your web browser using JavaScript. Your photos are never uploaded to any remote servers.</p></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Is this tool completely free to use? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Yes! There are no hidden subscriptions, watermarks, API keys, or premium tiers. You can scrub as many images as you want completely free of charge.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+
+  <div class="container related-tools-line" style="margin-top: 2rem; margin-bottom: 2rem;"><p><strong>Related Tools:</strong> <a href="image-compressor.html" style="color: var(--accent-primary); text-decoration: underline;">Free Image Compressor</a> | <a href="image-resizer.html" style="color: var(--accent-primary); text-decoration: underline;">Free Image Resizer</a></p></div><footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">ToolzGarden</a>
+          <p>Free online tools for everyone. Professional grade, privacy-focused, and 100% free.</p>
+        </div>
+        <div class="footer-links">
+          <h3>Image Tools</h3>
+          <ul>
+            <li><a href="image-compressor.html">Image Compressor</a></li>
+            <li><a href="remove-metadata.html">Remove Metadata</a></li>
+            <li><a href="image-to-text.html">Image to Text (OCR)</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about.html">About Us</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Â© 2025 ToolzGarden. All images processed locally.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <!-- Load EXIF-JS and Piexifjs -->
+  <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/piexifjs@1.0.6/piexif.min.js"></script>
+  <script src="remove-metadata.js"></script>
+
+
+</body></html>

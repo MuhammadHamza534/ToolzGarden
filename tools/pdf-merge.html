@@ -1,0 +1,254 @@
+<!DOCTYPE html><html data-theme="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!-- Primary SEO -->
+<title>Merge PDF Files Online | ToolzGarden</title>
+<meta content="Select one or more PDF files, merge them in the listed order, and download the combined document as merged.pdf." name="description">
+<meta content="pdf merger, merge pdf online, combine pdf files, join pdf files" name="keywords">
+<meta content="ToolzGarden" name="author">
+<meta content="index, follow" name="robots">
+<!-- Canonical -->
+<link href="https://toolzgarden.com/tools/pdf-merge.html" rel="canonical">
+<!-- Open Graph -->
+<meta content="website" property="og:type">
+<meta content="Merge PDF Files Online | ToolzGarden" property="og:title">
+<meta content="Select one or more PDF files, merge them in the listed order, and download the combined document as merged.pdf." property="og:description">
+<meta content="https://toolzgarden.com/tools/pdf-merge.html" property="og:url">
+<meta content="ToolzGarden" property="og:site_name">
+<meta property="og:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ToolzGarden free online tools">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta content="Merge PDF Files Online | ToolzGarden" name="twitter:title">
+<meta content="Select one or more PDF files, merge them in the listed order, and download the combined document as merged.pdf." name="twitter:description">
+<meta name="twitter:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+<!-- Favicon -->
+<link href="../Favicon-Images/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+<link href="../Favicon-Images/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+<link href="../Favicon-Images/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+<!-- Styles -->
+<noscript></noscript>
+<!-- DNS Prefetch & Preconnect for High-Speed Asset Loading -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect">
+<link href="https://fonts.googleapis.com" rel="dns-prefetch">
+<link href="https://fonts.gstatic.com" rel="dns-prefetch">
+<link href="https://cdn.jsdelivr.net" rel="dns-prefetch">
+<!-- Asynchronous Non-blocking Google Fonts -->
+<link as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/></noscript>
+<!-- Asynchronous Non-blocking Remix Icon stylesheet -->
+<link as="style" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload">
+<noscript><link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet"/></noscript>
+<!-- Main stylesheet -->
+<link href="../style.css" rel="stylesheet">
+<!-- JSON-LD WebApplication Schema -->
+
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF Merge",
+  "url": "https://toolzgarden.com/tools/pdf-merge.html",
+  "description": "Merge selected PDF files in their listed order and download merged.pdf.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://toolzgarden.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "PDF Merge",
+      "item": "https://toolzgarden.com/tools/pdf-merge.html"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many PDF files can I select?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The file input allows one or more PDF files. The script does not set a fixed file-count limit, but very large files or many files may depend on browser and device memory."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What order are the PDFs merged in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDFs are merged in the order they appear in the file list. Files selected later are appended after files already listed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I drag files to reorder them?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The current page lists selected files but does not include drag-and-drop reordering controls."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the downloaded file called?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The merged PDF downloads with the filename merged.pdf."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this PDF merger upload my files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The merge script reads selected files in the browser with file.arrayBuffer(), uses pdf-lib to copy pages into a new PDF, and creates a local Blob download. The script does not contain an upload request for selected PDFs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if a PDF cannot be read?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The current script does not show a custom error message for unreadable or unsupported PDFs. If pdf-lib cannot load a file, the merge may stop and no merged file may download."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+<nav class="container">
+<a class="logo" href="/">
+<img alt="ToolzGarden Logo" decoding="async" height="40" src="../Images/logo.png" style="height:40px;width:40px;object-fit:contain;" width="40" loading="eager" fetchpriority="high">
+      ToolzGarden
+    </a>
+<!-- Hamburger Button -->
+<button aria-label="Toggle Menu" class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<!-- Nav Links -->
+<ul class="nav-links" id="nav-links">
+<li><a href="/">Home</a></li>
+<li><a href="../about.html">About</a></li>
+<li><a href="../contact.html">Contact</a></li>
+</ul>
+<div class="nav-actions">
+<button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
+<i class="ri-moon-line"></i>
+</button>
+</div>
+</nav>
+</header>
+<div class="full-page-wrapper">
+<main class="center-main-content">
+<section style="padding: 2rem 0;">
+<span class="badge-private hero-animate hero-animate-2"><i class="ri-file-pdf-line"></i> PDF Output</span>
+<h1 class="hero-animate hero-animate-1">Merge PDF Files Online</h1>
+<p style="color: var(--text-secondary);">Select PDF files, review the listed order, and download the merged result as merged.pdf.</p>
+</section>
+<div class="tool-layout">
+<div class="tool-main">
+<div class="upload-area hero-animate hero-animate-3" id="drop-zone"><div class="upload-icon"><i class="ri-upload-cloud-2-line"></i></div><h2>Select PDF files</h2><input accept=".pdf" hidden="" id="file-input" multiple="" type="file"></div><ul id="file-list" style="margin-top:1rem;list-style:none;"></ul>
+</div>
+<aside class="tool-sidebar">
+<div class="controls-card">
+<button class="btn btn-primary" disabled="" id="download-btn"><i class="ri-download-2-line"></i> Download Merged</button>
+<button class="btn btn-secondary" id="reset-btn" style="margin-top: 1rem; width: 100%;">
+<i class="ri-restart-line"></i> Reset Inputs
+                    </button>
+</div>
+</aside>
+</div>
+<article class="seo-content" style="padding: 2rem; margin-top: 2rem; background: var(--bg-secondary); border-radius: 1rem; border: 1px solid var(--border-color);">
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem;">What This Tool Does</h2>
+<p>This PDF merger combines the pages from selected PDF files into a new PDF document. After you select files, the page lists their names and enables the download button.</p>
+<p>The script creates a new PDF with pdf-lib, copies every page from each selected file, and downloads the result as <code>merged.pdf</code>.</p>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">File Count and Order</h2>
+<p>The file input accepts one or more <code>.pdf</code> files. The script does not set a fixed number of files or file-size limit, so very large PDFs or many PDFs may depend on browser and device memory.</p>
+<p>Files are merged in the order shown in the list. If you select more files later, they are added after the files already listed. The current page does not include drag-and-drop reordering controls.</p>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">How to Merge PDFs</h2>
+<ol>
+<li>Click <strong>Select PDF files</strong> and choose one or more PDF files.</li>
+<li>Review the file list. The list order is the merge order.</li>
+<li>Click <strong>Download Merged</strong> to create and save <code>merged.pdf</code>.</li>
+<li>Use <strong>Reset Inputs</strong> to reload the page and start over.</li>
+</ol>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Privacy and Processing</h2>
+<p>The merge script reads selected files in the browser with <code>file.arrayBuffer()</code>, uses pdf-lib to copy pages into a new PDF, and creates a local Blob download. The script does not contain an upload request for selected PDFs.</p>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Error Handling</h2>
+<p>The current script does not show a custom error message for unreadable, encrypted, or unsupported PDFs. If pdf-lib cannot load one of the selected files, the merge may stop and no merged file may download.</p>
+<h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Common Uses</h2>
+<ul>
+<li>Combining several PDF sections into one document.</li>
+<li>Joining separate scanned PDF files in the order they are selected.</li>
+<li>Creating one PDF from multiple PDF exports before sharing or archiving.</li>
+</ul>
+</article>
+<section style="padding:3rem 0;">
+<div class="container">
+<h2 style="margin-bottom:1.5rem;">Related Tools</h2>
+<div class="tool-grid" style="padding:0;">
+<a class="tool-card" href="pdf-split.html" style="text-decoration:none;">
+<div class="tool-icon"><i class="ri-file-pdf-line"></i></div>
+<h3>PDF Splitter</h3>
+<p>Extract selected pages from a PDF after merging or before sharing.</p>
+</a>
+<a class="tool-card" href="pdf-compress.html" style="text-decoration:none;">
+<div class="tool-icon"><i class="ri-file-pdf-line"></i></div>
+<h3>PDF Compressor</h3>
+<p>Try reducing the file size of a merged PDF.</p>
+</a>
+<a class="tool-card" href="pdf-page-remover.html" style="text-decoration:none;">
+<div class="tool-icon"><i class="ri-delete-bin-7-line"></i></div>
+<h3>PDF Page Remover</h3>
+<p>Remove unwanted pages from a PDF.</p>
+</a>
+<a class="tool-card" href="image-to-pdf.html" style="text-decoration:none;">
+<div class="tool-icon"><i class="ri-file-pdf-line"></i></div>
+<h3>Image to PDF</h3>
+<p>Create a PDF from image files before combining it with other PDFs.</p>
+</a>
+</div>
+</div>
+</section>
+<section class="faq-section" style="padding:3rem 0;"><div class="container"><h2 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h2><div class="faq-list"><div class="faq-item"><button class="faq-question">How many PDF files can I select? <span class="faq-icon">+</span></button><div class="faq-answer"><p>The file input allows one or more PDF files. The script does not set a fixed file-count limit, but very large files or many files may depend on browser and device memory.</p></div></div><div class="faq-item"><button class="faq-question">What order are the PDFs merged in? <span class="faq-icon">+</span></button><div class="faq-answer"><p>PDFs are merged in the order they appear in the file list. Files selected later are appended after files already listed.</p></div></div><div class="faq-item"><button class="faq-question">Can I drag files to reorder them? <span class="faq-icon">+</span></button><div class="faq-answer"><p>No. The current page lists selected files but does not include drag-and-drop reordering controls.</p></div></div><div class="faq-item"><button class="faq-question">What is the downloaded file called? <span class="faq-icon">+</span></button><div class="faq-answer"><p>The merged PDF downloads with the filename <code>merged.pdf</code>.</p></div></div><div class="faq-item"><button class="faq-question">Does this PDF merger upload my files? <span class="faq-icon">+</span></button><div class="faq-answer"><p>The merge script reads selected files in the browser with <code>file.arrayBuffer()</code>, uses pdf-lib to copy pages into a new PDF, and creates a local Blob download. The script does not contain an upload request for selected PDFs.</p></div></div><div class="faq-item"><button class="faq-question">What happens if a PDF cannot be read? <span class="faq-icon">+</span></button><div class="faq-answer"><p>The current script does not show a custom error message for unreadable or unsupported PDFs. If pdf-lib cannot load a file, the merge may stop and no merged file may download.</p></div></div></div></div></section></main></div>
+
+
+<footer>
+<div class="container">
+<div class="footer-bottom"><p>&copy; 2025 ToolzGarden. All rights reserved.</p></div>
+</div>
+</footer>
+<script defer="" src="../script.js"></script>
+<script defer="" src="pdf-merge.js"></script>
+
+</body></html>

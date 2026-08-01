@@ -1,0 +1,497 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO -->
+  <title>Meta Tag Generator - ToolzGarden</title>
+  <meta name="description" content="Use our free meta tag generator online. Instant results with no sign up required. Secure and fast processing.">
+  <meta name="keywords" content="meta tag generator, seo tags generator, html meta tags, open graph generator, twitter card generator, create meta tags online">
+  <meta name="author" content="ToolzGarden">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://toolzgarden.com/tools/meta-tag-generator.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Meta Tag Generator - ToolzGarden">
+  <meta property="og:description" content="Use our free meta tag generator online. Instant results with no sign up required. Secure and fast processing.">
+  <meta property="og:url" content="https://toolzgarden.com/tools/meta-tag-generator.html">
+  <meta property="og:site_name" content="ToolzGarden">
+  <meta property="og:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ToolzGarden free online tools">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Meta Tag Generator - ToolzGarden">
+  <meta name="twitter:description" content="Use our free meta tag generator online. Instant results with no sign up required. Secure and fast processing.">
+  <meta name="twitter:image" content="https://toolzgarden.com/Images/toolzgarden-social-share.png">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../Favicon-Images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../Favicon-Images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../Favicon-Images/favicon-16x16.png">
+
+  <!-- DNS Prefetch & Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap"></noscript>
+
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"></noscript>
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- JSON-LD WebApplication Schema -->
+  
+
+  <style>
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .split-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-section {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    
+    .form-group label small {
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-left: 0.5rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s ease;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .output-section {
+      background: #0f172a; /* Strictly dark for code */
+      border: 1px solid #334155;
+      border-radius: 1rem;
+      overflow: hidden;
+      position: sticky;
+      top: 2rem;
+    }
+
+    .output-header {
+      background: #1e293b;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #334155;
+    }
+
+    .output-header h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .code-container {
+      padding: 1.5rem;
+      overflow-x: auto;
+    }
+
+    .code-container pre {
+      margin: 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* Syntax Highlighting */
+    .token-tag { color: #38bdf8; }
+    .token-attr { color: #818cf8; }
+    .token-val { color: #a3e635; }
+    .token-bracket { color: #64748b; }
+
+    .btn-copy {
+      background: var(--accent-primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-hover);
+    }
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Meta Tag Generator",
+  "url": "https://toolzgarden.com/tools/meta-tag-generator.html",
+  "description": "Use our free meta tag generator online. Instant results with no sign up required. Secure and fast processing.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://toolzgarden.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Meta Tag Generator",
+      "item": "https://toolzgarden.com/tools/meta-tag-generator.html"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are Meta Tags?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Meta tags are snippets of text that describe a page's content. They don't appear on the page itself, but only in the page's HTML source code. They tell search engines like Google what the page is about so they can rank it properly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I need Open Graph tags?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open Graph (OG) tags were introduced by Facebook. They control how your website's URL is displayed when shared on social media platforms like Facebook, LinkedIn, and Discord. Without them, your link will just show up as plain text instead of a beautiful rich card with an image."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Meta Keywords still important for SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google officially stated years ago that they no longer use the 'keywords' meta tag for web ranking. However, some smaller search engines and internal site search scripts still utilize them, so it's often a good practice to include a few highly relevant ones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do I paste the generated code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You need to paste the generated HTML code directly inside the <head> ... </head> section of your website's HTML document, preferably right under the opening <head> tag."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does 'Robots Index & Follow' mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "'Index' tells search engines they are allowed to add your page to their search results. 'Follow' tells them they should crawl the links on your page to find other pages. You should almost always leave this on 'Yes' unless you are building a private page."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="/" class="logo">
+        <img src="../Images/logo.png" alt="ToolzGarden Logo" width="40" height="40" style="object-fit:contain;" loading="eager" fetchpriority="high">
+        ToolzGarden
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
+          <i class="ri-moon-line"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="full-page-wrapper">
+    <main class="container">
+      <section style="padding: 2rem 0; text-align: center;">
+        <span class="badge-private hero-animate hero-animate-2"><i class="ri-code-s-slash-line"></i> Real-time Live Preview</span>
+        <h1 class="hero-animate hero-animate-1" style="font-size: 2.5rem; margin-bottom: 1rem;">Meta Tag Generator</h1>
+        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Generate perfectly formatted SEO meta tags, Open Graph tags, and Twitter Cards to boost your search engine rankings and social media presence.</p>
+      </section>
+
+      <div class="split-layout">
+        
+        <!-- Input Form -->
+        <div class="form-section hero-animate hero-animate-3">
+          
+          <h2 class="section-title"><i class="ri-search-eye-line"></i> Standard SEO Tags</h2>
+          
+          <div class="form-group">
+            <label for="meta-title">Website Title <small>(Recommended: max 60 chars)</small></label>
+            <input type="text" id="meta-title" placeholder="e.g., Free Online Tools | ToolzGarden">
+          </div>
+
+          <div class="form-group">
+            <label for="meta-desc">Meta Description <small>(Recommended: max 160 chars)</small></label>
+            <textarea id="meta-desc" placeholder="Briefly describe what your webpage is about..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="meta-keywords">Keywords <small>(Comma separated)</small></label>
+            <input type="text" id="meta-keywords" placeholder="e.g., seo, tools, free, online">
+          </div>
+
+          <div class="form-group">
+            <label for="meta-author">Author</label>
+            <input type="text" id="meta-author" placeholder="e.g., John Doe or Company Name">
+          </div>
+
+          <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div>
+              <label for="meta-robots">Allow Indexing?</label>
+              <select id="meta-robots">
+                <option value="index, follow">Yes (Index &amp; Follow)</option>
+                <option value="noindex, nofollow">No (Noindex &amp; Nofollow)</option>
+                <option value="index, nofollow">Index, but don't follow links</option>
+                <option value="noindex, follow">Don't index, but follow links</option>
+              </select>
+            </div>
+            <div>
+              <label for="meta-language">Language</label>
+              <select id="meta-language">
+                <option value="English">English</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+                <option value="German">German</option>
+                <option value="Italian">Italian</option>
+                <option value="Chinese">Chinese</option>
+              </select>
+            </div>
+          </div>
+
+          <h2 class="section-title" style="margin-top: 3rem;"><i class="ri-share-line"></i> Social Graph Tags</h2>
+          
+          <div class="form-group">
+            <label for="og-type">Content Type</label>
+            <select id="og-type">
+              <option value="website">Website</option>
+              <option value="article">Article/Blog Post</option>
+              <option value="product">Product</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="og-image">Thumbnail Image URL <small>(For Facebook/Twitter sharing)</small></label>
+            <input type="text" id="og-image" placeholder="https://example.com/image.jpg">
+          </div>
+
+          <div class="form-group">
+            <label for="twitter-user">Twitter Username <small>(Optional)</small></label>
+            <input type="text" id="twitter-user" placeholder="e.g., @toolzgarden">
+          </div>
+
+        </div>
+
+        <!-- Output Code -->
+        <div class="output-section hero-animate hero-animate-3">
+          <div class="output-header">
+            <h3><i class="ri-terminal-window-line"></i> Generated HTML Code</h3>
+            <button class="btn-copy" id="copy-btn"><i class="ri-clipboard-line"></i> Copy Code</button>
+          </div>
+          <div class="code-container">
+            <pre id="code-output"><!-- Start typing on the left to generate tags... --></pre>
+          </div>
+          <div style="padding: 1rem 1.5rem; background: #0f172a; border-top: 1px solid #334155; color: #94a3b8; font-size: 0.85rem;">
+            <i class="ri-information-line"></i> Paste this code inside the <code>&lt;head&gt;</code> section of your HTML document.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SEO Content -->
+      <article class="seo-content" style="padding: 2rem; margin-top: 4rem; background: var(--bg-secondary); border-radius: 1rem; border: 1px solid var(--border-color);">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">What is a Meta Tag Generator?</h2>
+        <p>A Meta Tag Generator is an incredibly powerful SEO utility designed to help webmasters, developers, and digital marketers easily create perfectly formatted HTML meta tags without having to manually memorize the syntax. Meta tags are invisible text snippets hidden in the <code>&lt;head&gt;</code> section of a webpage's source code. While your human visitors don't see them directly on the page, search engines (like Google and Bing) and social media algorithms rely on them heavily to understand exactly what your page is about.</p>
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">Why Are Meta Tags Important for SEO?</h2>
+        <p>Having proper meta tags is the foundational first step of Technical On-Page SEO. The <strong>Title Tag</strong> and <strong>Meta Description</strong> are arguably the two most important factors for improving your Click-Through Rate (CTR) on Search Engine Results Pages (SERPs). When someone Googles a query, the blue clickable link is your Title Tag, and the short paragraph beneath it is your Meta Description. If you do not explicitly define these tags using our generator, Google will arbitrarily scrape random text from your page to displayâ€”which often looks messy and discourages users from clicking your link.</p>
+        <p>Furthermore, the <strong>Robots Meta Tag</strong> is an absolutely critical directive. It tells Google's web crawlers whether they are allowed to index your page in their public search results, and whether they should follow the links found on your page to discover new content. A single typo in a manual robots tag could accidentally de-index your entire website overnight. Our visual generator ensures the syntax is completely error-free.</p>
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">The Power of Open Graph &amp; Twitter Cards</h2>
+        <p>In the modern web, SEO extends far beyond just Google. Social media sharing drives massive amounts of traffic. Have you ever pasted a link into a Facebook post, a Discord chat, or a LinkedIn message, and watched it magically expand into a beautiful "Rich Card" featuring a large thumbnail image, a bold title, and a neat description? That isn't magic; that happens because the web developer implemented <strong>Open Graph (OG) tags</strong>.</p>
+        <p>Open Graph was originally created by Facebook to standardize how URLs are represented in social graphs. Today, almost every major messaging app and social network relies on OG tags to generate link previews. Similarly, Twitter relies on its own proprietary <strong>Twitter Card tags</strong>. If your website lacks these tags, sharing your link will result in a boring, text-only hyperlink that users are highly unlikely to click. Our generator automatically creates both the OG tags and Twitter Card tags simultaneously based on your inputs, saving you immense amounts of coding time.</p>
+
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem;">How To Use This Tool</h2>
+        <ol>
+          <li>Fill out the "Standard SEO Tags" on the left side of the screen. Start with a compelling Title and a concise Description that naturally includes your target keywords.</li>
+          <li>Choose whether you want search engines to index your page (Default is Yes).</li>
+          <li>Scroll down to the "Social Graph Tags" and paste a direct URL to a thumbnail image. This is the image that will represent your site when shared on social media.</li>
+          <li>Watch the right-side panel! As you type, the tool instantly writes the raw HTML code in real-time.</li>
+          <li>Click the blue <strong>"Copy Code"</strong> button.</li>
+          <li>Open your website's HTML file (e.g., <code>index.html</code>) in a code editor, locate the <code>&lt;head&gt;</code> opening tag, and paste the generated block directly underneath it.</li>
+        </ol>
+      </article>
+
+      <div class="seo-injections-wrapper">
+        <section class="faq-section" style="padding:3rem 0;">
+          <div class="container" style="padding:0;">
+            <h2 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
+            <div class="faq-list">
+              <div class="faq-item">
+                <button class="faq-question">What are Meta Tags? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Meta tags are snippets of text that describe a page's content. They don't appear on the page itself, but only in the page's HTML source code. They tell search engines like Google what the page is about so they can rank it properly.</p></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Why do I need Open Graph tags? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Open Graph (OG) tags were introduced by Facebook. They control how your website's URL is displayed when shared on social media platforms like Facebook, LinkedIn, and Discord. Without them, your link will just show up as plain text instead of a beautiful rich card with an image.</p></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Are Meta Keywords still important for SEO? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Google officially stated years ago that they no longer use the 'keywords' meta tag for web ranking. However, some smaller search engines and internal site search scripts still utilize them, so it's often a good practice to include a few highly relevant ones.</p></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Where do I paste the generated code? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>You need to paste the generated HTML code directly inside the &lt;head&gt; ... &lt;/head&gt; section of your website's HTML document, preferably right under the opening &lt;head&gt; tag.</p></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">What does 'Robots Index &amp; Follow' mean? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>'Index' tells search engines they are allowed to add your page to their search results. 'Follow' tells them they should crawl the links on your page to find other pages. You should almost always leave this on 'Yes' unless you are building a private page.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+
+  <div class="container related-tools-line" style="margin-top: 2rem; margin-bottom: 2rem;"><p><strong>Related Tools:</strong> <a href="schema-generator.html" style="color: var(--accent-primary); text-decoration: underline;">Free Schema Generator</a> | <a href="word-counter.html" style="color: var(--accent-primary); text-decoration: underline;">Free Word Counter</a></p></div><footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">ToolzGarden</a>
+          <p>Free online tools for everyone. Professional grade, privacy-focused, and 100% free.</p>
+        </div>
+        <div class="footer-links">
+          <h3>SEO Tools</h3>
+          <ul>
+            <li><a href="meta-tag-generator.html">Meta Tag Generator</a></li>
+            <li><a href="youtube-thumbnail-downloader.html">YouTube Downloader</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about.html">About Us</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Â© 2025 ToolzGarden. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <script src="meta-tag-generator.js"></script>
+
+
+</body></html>
