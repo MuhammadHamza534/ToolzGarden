@@ -48,8 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Logic ---
 
     async function handleFile(file) {
-        if (!file.type.startsWith('image/')) {
-            alert('Please select an image file.');
+        if (!validateFile(file, { accept: 'image/', maxSizeMB: 50 })) {
             return;
         }
 

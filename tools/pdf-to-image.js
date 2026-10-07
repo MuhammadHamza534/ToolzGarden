@@ -2,7 +2,7 @@
 document.getElementById('drop-zone')?.addEventListener('click', () => document.getElementById('file-input').click());
 document.getElementById('file-input')?.addEventListener('change', async (e) => {
     const file = e.target.files[0];
-    if(!file) return;
+    if(!validateFile(file, { isPdf: true, maxSizeMB: 50 })) return;
     const arrayBuffer = await file.arrayBuffer();
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;

@@ -44,14 +44,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Logic ---
 
-    function handleFiles(files) {
-        const imageFiles = files.filter(f => f.type.startsWith('image/'));
-        if (imageFiles.length === 0) {
-            alert('Please select image files.');
+    async function handleFiles(files) {
+        const validFiles = [];
+        for (const f of files) {
+            if (await validateImageFile(f, { accept: 'image/', maxSizeMB: 50, maxPixels: 7100 * 7100 })) {
+                validFiles.push(f);
+            }
+        }
+        if (validFiles.length === 0) {
             return;
         }
 
-        uploadedFiles = [...uploadedFiles, ...imageFiles];
+        uploadedFiles = [...uploadedFiles, ...validFiles];
         updateFileList();
         
         fileListContainer.style.display = 'block';

@@ -55,8 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Logic ---
 
     async function handleFile(file) {
-        if (!file.type.startsWith('image/')) {
-            alert('Please select an image file.');
+        if (!(await validateImageFile(file, { accept: 'image/', maxSizeMB: 50, maxPixels: 7100 * 7100 }))) {
             return;
         }
 
@@ -73,9 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => previewContainer.classList.add('visible'), 10);
             
             // Problem 3: Enforce one image at a time lock
-            dropZone.style.pointerEvents = 'none';
             dropZone.style.opacity = '0.5';
             fileInput.disabled = true;
+            isCompressed = true;
             
             compressImage(file, (blob) => {
                 const compressedUrl = URL.createObjectURL(blob);
@@ -99,9 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
      * Uses fixed quality 0.72 and direct canvas drawing.
      */
     function compressImage(file, callback) {
-        if (isCompressed) return; // Problem 4: Prevent re-compression
-        isCompressed = true;
-
         const img = new Image();
         const url = URL.createObjectURL(file);
         img.onload = function () {
@@ -114,24 +110,54 @@ document.addEventListener('DOMContentLoaded', () => {
             // Problem 1: Draw without pixel manipulation
             ctx.drawImage(img, 0, 0);
             
-            // Problem 1: Fixed quality 0.72 for JPEG
+            let quality = 0.72;
+            if (qualitySlider) {
+                quality = parseInt(qualitySlider.value, 10) / 100;
+            }
+            const format = formatSelect ? formatSelect.value : 'image/jpeg';
+            
             canvas.toBlob(function (blob) {
                 URL.revokeObjectURL(url);
                 callback(blob);
-            }, 'image/jpeg', 0.72);
+            }, format, quality);
         };
         img.src = url;
     }
 
     // --- Event Listeners ---
 
-    // DELETED: qualitySlider input listener removed (Problem 2)
+    if (qualitySlider) {
+        qualitySlider.addEventListener('input', (e) => {
+            if (qualityVal) qualityVal.textContent = e.target.value;
+            if (currentFile) {
+                compressImage(currentFile, (blob) => {
+                    const compressedUrl = URL.createObjectURL(blob);
+                    compressedPreview.src = compressedUrl;
+                    compressedSizeLabel.textContent = formatBytes(blob.size);
+                    if (compressedPreview.dataset.blobUrl) {
+                        URL.revokeObjectURL(compressedPreview.dataset.blobUrl);
+                    }
+                    compressedPreview.dataset.blobUrl = compressedUrl;
+                });
+            }
+        });
+    }
 
-    formatSelect.addEventListener('change', () => {
-        // Since we are now locking to one compression, we don't re-compress on format change
-        // unless we were to reset the flag. But instructions say "one image at a time" 
-        // and "prevent re-compressing".
-    });
+    if (formatSelect) {
+        formatSelect.addEventListener('change', () => {
+            if (currentFile) {
+                compressImage(currentFile, (blob) => {
+                    const compressedUrl = URL.createObjectURL(blob);
+                    compressedPreview.src = compressedUrl;
+                    compressedSizeLabel.textContent = formatBytes(blob.size);
+                    if (compressedPreview.dataset.blobUrl) {
+                        URL.revokeObjectURL(compressedPreview.dataset.blobUrl);
+                    }
+                    compressedPreview.dataset.blobUrl = compressedUrl;
+                });
+            }
+        });
+    }
 
     downloadBtn.addEventListener('click', () => {
         const fileName = `toolzgarden-compressed-${Date.now()}.jpg`;

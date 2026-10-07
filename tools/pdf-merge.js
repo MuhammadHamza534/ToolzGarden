@@ -2,9 +2,12 @@
 let pdfFiles = [];
 document.getElementById('drop-zone')?.addEventListener('click', () => document.getElementById('file-input').click());
 document.getElementById('file-input')?.addEventListener('change', (e) => {
-    pdfFiles = [...pdfFiles, ...Array.from(e.target.files)];
-    renderList();
-    document.getElementById('download-btn').disabled = false;
+    const validFiles = Array.from(e.target.files).filter(f => validateFile(f, { isPdf: true, maxSizeMB: 100 }));
+    if (validFiles.length > 0) {
+        pdfFiles = [...pdfFiles, ...validFiles];
+        renderList();
+        document.getElementById('download-btn').disabled = false;
+    }
 });
 function renderList() {
     const ul = document.getElementById('file-list');

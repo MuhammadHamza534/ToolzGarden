@@ -635,7 +635,7 @@ window.updatePreview = function(){
 // ---- DOWNLOAD PDF ----
 window.downloadPDF = function(){
   if(!validate()){
-    alert('Please fill in the required fields (First Name, Last Name, Email, Summary) before downloading.');
+    showToast('Please fill in the required fields (First Name, Last Name, Email, Summary) before downloading.', 'error');
     return;
   }
   var pt = document.getElementById('print-target');

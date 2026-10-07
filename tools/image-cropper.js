@@ -52,8 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Logic ---
 
     async function handleFile(file) {
-        if (!file.type.startsWith('image/')) {
-            alert('Please select an image file.');
+        if (!(await validateImageFile(file, { accept: 'image/', maxSizeMB: 50, maxPixels: 7100 * 7100 }))) {
             return;
         }
 
@@ -80,14 +79,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initCropOverlay() {
         const ctx = cropCanvasOverlay.getContext('2d');
+        cropCanvasOverlay.style.touchAction = 'none';
 
-        cropCanvasOverlay.addEventListener('mousedown', (e) => {
+        cropCanvasOverlay.addEventListener('pointerdown', (e) => {
             isCropping = true;
+            cropCanvasOverlay.setPointerCapture(e.pointerId);
             startX = e.offsetX;
             startY = e.offsetY;
         });
 
-        cropCanvasOverlay.addEventListener('mousemove', (e) => {
+        cropCanvasOverlay.addEventListener('pointermove', (e) => {
             if (!isCropping) return;
             endX = e.offsetX;
             endY = e.offsetY;
@@ -96,9 +97,16 @@ document.addEventListener('DOMContentLoaded', () => {
             updateDims();
         });
 
-        cropCanvasOverlay.addEventListener('mouseup', () => {
+        cropCanvasOverlay.addEventListener('pointerup', (e) => {
+            if (!isCropping) return;
             isCropping = false;
+            cropCanvasOverlay.releasePointerCapture(e.pointerId);
             cropBtn.disabled = false;
+        });
+        
+        cropCanvasOverlay.addEventListener('pointercancel', (e) => {
+            isCropping = false;
+            cropCanvasOverlay.releasePointerCapture(e.pointerId);
         });
 
         function drawSelection() {

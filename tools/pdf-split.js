@@ -4,7 +4,7 @@ let originalName = '';
 document.getElementById('drop-zone')?.addEventListener('click', () => document.getElementById('file-input').click());
 document.getElementById('file-input')?.addEventListener('change', async (e) => {
     const file = e.target.files[0];
-    if(!file) return;
+    if(!validateFile(file, { isPdf: true, maxSizeMB: 100 })) return;
     originalName = file.name;
     pdfDocBytes = await file.arrayBuffer();
     const pdfDoc = await PDFLib.PDFDocument.load(pdfDocBytes);

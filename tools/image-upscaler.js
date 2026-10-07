@@ -73,9 +73,8 @@ comparisonSlider.addEventListener('input', (e) => {
     sliderLine.style.left = `${sliderValue}%`;
 });
 
-function handleFile(file) {
-    if (!file.type.startsWith('image/')) {
-        alert('Please select a valid image file.');
+async function handleFile(file) {
+    if (!(await validateImageFile(file, { accept: 'image/', maxSizeMB: 20, maxPixels: 4000000 }))) {
         return;
     }
 
@@ -167,7 +166,7 @@ async function processImage(imageElement, targetScale) {
         
     } catch (error) {
         console.error("Upscaling failed:", error);
-        alert(`Failed to upscale the image: ${error.message || 'Unknown Error'}\n\nThis usually means the image is too large for your device's GPU memory, or your internet connection blocked the AI model download.`);
+        showToast(`Failed to upscale the image: ${error.message || 'Unknown Error'}`, 'error');
         loadingOverlay.style.display = 'none';
         resetBtn.style.display = 'inline-flex';
     }

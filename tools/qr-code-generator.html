@@ -505,7 +505,7 @@ window.setPresetLogo = function(iconClass, btn) {
   // Mapping remix icon class to unicode is hard dynamically.
   // A simple fallback: just load the ri-link icon
   // As a real implementation we would fetch the SVG. Let's just alert for now or implement properly if asked.
-  alert('Preset logo requires SVG assets not currently available offline.');
+  showToast('Preset logo requires SVG assets not currently available offline.', 'warning');
 };
 
 var currentType = 'url';
@@ -551,7 +551,7 @@ window.setStyle = function(btn){
 window.handleLogoUpload = function(e){
   var file = e.target.files[0];
   if(!file) return;
-  if(file.size > 2*1024*1024){ alert('Logo file must be under 2MB.'); return; }
+  if(file.size > 2*1024*1024){ showToast('Logo file must be under 2MB.', 'error'); return; }
   var reader = new FileReader();
   reader.onload = function(ev){
     logoDataURL = ev.target.result;
@@ -799,7 +799,7 @@ window.downloadQR = function(){
     link.href = framedCanvas.toDataURL('image/png');
     link.click();
   } else {
-    if(!qrCode){ alert('Please wait for the QR code to generate first.'); return; }
+    if(!qrCode){ showToast('Please wait for the QR code to generate first.', 'error'); return; }
     qrCode.download({ name: 'qrcode-toolzgarden', extension: 'png' });
   }
 };

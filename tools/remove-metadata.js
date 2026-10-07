@@ -94,15 +94,14 @@ cleanDownloadBtn.addEventListener('click', async () => {
         
     } catch (err) {
         console.error("Failed to strip metadata:", err);
-        alert("An error occurred while cleaning the image.");
+        showToast("An error occurred while cleaning the image.", 'error');
     } finally {
         loadingOverlay.style.display = 'none';
     }
 });
 
-function handleFile(file) {
-    if (!file.type.startsWith('image/')) {
-        alert('Please select a valid image file.');
+async function handleFile(file) {
+    if (!(await validateImageFile(file, { accept: 'image/', maxSizeMB: 50, maxPixels: 7100 * 7100 }))) {
         return;
     }
 
@@ -151,7 +150,13 @@ function handleFile(file) {
                 foundData.forEach(item => {
                     const li = document.createElement('li');
                     li.className = 'metadata-item';
-                    li.innerHTML = `<i class="${item.icon}"></i> ${item.label}`;
+                    
+                    const icon = document.createElement('i');
+                    icon.className = item.icon;
+                    
+                    li.appendChild(icon);
+                    li.appendChild(document.createTextNode(' ' + item.label));
+                    
                     metadataList.appendChild(li);
                 });
             } else {

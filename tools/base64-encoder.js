@@ -11,7 +11,7 @@ if(btnPr) btnPr.onclick = () => {
     try {
         if(mode === 'enc') taOut.value = btoa(unescape(encodeURIComponent(taIn.value)));
         else taOut.value = decodeURIComponent(escape(atob(taIn.value)));
-    } catch(e) { alert('Error processing text'); }
+    } catch(e) { showToast('Error processing text', 'error'); }
 };
 const fiInp = document.getElementById('file-input');
 if(fiInp) fiInp.onchange = (e) => {

@@ -6,7 +6,7 @@ if(btnMi) btnMi.onclick = () => {
     try {
         taOut.value = JSON.stringify(JSON.parse(taIn.value));
         document.getElementById('size-info').innerText = `Original: ${taIn.value.length} chars | Minified: ${taOut.value.length} chars`;
-    } catch(e) { alert('Invalid JSON'); }
+    } catch(e) { showToast('Invalid JSON', 'error'); }
 };
 const btnCo = document.getElementById('copy-btn');
 if(btnCo) btnCo.onclick = () => {

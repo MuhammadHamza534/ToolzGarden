@@ -400,3 +400,86 @@ document.querySelectorAll('.faq-question').forEach(button => {
     }
   });
 });
+
+/**
+ * Global Toast Notification System
+ */
+function showToast(message, type = 'info') {
+    let container = document.getElementById('toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+    }
+    
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
+    toast.textContent = message;
+    
+    container.appendChild(toast);
+    
+    requestAnimationFrame(() => {
+        toast.classList.add('visible');
+    });
+    
+    setTimeout(() => {
+        toast.classList.remove('visible');
+        setTimeout(() => {
+            if (toast.parentElement) toast.parentElement.removeChild(toast);
+        }, 300);
+    }, 4000);
+}
+
+/**
+ * Global File Validation (Size and Type)
+ */
+function validateFile(file, options = {}) {
+    if (!file) {
+        showToast("Please select a file.", "error");
+        return false;
+    }
+    
+    const { maxSizeMB, accept, isPdf } = options;
+    
+    if (isPdf && file.type !== "application/pdf") {
+        showToast("Please select a valid PDF file.", "error");
+        return false;
+    }
+    
+    if (accept && !file.type.startsWith(accept)) {
+        showToast(`Please select a valid ${accept} file.`, "error");
+        return false;
+    }
+    
+    if (maxSizeMB) {
+        const sizeMB = file.size / (1024 * 1024);
+        if (sizeMB > maxSizeMB) {
+            showToast(`This file is too large. Please choose a file smaller than ${maxSizeMB} MB.`, "error");
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+/**
+ * Global Async File Validation (Size, Type, and Dimensions)
+ */
+async function validateImageFile(file, options = {}) {
+    if (!validateFile(file, options)) return false;
+    
+    if (options.maxPixels && file.type.startsWith('image/')) {
+        try {
+            const dims = await PixUtils.getImageDimensions(file);
+            const totalPixels = dims.width * dims.height;
+            if (totalPixels > options.maxPixels) {
+                showToast(`This image is too large to process safely in your browser. Please resize it first or choose a smaller image.`, "error");
+                return false;
+            }
+        } catch(e) {
+            console.error("Could not read image dimensions.");
+        }
+    }
+    return true;
+}

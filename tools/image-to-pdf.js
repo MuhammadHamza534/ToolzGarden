@@ -2,9 +2,10 @@
 let uploadedImages = [];
 document.getElementById('drop-zone')?.addEventListener('click', () => document.getElementById('file-input').click());
 document.getElementById('file-input')?.addEventListener('change', (e) => {
-    const files = Array.from(e.target.files);
+    const validFiles = Array.from(e.target.files).filter(f => validateFile(f, { accept: 'image/', maxSizeMB: 20 }));
+    if(validFiles.length === 0) return;
     const grid = document.getElementById('preview-grid');
-    files.forEach(f => {
+    validFiles.forEach(f => {
         const reader = new FileReader();
         reader.onload = (ev) => {
             uploadedImages.push(ev.target.result);

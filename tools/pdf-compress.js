@@ -2,7 +2,7 @@
 document.getElementById('drop-zone')?.addEventListener('click', () => document.getElementById('file-input').click());
 document.getElementById('file-input')?.addEventListener('change', async (e) => {
     const file = e.target.files[0];
-    if(!file) return;
+    if(!validateFile(file, { isPdf: true, maxSizeMB: 100 })) return;
     document.getElementById('orig-size').innerText = (file.size/1024).toFixed(2) + ' KB';
     const bytes = await file.arrayBuffer();
     const pdfDoc = await PDFLib.PDFDocument.load(bytes);

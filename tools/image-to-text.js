@@ -73,8 +73,7 @@ downloadTxtBtn.addEventListener('click', () => {
 });
 
 async function processImage(file) {
-    if (!file.type.startsWith('image/')) {
-        alert('Please select a valid image file.');
+    if (!validateFile(file, { accept: 'image/', maxSizeMB: 20 })) {
         return;
     }
 
@@ -119,7 +118,7 @@ async function processImage(file) {
 
     } catch (error) {
         console.error("OCR failed:", error);
-        alert("Failed to extract text. Ensure you have an active internet connection to download the OCR models.");
+        showToast("Failed to extract text. Ensure you have an active internet connection to download the OCR models.", 'error');
         loadingOverlay.style.display = 'none';
         resetBtn.style.display = 'inline-flex';
     }
