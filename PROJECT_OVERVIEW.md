@@ -84,7 +84,7 @@ The application features are categorized logically based on the utility they pro
 - **Text Utilities:** Word/character counting, case conversion, text reversing, duplicate line removal, SEO slug generation.
 - **File/Developer Tools:** JSON formatting/minification, Base64 encoding/decoding, URL encoding/decoding, HTML entity encoding.
 - **Calculators:** Loan and EMI calculators.
-- **Document Generators:** Resume builder, QR code generator.
+- **Document Generators:** QR code generator.
 - **SEO/Metadata:** Meta tag generator, Schema.org JSON-LD markup generator.
 - **Social Media:** YouTube thumbnail downloader.
 
@@ -132,7 +132,6 @@ All routes are implemented as static `.html` files.
 | `/tools/html-encoder.html` | HTML Encoder | Encode/decode HTML entities | Implemented |
 | `/tools/loan-calculator.html` | Loan Calculator | Calculate loans | Implemented |
 | `/tools/emi-calculator.html` | EMI Calculator | Calculate EMI | Implemented |
-| `/tools/resume-builder.html` | Resume Builder | Generate PDF resumes | Implemented |
 | `/tools/qr-code-generator.html` | QR Code Generator | Generate QR codes | Implemented |
 | `/tools/youtube-thumbnail-downloader.html` | YT Thumb Downloader | Fetch YouTube thumbnails | Implemented |
 | `/tools/meta-tag-generator.html` | Meta Tag Generator | Generate HTML meta tags | Implemented |

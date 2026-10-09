@@ -34,7 +34,6 @@
 | 28 | HTML Encoder | Developer| `/tools/html-encoder.html` | Text | Text | Browser (DOM TextNode) | Implemented |
 | 29 | Loan Calculator | Calculator| `/tools/loan-calculator.html`| Number| Text | Browser (Math) | Implemented |
 | 30 | EMI Calculator | Calculator| `/tools/emi-calculator.html` | Number| Text | Browser (Math) | Implemented |
-| 31 | Resume Builder | Generator | `/tools/resume-builder.html` | Text/Img| PDF | Browser (jsPDF) | Implemented |
 | 32 | QR Code Generator| Generator | `/tools/qr-code-generator.html`| Text/Img| PNG/SVG | Browser (qr-code-styling)| Implemented |
 | 33 | YT Thumb Grabber | Social | `/tools/youtube-thumbnail-downloader.html`| URL| JPEG | External CDN Read | Implemented |
 
@@ -161,12 +160,6 @@
 - **Overview:** Financial math calculators.
 - **Processing Flow:** Standard amortization formulas. Updates HTML on input.
 - **Processing Location:** Browser.
-
-### Resume Builder
-- **Overview:** Generates a PDF resume from form inputs.
-- **Processing Flow:** Reads HTML form fields. Uses `jsPDF` to draw text and lines onto a PDF canvas.
-- **Processing Location:** Browser.
-- **Dependencies:** `jspdf.umd.min.js`.
 
 ### QR Code Generator
 - **Overview:** Generates customizable QR codes.
