@@ -1,0 +1,1 @@
+This folder contains the built output assets for the worker "toolzgarden-new" generated at 2026-10-09T19:42:03.394Z.

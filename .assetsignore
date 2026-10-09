@@ -1,0 +1,15 @@
+/node_modules
+/.git
+/.agents
+*.py
+*.ps1
+package.json
+package-lock.json
+wrangler.jsonc
+.assetsignore
+*.md
+faqs.json
+fix_*.js
+update_meta_descriptions.js
+check-headers.js
+style_src.css

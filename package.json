@@ -1,24 +1,31 @@
 {
-  "name": "toolzgarden",
-  "version": "1.0.0",
-  "description": "",
-  "main": "check-headers.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MuhammadHamzaIrfan/ToolzGarden.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/MuhammadHamzaIrfan/ToolzGarden/issues"
-  },
-  "homepage": "https://github.com/MuhammadHamzaIrfan/ToolzGarden#readme",
-  "dependencies": {
-    "cheerio": "^1.2.0"
-  }
+    "name":  "toolzgarden",
+    "version":  "1.0.0",
+    "description":  "",
+    "main":  "check-headers.js",
+    "scripts":  {
+                    "test":  "echo \"Error: no test specified\" \u0026\u0026 exit 1",
+                    "deploy":  "wrangler deploy",
+                    "deploy:dry-run":  "wrangler deploy --dry-run --outdir=.cloudflare/deploy"
+                },
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/MuhammadHamzaIrfan/ToolzGarden.git"
+                   },
+    "keywords":  [
+
+                 ],
+    "author":  "",
+    "license":  "ISC",
+    "type":  "commonjs",
+    "bugs":  {
+                 "url":  "https://github.com/MuhammadHamzaIrfan/ToolzGarden/issues"
+             },
+    "homepage":  "https://github.com/MuhammadHamzaIrfan/ToolzGarden#readme",
+    "dependencies":  {
+                         "cheerio":  "^1.2.0"
+                     },
+    "devDependencies":  {
+                            "wrangler":  "^4.149.0"
+                        }
 }
