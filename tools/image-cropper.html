@@ -164,6 +164,15 @@
   ]
 }
 </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+<style>
+/* Override global !important rules for Cropper.js compatibility */
+.cropper-container img {
+    max-width: none !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+</style>
 </head>
 <body>
 <header>
@@ -215,7 +224,7 @@
 <div class="preview-content" style="height: auto; padding: 2rem; background: var(--bg-tertiary);">
 <div class="crop-wrapper" id="crop-wrapper">
 <img alt="To Crop" id="original-preview" src="" style="max-height: 500px;" loading="lazy" width="800" height="600">
-<canvas id="crop-canvas-overlay"></canvas>
+
 </div>
 </div>
 <section class="tool-description" style="margin-top:2rem; padding:1.5rem; background:var(--bg-secondary); border-radius:1rem; border:1px solid var(--border-color);">
@@ -243,7 +252,18 @@
 </div>
 <aside class="tool-sidebar">
 <div class="controls-card">
+
+<div style="margin-bottom: 1rem;">
+    <label style="display:block; margin-bottom:0.5rem; font-weight:bold;">Aspect Ratio</label>
+    <div style="display:flex; gap:0.5rem; flex-wrap:wrap;" id="aspect-ratio-controls">
+        <button class="btn btn-secondary" data-ratio="NaN">Free</button>
+        <button class="btn btn-secondary" data-ratio="1">1:1</button>
+        <button class="btn btn-secondary" data-ratio="1.33333333333">4:3</button>
+        <button class="btn btn-secondary" data-ratio="1.77777777778">16:9</button>
+    </div>
+</div>
 <button class="btn btn-primary" disabled="" id="crop-btn">
+
 <i class="ri-crop-2-line"></i> Apply Crop
                     </button>
 <button class="btn btn-primary" disabled="" id="download-btn" style="margin-top: 1rem;">
@@ -333,7 +353,8 @@
 </div>
 </footer>
 <script defer="" src="../script.js"></script>
-<script defer="" src="image-cropper.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+<script defer src="image-cropper.js"></script>
 
 
 </body></html>

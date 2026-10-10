@@ -13,15 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const originalPreview = document.getElementById('original-preview');
     const outputPreview = document.getElementById('output-preview');
     const resultBox = document.getElementById('result-box');
-    const cropCanvasOverlay = document.getElementById('crop-canvas-overlay');
     const cropDimsLabel = document.getElementById('crop-dims');
     const finalDimsLabel = document.getElementById('final-dims');
 
-    let originalImage = null;
+    let cropper = null;
     let isProcessed = false;
-    let isCropping = false;
-    let startX, startY, endX, endY;
-    let scaleX = 1, scaleY = 1;
 
     // --- Upload Handlers ---
 
@@ -56,115 +52,84 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const dataUrl = await PixUtils.fileToDataURL(file);
-        originalPreview.src = dataUrl;
+        const dataUrl = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = e => resolve(e.target.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
         
-        originalImage = new Image();
-        originalImage.onload = () => {
+        originalPreview.onload = () => {
             previewContainer.style.display = 'grid';
             dropZone.style.display = 'none';
             
-            // Setup overlay
+            // Delay initialization to ensure the container is fully rendered (display: grid applied)
             setTimeout(() => {
-                const rect = originalPreview.getBoundingClientRect();
-                cropCanvasOverlay.width = rect.width;
-                cropCanvasOverlay.height = rect.height;
-                scaleX = originalImage.naturalWidth / rect.width;
-                scaleY = originalImage.naturalHeight / rect.height;
-                initCropOverlay();
-            }, 100);
-        };
-        originalImage.src = dataUrl;
-    }
-
-    function initCropOverlay() {
-        const ctx = cropCanvasOverlay.getContext('2d');
-        cropCanvasOverlay.style.touchAction = 'none';
-
-        cropCanvasOverlay.addEventListener('pointerdown', (e) => {
-            isCropping = true;
-            cropCanvasOverlay.setPointerCapture(e.pointerId);
-            startX = e.offsetX;
-            startY = e.offsetY;
-        });
-
-        cropCanvasOverlay.addEventListener('pointermove', (e) => {
-            if (!isCropping) return;
-            endX = e.offsetX;
-            endY = e.offsetY;
-            
-            drawSelection();
-            updateDims();
-        });
-
-        cropCanvasOverlay.addEventListener('pointerup', (e) => {
-            if (!isCropping) return;
-            isCropping = false;
-            cropCanvasOverlay.releasePointerCapture(e.pointerId);
+                if (cropper) {
+                    cropper.destroy();
+                }
+                
+                cropper = new Cropper(originalPreview, {
+                viewMode: 1,
+                dragMode: 'crop',
+                autoCropArea: 0.8,
+                restore: false,
+                guides: true,
+                center: true,
+                highlight: false,
+                cropBoxMovable: true,
+                cropBoxResizable: true,
+                toggleDragModeOnDblclick: false,
+                crop(event) {
+                    cropDimsLabel.textContent = Math.round(event.detail.width) + " x " + Math.round(event.detail.height);
+                }
+            });
             cropBtn.disabled = false;
-        });
+            resetBtn.style.display = 'block';
+            }, 50);
+        };
         
-        cropCanvasOverlay.addEventListener('pointercancel', (e) => {
-            isCropping = false;
-            cropCanvasOverlay.releasePointerCapture(e.pointerId);
-        });
-
-        function drawSelection() {
-            ctx.clearRect(0, 0, cropCanvasOverlay.width, cropCanvasOverlay.height);
-            
-            // Darken outside
-            ctx.fillStyle = 'rgba(0,0,0,0.5)';
-            ctx.fillRect(0, 0, cropCanvasOverlay.width, cropCanvasOverlay.height);
-            
-            // Clear selection
-            const x = Math.min(startX, endX);
-            const y = Math.min(startY, endY);
-            const w = Math.abs(startX - endX);
-            const h = Math.abs(startY - endY);
-            
-            ctx.clearRect(x, y, w, h);
-            
-            // Border
-            ctx.strokeStyle = '#2563EB';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(x, y, w, h);
-        }
-
-        function updateDims() {
-            const w = Math.round(Math.abs(startX - endX) * scaleX);
-            const h = Math.round(Math.abs(startY - endY) * scaleY);
-            cropDimsLabel.textContent = `${w} x ${h}`;
-        }
+        originalPreview.src = dataUrl;
     }
+
+    // Aspect ratio controls
+    const ratioBtns = document.querySelectorAll('#aspect-ratio-controls button');
+    ratioBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            if (!cropper) return;
+            const ratio = parseFloat(e.target.dataset.ratio);
+            cropper.setAspectRatio(ratio);
+            
+            ratioBtns.forEach(b => b.classList.replace('btn-primary', 'btn-secondary'));
+            e.target.classList.replace('btn-secondary', 'btn-primary');
+        });
+    });
 
     cropBtn.addEventListener('click', () => {
-        const x = Math.min(startX, endX) * scaleX;
-        const y = Math.min(startY, endY) * scaleY;
-        const w = Math.abs(startX - endX) * scaleX;
-        const h = Math.abs(startY - endY) * scaleY;
-
-        const canvas = document.createElement('canvas');
-        canvas.width = w;
-        canvas.height = h;
-        const ctx = canvas.getContext('2d');
+        if (!cropper) return;
         
-        ctx.drawImage(originalImage, x, y, w, h, 0, 0, w, h);
-
+        const canvas = cropper.getCroppedCanvas();
+        if (!canvas) {
+            if (typeof showToast === 'function') showToast('Could not crop image. Please select an area.', 'error');
+            return;
+        }
+        
         outputPreview.src = canvas.toDataURL('image/png');
-        finalDimsLabel.textContent = `${Math.round(w)} x ${Math.round(h)}`;
+        finalDimsLabel.textContent = canvas.width + " x " + canvas.height;
         
         resultBox.style.display = 'block';
         downloadBtn.disabled = false;
-        resetBtn.style.display = 'block';
-        isProcessed = true;
-        cropBtn.disabled = true;
-        cropCanvasOverlay.style.pointerEvents = 'none';
+        
+        if (typeof showToast === 'function') showToast('Image cropped successfully!', 'success');
+        
+        // Scroll to result box on mobile
+        resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
 
     // --- Event Listeners ---
 
     downloadBtn.addEventListener('click', () => {
-        const fileName = `toolzgarden-cropped-${Date.now()}.png`;
+        const fileName = 'toolzgarden-cropped-' + Date.now() + '.png';
         const link = document.createElement('a');
         link.href = outputPreview.src;
         link.download = fileName;
@@ -172,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     resetBtn.addEventListener('click', () => {
-        location.reload(); // Simple way to reset stateful canvas interactions
+        location.reload();
     });
 });
+
