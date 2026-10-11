@@ -223,7 +223,7 @@
 </div>
 <div class="preview-content" style="height: auto; padding: 2rem; background: var(--bg-tertiary);">
 <div class="crop-wrapper" id="crop-wrapper">
-<img alt="To Crop" id="original-preview" src="" style="max-height: 500px;" loading="lazy" width="800" height="600">
+<img alt="To Crop" id="original-preview" src="" style="max-height: 500px;"  >
 
 </div>
 </div>
@@ -245,7 +245,7 @@
 <span id="final-dims">0 x 0</span>
 </div>
 <div class="preview-content">
-<img alt="Cropped Preview" id="output-preview" src="" loading="lazy" width="800" height="600">
+<img alt="Cropped Preview" id="output-preview" src=""  >
 </div>
 </div>
 </div>
@@ -256,20 +256,20 @@
 <div style="margin-bottom: 1rem;">
     <label style="display:block; margin-bottom:0.5rem; font-weight:bold;">Aspect Ratio</label>
     <div style="display:flex; gap:0.5rem; flex-wrap:wrap;" id="aspect-ratio-controls">
-        <button class="btn btn-secondary" data-ratio="NaN">Free</button>
-        <button class="btn btn-secondary" data-ratio="1">1:1</button>
-        <button class="btn btn-secondary" data-ratio="1.33333333333">4:3</button>
-        <button class="btn btn-secondary" data-ratio="1.77777777778">16:9</button>
+        <button type="button" class="btn btn-secondary" data-ratio="NaN">Free</button>
+        <button type="button" class="btn btn-secondary" data-ratio="1">1:1</button>
+        <button type="button" class="btn btn-secondary" data-ratio="1.33333333333">4:3</button>
+        <button type="button" class="btn btn-secondary" data-ratio="1.77777777778">16:9</button>
     </div>
 </div>
-<button class="btn btn-primary" disabled="" id="crop-btn">
+<button type="button" class="btn btn-primary" disabled="" id="crop-btn">
 
 <i class="ri-crop-2-line"></i> Apply Crop
                     </button>
-<button class="btn btn-primary" disabled="" id="download-btn" style="margin-top: 1rem;">
+<button type="button" class="btn btn-primary" disabled="" id="download-btn" style="margin-top: 1rem;">
 <i class="ri-download-2-line"></i> Download Cropped
                     </button>
-<button class="btn btn-secondary" id="reset-btn" style="margin-top: 1rem; display: none;">
+<button type="button" class="btn btn-secondary" id="reset-btn" style="margin-top: 1rem; display: none;">
 <i class="ri-restart-line"></i> Reset and Upload New
                     </button>
 </div>
@@ -358,3 +358,6 @@
 
 
 </body></html>
+
+
+

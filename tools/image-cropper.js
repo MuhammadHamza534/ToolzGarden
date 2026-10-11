@@ -52,44 +52,45 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const dataUrl = await new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = e => resolve(e.target.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-        });
+        const objectUrl = URL.createObjectURL(file);
         
         originalPreview.onload = () => {
             previewContainer.style.display = 'grid';
             dropZone.style.display = 'none';
             
-            // Delay initialization to ensure the container is fully rendered (display: grid applied)
-            setTimeout(() => {
-                if (cropper) {
-                    cropper.destroy();
-                }
-                
-                cropper = new Cropper(originalPreview, {
-                viewMode: 1,
-                dragMode: 'crop',
-                autoCropArea: 0.8,
-                restore: false,
-                guides: true,
-                center: true,
-                highlight: false,
-                cropBoxMovable: true,
-                cropBoxResizable: true,
-                toggleDragModeOnDblclick: false,
-                crop(event) {
-                    cropDimsLabel.textContent = Math.round(event.detail.width) + " x " + Math.round(event.detail.height);
-                }
+            // Use requestAnimationFrame to ensure the container is fully rendered (display: grid applied)
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+                    
+                    cropper = new Cropper(originalPreview, {
+                        viewMode: 1,
+                        dragMode: 'crop',
+                        autoCropArea: 0.8,
+                        restore: false,
+                        guides: true,
+                        center: true,
+                        highlight: false,
+                        cropBoxMovable: true,
+                        cropBoxResizable: true,
+                        toggleDragModeOnDblclick: false,
+                        crop(event) {
+                            cropDimsLabel.textContent = Math.round(event.detail.width) + " x " + Math.round(event.detail.height);
+                        }
+                    });
+                    cropBtn.disabled = false;
+                    resetBtn.style.display = 'block';
+                });
             });
-            cropBtn.disabled = false;
-            resetBtn.style.display = 'block';
-            }, 50);
+        };
+
+        originalPreview.onerror = () => {
+            if (typeof showToast === 'function') showToast('Error loading image for cropping.', 'error');
         };
         
-        originalPreview.src = dataUrl;
+        originalPreview.src = objectUrl;
     }
 
     // Aspect ratio controls
@@ -97,11 +98,15 @@ document.addEventListener('DOMContentLoaded', () => {
     ratioBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             if (!cropper) return;
-            const ratio = parseFloat(e.target.dataset.ratio);
+            const ratio = parseFloat(e.currentTarget.dataset.ratio);
             cropper.setAspectRatio(ratio);
             
-            ratioBtns.forEach(b => b.classList.replace('btn-primary', 'btn-secondary'));
-            e.target.classList.replace('btn-secondary', 'btn-primary');
+            ratioBtns.forEach(b => {
+                b.classList.remove('btn-primary');
+                b.classList.add('btn-secondary');
+            });
+            e.currentTarget.classList.remove('btn-secondary');
+            e.currentTarget.classList.add('btn-primary');
         });
     });
 
@@ -140,4 +145,3 @@ document.addEventListener('DOMContentLoaded', () => {
         location.reload();
     });
 });
-
