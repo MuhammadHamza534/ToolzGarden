@@ -1,6 +1,6 @@
 /* 
-  ToolzGarden - Image Upscaler Logic
-  Supports AI Super-Resolution (TensorFlow.js / UpscalerJS) & Fast Resize Fallback
+  ToolzGarden - Image Upscaler Logic (v2.2.0)
+  Supports AI Super-Resolution (TensorFlow.js / UpscalerJS with non-blocking async yielding) & Fast Resize Fallback
 */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingText = document.getElementById('loading-text');
     const loadingSubtext = document.getElementById('loading-subtext');
     const progressBar = document.getElementById('progress-bar');
+    const cancelUpscaleBtn = document.getElementById('cancel-upscale-btn');
     const comparisonSlider = document.getElementById('comparison-slider');
     const sliderLine = document.getElementById('slider-line');
     const upscaleBtn = document.getElementById('upscale-btn');
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isProcessing = false;
     let cachedUpscaler = null;
     let cachedGpuStatus = null;
+    let currentAbortController = null;
 
     // --- Hardware GPU Detection ---
     async function detectGpuSupport() {
@@ -123,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sliderLine.style.left = `${sliderValue}%`;
     });
 
-    // Dimension calculation
+    // Dimension calculation & Advisory Hints
     function updateTargetDimensions() {
         if (!currentLoadedImage) return;
         const scale = parseInt(scaleSelect.value) || 2;
@@ -132,19 +134,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (targetDimsLabel) {
             targetDimsLabel.textContent = `${targetW} × ${targetH} px`;
         }
+
+        const totalPixels = currentLoadedImage.naturalWidth * currentLoadedImage.naturalHeight;
+        if (methodHint) {
+            if (methodSelect.value === 'ai') {
+                if (totalPixels > 300000 || (scale === 4 && totalPixels > 160000)) {
+                    methodHint.textContent = 'Note: Large image selected. AI will take 1–3 minutes. Fast Resize is recommended.';
+                    methodHint.style.color = '#eab308';
+                } else {
+                    methodHint.textContent = 'AI reconstructs textures and fine details locally via GPU.';
+                    methodHint.style.color = 'var(--text-secondary)';
+                }
+            } else {
+                methodHint.textContent = 'Bicubic interpolation provides instant, lightweight resizing (<1s).';
+                methodHint.style.color = 'var(--text-secondary)';
+            }
+        }
     }
 
     scaleSelect.addEventListener('change', updateTargetDimensions);
 
-    methodSelect.addEventListener('change', () => {
-        if (methodHint) {
-            if (methodSelect.value === 'ai') {
-                methodHint.textContent = 'AI reconstructs textures and fine details locally.';
-            } else {
-                methodHint.textContent = 'Bicubic interpolation provides instant, lightweight resizing.';
-            }
-        }
-    });
+    methodSelect.addEventListener('change', updateTargetDimensions);
 
     // --- File Handling & Decoding ---
     function isValidImageType(file) {
@@ -188,6 +198,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isProcessing) return;
         resetToUpload();
     });
+
+    if (cancelUpscaleBtn) {
+        cancelUpscaleBtn.addEventListener('click', () => {
+            if (currentAbortController) {
+                currentAbortController.abort();
+            }
+        });
+    }
 
     async function handleFile(file) {
         if (isProcessing) return;
@@ -297,8 +315,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!gpuStatus.supported) {
                 const proceed = confirm(
                     "Hardware GPU acceleration (WebGL) is unavailable on your device.\n\n" +
-                    "Running AI super-resolution on CPU is extremely slow (can take several minutes) and may freeze your browser.\n\n" +
-                    "Click OK to use Fast Resize instead (recommended, takes <1s), or Cancel to abort."
+                    "Running AI super-resolution on CPU is extremely slow and may take 5–10 minutes.\n\n" +
+                    "Click OK to use Fast Resize instead (instant, takes <1s), or Cancel to abort."
                 );
                 if (proceed) {
                     method = 'fast';
@@ -307,13 +325,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
             } else {
-                // Check memory limit on large images
-                const pixelLimit = targetScale === 4 ? 1200000 : 2000000;
-                if (totalPixels > pixelLimit) {
+                // If the image is large, offer Fast Resize recommendation
+                const pixelThreshold = targetScale === 4 ? 250000 : 400000;
+                if (totalPixels > pixelThreshold) {
                     const proceed = confirm(
-                        `Warning: This image is large (${currentLoadedImage.naturalWidth} × ${currentLoadedImage.naturalHeight} px).\n\n` +
-                        "AI upscaling by " + targetScale + "x may exceed your GPU memory.\n\n" +
-                        "Click OK to switch to Fast Resize (safe and instant), or Cancel to risk running AI."
+                        `Notice: This image is ${currentLoadedImage.naturalWidth} × ${currentLoadedImage.naturalHeight} px (${(totalPixels / 1000000).toFixed(2)} MP).\n\n` +
+                        "AI Super-Resolution on an image of this size requires multiple heavy neural network passes (~1–3 minutes on laptops).\n\n" +
+                        "Would you like to use Fast Resize instead (<1s, recommended)?\n\n" +
+                        "Click OK for Fast Resize, or Cancel to proceed with AI Super-Resolution."
                     );
                     if (proceed) {
                         method = 'fast';
@@ -333,28 +352,44 @@ document.addEventListener('DOMContentLoaded', () => {
         resetBtn.disabled = true;
         scaleSelect.disabled = true;
         methodSelect.disabled = true;
+        if (cancelUpscaleBtn) cancelUpscaleBtn.style.display = method === 'ai' ? 'inline-flex' : 'none';
+
+        currentAbortController = new AbortController();
 
         loadingOverlay.style.display = 'flex';
         progressBar.style.width = '0%';
 
-        function setStage(text, subtext, pct) {
+        let lastProgressUpdate = 0;
+        let lastReportedPct = -1;
+
+        async function setStage(text, subtext, pct, forceUpdate = false) {
+            const now = performance.now();
+            if (!forceUpdate && pct === lastReportedPct && (now - lastProgressUpdate < 80)) {
+                return;
+            }
+            lastReportedPct = pct;
+            lastProgressUpdate = now;
+
             loadingText.textContent = text;
             if (loadingSubtext && subtext) loadingSubtext.textContent = subtext;
-            progressBar.style.width = `${pct}%`;
+            progressBar.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+
+            // Macrotask yield allowing browser event loop to paint and process user input
+            await new Promise(resolve => setTimeout(resolve, 0));
         }
 
         try {
             // Stage 1: Loading image
-            setStage("Loading image...", "Reading pixel data...", 10);
+            await setStage("Loading image...", "Reading pixel data...", 10, true);
             await new Promise(r => setTimeout(r, 60));
 
             if (method === 'fast') {
                 // Stage 2: Initializing engine
-                setStage("Initializing engine...", "Configuring high-quality canvas...", 30);
+                await setStage("Initializing engine...", "Configuring high-quality bicubic canvas...", 30, true);
                 await new Promise(r => setTimeout(r, 60));
 
                 // Stage 3 & 4: Processing
-                setStage("Processing...", "Applying high-quality bicubic interpolation...", 60);
+                await setStage("Processing...", "Applying high-quality bicubic interpolation...", 70, true);
                 await new Promise(r => setTimeout(r, 80));
 
                 const canvas = document.createElement('canvas');
@@ -368,17 +403,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentUpscaledDataUrl = canvas.toDataURL('image/png');
 
                 // Stage 5: Completed
-                setStage("Completed!", "Finalizing image output...", 100);
-                await new Promise(r => setTimeout(r, 150));
+                await setStage("Completed!", "Finalizing image output...", 100, true);
+                await new Promise(r => setTimeout(r, 120));
 
                 if (typeof showToast === 'function') {
                     showToast("Fast Resize completed successfully!", "info");
                 }
 
             } else {
-                // AI Mode
+                // AI Super-Resolution Mode
                 // Stage 2: Initializing engine
-                setStage("Initializing engine...", "Preparing TensorFlow.js backend...", 25);
+                await setStage("Initializing engine...", "Preparing TensorFlow.js WebGL backend...", 25, true);
                 const gpuStatus = await detectGpuSupport();
                 if (gpuStatus.backend === 'webgl') {
                     await tf.setBackend('webgl');
@@ -388,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 await tf.ready();
 
                 // Stage 3: Loading model
-                setStage("Loading model...", "Fetching AI neural weights (cached after 1st use)...", 45);
+                await setStage("Loading model...", "Fetching AI neural weights (cached after 1st use)...", 45, true);
 
                 if (!cachedUpscaler) {
                     if (typeof Upscaler === 'undefined' || typeof DefaultUpscalerJSModel === 'undefined') {
@@ -400,55 +435,74 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 try {
-                    await cachedUpscaler.warmup({ patchSize: 128, padding: 4 });
+                    await cachedUpscaler.warmup({ patchSize: 128, padding: 4, awaitNextFrame: true });
                 } catch (warmupErr) {
                     console.warn("Warmup error, continuing with inference:", warmupErr);
                 }
 
-                // Stage 4: Processing
+                // Check abort
+                if (currentAbortController.signal.aborted) {
+                    throw new Error("Upscaling was cancelled by user.");
+                }
+
+                // Stage 4: Processing with awaitNextFrame for non-blocking UI
                 if (targetScale === 2) {
-                    setStage("Processing...", "AI Super-Resolution inference in progress...", 60);
+                    await setStage("Processing...", "AI Super-Resolution inference in progress...", 50, true);
+
                     currentUpscaledDataUrl = await cachedUpscaler.upscale(imageElement, {
                         patchSize: 128,
                         padding: 4,
-                        progress: (p) => {
+                        awaitNextFrame: true,
+                        signal: currentAbortController.signal,
+                        progress: async (p) => {
                             const pct = Math.round(50 + (p * 45));
-                            setStage("Processing...", `AI inference: ${Math.round(p * 100)}%`, pct);
+                            await setStage("Processing...", `AI inference: ${Math.round(p * 100)}%`, pct);
                         }
                     });
                 } else {
-                    // 4x Scaling: Two passes of 2x
-                    setStage("Processing...", "AI Pass 1 of 2: 2x Super-Resolution...", 55);
-                    const pass1DataUrl = await cachedUpscaler.upscale(imageElement, {
+                    // 4x Scaling: Two passes with direct tensor chaining
+                    await setStage("Processing...", "AI Pass 1 of 2: 2x Super-Resolution...", 50, true);
+
+                    const pass1Tensor = await cachedUpscaler.upscale(imageElement, {
                         patchSize: 128,
                         padding: 4,
-                        progress: (p) => {
+                        awaitNextFrame: true,
+                        output: 'tensor',
+                        signal: currentAbortController.signal,
+                        progress: async (p) => {
                             const pct = Math.round(50 + (p * 22));
-                            setStage("Processing...", `AI Pass 1 of 2: ${Math.round(p * 100)}%`, pct);
+                            await setStage("Processing...", `AI Pass 1 of 2: ${Math.round(p * 100)}%`, pct);
                         }
                     });
 
-                    const pass1Img = new Image();
-                    await new Promise((res, rej) => {
-                        pass1Img.onload = res;
-                        pass1Img.onerror = () => rej(new Error("Failed to load intermediate pass 1 image."));
-                        pass1Img.src = pass1DataUrl;
-                    });
+                    // Check abort
+                    if (currentAbortController.signal.aborted) {
+                        pass1Tensor.dispose();
+                        throw new Error("Upscaling was cancelled by user.");
+                    }
 
-                    setStage("Processing...", "AI Pass 2 of 2: Refining details to 4x...", 75);
-                    currentUpscaledDataUrl = await cachedUpscaler.upscale(pass1Img, {
-                        patchSize: 128,
-                        padding: 4,
-                        progress: (p) => {
-                            const pct = Math.round(72 + (p * 25));
-                            setStage("Processing...", `AI Pass 2 of 2: ${Math.round(p * 100)}%`, pct);
-                        }
-                    });
+                    await setStage("Processing...", "AI Pass 2 of 2: Refining details to 4x...", 72, true);
+
+                    try {
+                        currentUpscaledDataUrl = await cachedUpscaler.upscale(pass1Tensor, {
+                            patchSize: 128,
+                            padding: 4,
+                            awaitNextFrame: true,
+                            output: 'base64',
+                            signal: currentAbortController.signal,
+                            progress: async (p) => {
+                                const pct = Math.round(72 + (p * 25));
+                                await setStage("Processing...", `AI Pass 2 of 2: ${Math.round(p * 100)}%`, pct);
+                            }
+                        });
+                    } finally {
+                        pass1Tensor.dispose();
+                    }
                 }
 
                 // Stage 5: Completed
-                setStage("Completed!", "Finalizing output...", 100);
-                await new Promise(r => setTimeout(r, 150));
+                await setStage("Completed!", "Finalizing output...", 100, true);
+                await new Promise(r => setTimeout(r, 120));
 
                 if (typeof showToast === 'function') {
                     showToast("AI upscaling completed successfully!", "success");
@@ -464,8 +518,15 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Upscaling error:", err);
             loadingOverlay.style.display = 'none';
 
+            if (err.message && (err.message.includes('cancelled') || err.message.includes('abort') || err.name === 'AbortError')) {
+                if (typeof showToast === 'function') {
+                    showToast('Upscaling was cancelled.', 'warning');
+                }
+                return;
+            }
+
             const fallback = confirm(
-                `Processing failed: ${err.message || 'Unknown error'}\n\n` +
+                `Processing stopped: ${err.message || 'Unknown error'}\n\n` +
                 "Would you like to try Fast Resize instead?"
             );
             if (fallback) {
@@ -480,6 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } finally {
             isProcessing = false;
+            currentAbortController = null;
             upscaleBtn.disabled = false;
             resetBtn.disabled = false;
             scaleSelect.disabled = false;
