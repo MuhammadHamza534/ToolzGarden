@@ -267,8 +267,8 @@
           <!-- Preview & Slider Area -->
           <div id="result-container" class="slider-container checkerboard">
             
-            <img id="image-result" class="slider-img" src="" alt="Upscaled Image" loading="lazy" width="800" height="600">
-            <img id="image-original" class="slider-img" style="position: absolute; top: 0; left: 0; clip-path: inset(0 50% 0 0); image-rendering: pixelated;" src="" alt="Original" loading="lazy" width="800" height="600">
+            <img id="image-result" class="slider-img" src="" alt="Upscaled Image">
+            <img id="image-original" class="slider-img" style="position: absolute; top: 0; left: 0; clip-path: inset(0 50% 0 0); image-rendering: pixelated;" src="" alt="Original">
             
             <!-- Loading Overlay -->
             <div id="loading-overlay" style="display: none;">
@@ -299,6 +299,31 @@
           <div class="controls-card">
             <h3 style="margin-bottom: 1rem; font-size: 1.1rem;"><i class="ri-settings-4-line"></i> Options</h3>
             
+            <!-- Image Dimensions & Status Info Box -->
+            <div id="image-info-box" style="display: none; padding: 0.75rem 1rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 0.5rem; margin-bottom: 1rem; font-size: 0.85rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                <span style="color: var(--text-secondary);">Original:</span>
+                <span id="original-dims-label" style="font-weight: 600;">0 × 0 px</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                <span style="color: var(--text-secondary);">Target:</span>
+                <span id="target-dims-label" style="font-weight: 600; color: var(--accent-primary);">0 × 0 px</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-secondary);">Hardware:</span>
+                <span id="hardware-status-label" style="font-weight: 600;">Checking...</span>
+              </div>
+            </div>
+
+            <div class="control-group" style="margin-bottom: 1rem;">
+              <label for="method-select">Processing Method</label>
+              <select id="method-select">
+                <option value="ai">AI Super-Resolution (ESRGAN)</option>
+                <option value="fast">Fast Resize (High-Quality Bicubic)</option>
+              </select>
+              <p id="method-hint" style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">AI reconstructs textures and fine details locally.</p>
+            </div>
+
             <div class="control-group">
               <label for="scale-select">Upscale Resolution</label>
               <select id="scale-select">
@@ -308,7 +333,11 @@
               <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">4x scaling takes longer and requires more device memory.</p>
             </div>
 
-            <button id="download-btn" class="btn btn-primary" disabled="" style="width: 100%; margin-top: 1rem;">
+            <button id="upscale-btn" class="btn btn-primary" disabled style="width: 100%; margin-top: 1rem;">
+              <i class="ri-magic-line"></i> Upscale Image
+            </button>
+
+            <button id="download-btn" class="btn btn-primary" disabled style="width: 100%; margin-top: 1rem;">
               <i class="ri-download-2-line"></i> Download HD Image
             </button>
             
@@ -439,8 +468,6 @@
   <script src="../script.js"></script>
   <!-- Load TensorFlow.js and UpscalerJS -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.11.0/dist/tf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@4.11.0/dist/tf-backend-wasm.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgpu@4.11.0/dist/tf-backend-webgpu.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@upscalerjs/default-model@1.0.0/dist/umd/index.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/upscaler@1.0.0/dist/browser/umd/upscaler.min.js"></script>
   <script src="image-upscaler.js"></script>
